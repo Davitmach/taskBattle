@@ -1,0 +1,1 @@
+export type PageConfig = '/' | '/top' | '/find' | '/myprofile' | '/newtask' | '/user/:id';
