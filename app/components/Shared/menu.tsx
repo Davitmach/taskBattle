@@ -6,6 +6,7 @@ export const Menu = () => {
 {Object.keys(PageConfig).map((key)=> (
     <div key={key}>{key}</div>
 ))}
+1234
         </div>
     )
 }
