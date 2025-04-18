@@ -16,4 +16,8 @@ export const LgLoad = () => {
 
     return null;
 };
+<<<<<<< HEAD
 /* ssssss*/
+=======
+// /* qaqaqaqaqaqqaaq
+>>>>>>> 256593a (commit)
