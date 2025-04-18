@@ -16,4 +16,3 @@ export const LgLoad = () => {
 
     return null;
 };
-// /* qaqaqaqaqaqqaaq
