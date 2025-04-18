@@ -16,8 +16,4 @@ export const LgLoad = () => {
 
     return null;
 };
-<<<<<<< HEAD
-// /* qaqaqaqaqaqqaaq
-=======
-// wfffesfsefs
->>>>>>> origin/main
+
