@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Script from "next/script";
 import { Tektur } from "next/font/google";
 import "./globals.scss";
+import './assets/scss/style.scss'
 
 const tektur = Tektur({
   weight:  ['400','500','600','700','800','900'],
