@@ -4,22 +4,15 @@ import { useLoadingState } from '@/app/store';
 
 export const TgLoad = () => {
     const { setLoad } = useLoadingState();
-console.log('qaq');
+
 
     useEffect(() => {
-console.log('qaq');
-setInterval(() => {
+
+setTimeout(() => {
     if (window.Telegram && window.Telegram.WebApp) {
-        console.log('qaq');
-        
          window.Telegram.WebApp.ready();
        setLoad(true);
-
     }
-    else {
-        console.log('certainly not ready');
-        
-    } 
 }, 1000);
    
     }, []);
