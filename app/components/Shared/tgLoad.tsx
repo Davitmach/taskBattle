@@ -8,9 +8,15 @@ export const TgLoad = () => {
     useEffect(() => {
 
         if (window.Telegram && window.Telegram.WebApp) {
+            console.log('qaq');
+            
              window.Telegram.WebApp.ready();
            setLoad(true);
 
+        }
+        else {
+            console.log('certainly not ready');
+            
         }
     }, [setLoad]);
 
