@@ -38,8 +38,9 @@ export default function RootLayout({
       <body
         className={`${tektur.className}  antialiased`}
       >
-     
+     <div className="mx-auto max-w-[400px] w-full ">
             {children}
+            </div>
    <Loading/>
    <TgLoad/>
       <Menu/>

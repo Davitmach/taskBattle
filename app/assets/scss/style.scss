@@ -19,9 +19,23 @@ to {
 }
 .anim_pulseScale { animation: pulseScale 3s ease-in-out infinite; }
 
+@keyframes rotate {
+  to {
+      transform:rotate(360deg);
+    }
+  }
+.anim_rotate { animation: rotate 1s linear infinite; }
 
-
-
+@keyframes scale {
+  from {
+transform:  scale(0);
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+  }
+.anim_scale { animation: scale 0.5s ease-in-out forwards; opacity: 0;transform: scale(0);}
 /// Background 
  .Gradient {background: linear-gradient(180deg, #3A3A6F 0%, #2D2D4F 50%, #1E1E2F 100%);}
 
