@@ -3,7 +3,7 @@ import Script from "next/script";
 import { Tektur } from "next/font/google";
 import "./globals.scss";
 import './assets/scss/style.scss';
-import { motion, AnimatePresence } from 'framer-motion';
+
 import { Menu } from "./components/Shared/menu";
 import { Loading } from "./components/Shared/loading";
 import { TgLoad } from "./components/Shared/tgLoad";

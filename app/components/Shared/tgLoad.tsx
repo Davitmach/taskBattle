@@ -4,8 +4,10 @@ import { useLoadingState } from '@/app/store';
 
 export const TgLoad = () => {
     const { setLoad } = useLoadingState();
+console.log('qaq');
 
     useEffect(() => {
+console.log('qaq');
 
         if (window.Telegram && window.Telegram.WebApp) {
             console.log('qaq');
