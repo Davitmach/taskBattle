@@ -6,7 +6,7 @@ interface TgLoadingState {
   setLoad: (newState: boolean) => void; 
 }
 
-export const useMenuState = create<TgLoadingState>((set) => ({
+export const useLoadingState = create<TgLoadingState>((set) => ({
   LoadedState: false, 
   setLoad: (newState: boolean) => set({ LoadedState: newState }),
 }));

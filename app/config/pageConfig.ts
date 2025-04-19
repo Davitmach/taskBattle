@@ -1,6 +1,6 @@
 export const PageConfig = {
-    Home:'/',
-    Top:'/top',
-    Search:'/find',
-    Profile:'/myprofile'
-}
+    top:'/top',
+    home:'/',
+    search:'/find',
+    profile:'/myprofile'
+} as const
