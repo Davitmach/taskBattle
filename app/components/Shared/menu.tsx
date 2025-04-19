@@ -12,12 +12,14 @@ export const Menu = () => {
         if (found) setActive(found);
     }, [Path]);
 
-    return(
-        <div className="menu_container max-w-[500px] w-full mx-auto fixed bottom-0 left-2/4 translate-x-[-50%] bg-[#2D2D4F] rounded-t-[16px] flex justify-between items-center py-[22px] px-[20px]">
-{Object.keys(PageConfig).map((key)=> (
-    <div  className={`${active == key ? 'Active' :'Disable'} `}   key={key}>{key}</div>
-))}
+    return (
+
+        <><div className="menu_container max-w-[500px] w-full mx-auto fixed bottom-0 left-2/4 translate-x-[-50%] bg-[#2D2D4F] rounded-t-[16px] flex justify-between items-center py-[22px] px-[20px]">
+            {Object.keys(PageConfig).map((key) => (
+                <div className={`${active == key ? 'Active' : 'Disable'} `} key={key}>{key}</div>
+            ))}
         </div>
+            <div className="menu_container max-w-[380px] w-full absolute top-0.5 text-200">Добро Пожаловать!</div></>
     )
 
 }
