@@ -20,17 +20,5 @@ body {
   background-repeat: no-repeat;
   height: 100vh;
   font-size: 14px;
-  animation: backgroundMovement 3s ease-in-out infinite;
-}
-@keyframes backgroundMovement {
-  0% {
-    background-position: -301px -154px;
-  }
-  50% {
-    background-position: 0 0;
-  }
-  100% {
-    background-position: -301px -154px;
-  }
 }
 
