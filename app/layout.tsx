@@ -7,6 +7,7 @@ import './assets/scss/style.scss';
 import { Menu } from "./components/Shared/menu";
 import { Loading } from "./components/Shared/loading";
 import { TgLoad } from "./components/Shared/tgLoad";
+import { useLoadingState } from "./store";
 
 
 const tektur = Tektur({
@@ -28,7 +29,7 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-
+const {LoadedState} = useLoadingState();
   return (
     <html lang="en">
         <meta
@@ -38,11 +39,12 @@ export default function RootLayout({
       <body
         className={`${tektur.className}  antialiased`}
       >
-     
-            {children}
    <Loading/>
-   <TgLoad/>
-      <Menu/>
+   <TgLoad/>    
+   {LoadedState == true && (<>{children}
+ 
+ <Menu/></>)}
+            
         <Script src="https://telegram.org/js/telegram-web-app.js"/>
       </body>
     </html>
