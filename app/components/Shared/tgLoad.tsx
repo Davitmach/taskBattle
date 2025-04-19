@@ -8,19 +8,21 @@ console.log('qaq');
 
     useEffect(() => {
 console.log('qaq');
+setInterval(() => {
+    if (window.Telegram && window.Telegram.WebApp) {
+        console.log('qaq');
+        
+         window.Telegram.WebApp.ready();
+       setLoad(true);
 
-        if (window.Telegram && window.Telegram.WebApp) {
-            console.log('qaq');
-            
-             window.Telegram.WebApp.ready();
-           setLoad(true);
-
-        }
-        else {
-            console.log('certainly not ready');
-            
-        }
-    }, [setLoad]);
+    }
+    else {
+        console.log('certainly not ready');
+        
+    } 
+}, 1000);
+   
+    }, []);
 
     return null;
 };
