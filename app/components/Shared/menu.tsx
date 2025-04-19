@@ -3,11 +3,12 @@ import { PageConfig } from "@/app/config/pageConfig";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { useCustomRouter } from "@/app/hooks/Router";
+import { useLoadingState } from "@/app/store";
 
 export const Menu = () => {
   const Router = useCustomRouter();
   const Path = usePathname();
-
+const {LoadedState} = useLoadingState();
 
   const entries = Object.entries(PageConfig) as [keyof typeof PageConfig, (typeof PageConfig)[keyof typeof PageConfig]][];
 
@@ -19,7 +20,7 @@ export const Menu = () => {
   }, [Path]);
 
   return (
-    <div className="anim_fadeIn menu_container max-w-[500px] w-full mx-auto fixed bottom-0 left-2/4 translate-x-[-50%] bg-[#2D2D4F] rounded-t-[16px] flex justify-between items-center py-[22px] px-[20px]">
+    <div className={`${LoadedState && 'anim_fadeIn'} menu_container max-w-[500px] w-full mx-auto fixed bottom-0 left-2/4 translate-x-[-50%] bg-[#2D2D4F] rounded-t-[16px] flex justify-between items-center py-[22px] px-[20px]`}>
       {entries.map(([key, path]) => (
         <div
           datatype={path}
