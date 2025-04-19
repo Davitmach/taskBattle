@@ -2,7 +2,7 @@
 import { useEffect } from 'react';
 import { useLoadingState } from '@/app/store';
 
-export const LgLoad = () => {
+export const TgLoad = () => {
   const { setLoad } = useLoadingState();
 
   useEffect(() => {

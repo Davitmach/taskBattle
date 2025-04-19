@@ -6,6 +6,7 @@ import './assets/scss/style.scss';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Menu } from "./components/Shared/menu";
 import { Loading } from "./components/Shared/loading";
+import { TgLoad } from "./components/Shared/tgLoad";
 
 
 const tektur = Tektur({
@@ -39,6 +40,7 @@ export default function RootLayout({
      
             {children}
    <Loading/>
+   <TgLoad/>
         <Menu/>
         <Script src="https://telegram.org/js/telegram-web-app.js"/>
       </body>
