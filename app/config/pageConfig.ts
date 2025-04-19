@@ -3,4 +3,4 @@ export const PageConfig = {
     home:'/',
     search:'/find',
     profile:'/myprofile'
-}
+} as const

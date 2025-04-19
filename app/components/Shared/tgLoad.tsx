@@ -1,9 +1,9 @@
 'use client';
 import { useEffect } from 'react';
-import { useMenuState } from "@/app/store";
+import { useLoadingState } from '@/app/store';
 
 export const LgLoad = () => {
-    const { setLoad } = useMenuState();
+    const { setLoad } = useLoadingState();
 
     useEffect(() => {
 

@@ -15,6 +15,22 @@ $lightPurple:#2D2D4F;
 body {
   font-family: Arial, Helvetica, sans-serif;
   background: $gradient;
+  background-size: 150vh 130vh;
+  background-position: -401px -154px;
+  background-repeat: no-repeat;
   height: 100vh;
   font-size: 14px;
+  animation: backgroundMovement 3s ease-in-out infinite;
 }
+@keyframes backgroundMovement {
+  0% {
+    background-position: -301px -154px;
+  }
+  50% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: -301px -154px;
+  }
+}
+
