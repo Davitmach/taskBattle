@@ -19,7 +19,7 @@ export const Menu = () => {
                 <div className={`${active == key ? 'Active' : 'Disable'} `} key={key}>{key}</div>
             ))}
         </div>
-            <div className="menu_container max-w-[380px] w-full absolute top-0.5 bg-[#2D2D4F] rounded-t-[13px] text-200 mx-auto">Добро Пожаловать!</div></>
+            <div className="menu_container max-w-[380px] w-full absolute top-0.5 bg-[#2D2D4F] rounded-t-[13px] text-200 mx-auto left-2/4 translate-x-[-50%]">Добро Пожаловать!</div></>
     )
 
 }
