@@ -44,3 +44,22 @@ transform:  scale(0);
 .menu_container .Disable { color:#AAAAAA };
 
 
+/// Task Info Block
+
+.task_home_page_info_block > .tasks_box::-webkit-scrollbar {
+  width: 5px; 
+}
+
+.task_home_page_info_block > .tasks_box::-webkit-scrollbar-track {
+  background: transparent; 
+}
+
+.task_home_page_info_block > .tasks_box::-webkit-scrollbar-thumb {
+  background-color: #3a3a6f;
+  border-radius: 10px;
+}
+
+
+/// Container
+ .container {display: flex;align-items: center;flex-direction: column;gap: 20px;width: 100%;height: 100vh;overflow-y: scroll;padding-bottom: 100px;}
+ .container::-webkit-scrollbar {width: 0; }

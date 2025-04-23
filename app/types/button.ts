@@ -1,6 +1,6 @@
 export type ButtonType = 'Purple' | 'Green'
 export interface IButtonProps  {
-    children: React.ReactNode
+    children?: React.ReactNode
     type: ButtonType
     className?: string
     onClick?: () => void

@@ -19,5 +19,11 @@ body {
   height: 100vh;
   font-size: 14px;
   padding:7px 10px;
+  overflow: hidden;
 }
 
+@media (max-width: 416px) {
+  body {
+    font-size: 14px;
+  }
+}
