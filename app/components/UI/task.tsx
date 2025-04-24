@@ -6,6 +6,27 @@ import { Clock } from './svg'
 
 export const Task = (props:ITaskProps)=> {
   const [substring,setSubstring] = useState<number>(25);
+  useEffect(() => {
+    const updateSubstring = () => {
+      if (window.innerWidth < 403) {
+        setSubstring(15);
+      } 
+      else if (window.innerWidth < 315) {
+        setSubstring(10);
+      }
+  
+      else {
+        setSubstring(25);
+      }
+    };
+  
+    updateSubstring(); 
+    window.addEventListener('resize', updateSubstring); 
+  
+    return () => {
+      window.removeEventListener('resize', updateSubstring);
+    };
+  }, []);
   return(
     <div className={`bg-[${props.color}] p-[10px] rounded-[8px] cursor-grab h-[69px] flex items-start justify-between`}>
     <div className='flex flex-col h-full justify-between'>

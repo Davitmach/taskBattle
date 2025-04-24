@@ -1,5 +1,5 @@
 export default function Page() {
     return(
-        <>qaqaqaqaqaqaq</>
+        <div className="w-full h-[100vh] anim_fadeIn">qaqaqaqaqaqaq</div>
     )
 }
