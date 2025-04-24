@@ -81,7 +81,7 @@ export default function Page() {
         
          </div>
         </div>
-         <div className=" max-w-[400px]  fixed bottom-[80px] left-[50%] translate-x-[-50%] w-[90%]"><UserInfo className="  border border-white" img={'https://randomuser.me/api/portraits/lego/2.jpg'} index={1} name="David" total={455} state={4}/></div>
+         <div className=" max-w-[400px]  fixed bottom-[80px] left-[50%] translate-x-[-50%] w-[92%]"><UserInfo className="  border border-white" img={'https://randomuser.me/api/portraits/lego/2.jpg'} index={1} name="David" total={455} state={4}/></div>
          </>
     )
 }
