@@ -31,8 +31,8 @@ export default function RootLayout({
         name="viewport"
         content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
       />
-      <body className={`${tektur.className}  antialiased`}>
-        <div className="mx-auto max-w-[400px] w-full ">{children}
+      <body className={`${tektur.className}  antialiased scrollbar-hide`}>
+        <div className="mx-auto max-w-[400px] w-full  scrollbar-hide">{children}
 <Task/>
 
         </div>

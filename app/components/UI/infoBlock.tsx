@@ -79,7 +79,7 @@ return(
     </div>
     <div 
     style={click == false ? {height:'auto'} : open ? {height:`${height}px`}:{height:'0px'}}
-    ref={refDiv} className={` tasks_box  duration-[.2s] overflow-x-hidden flex flex-col gap-[10px] max-h-[230px]`}>{data.map((e)=> {
+    ref={refDiv} className={` tasks_box  duration-[.2s] scrollbar-hide overflow-x-hidden flex flex-col gap-[10px] max-h-[230px]`}>{data.map((e)=> {
       if(props.type == 'inprocess') {
 return <TaskWithFunc date={e.date} friends={e.friends ? e.friends :[]}  timeout={e.timeout} title={e.title} type={e.type as 'Совместное'|'Одиночное'} key={e.title}/>
       }

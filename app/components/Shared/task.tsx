@@ -55,7 +55,7 @@ function ModalContent() {
 
           {friends.length > 0 && (
             <div className="mt-4 mb-[10px]">
-              <ul className="mt-1 space-y-[8px] max-h-[140px] overflow-y-auto">
+              <ul className="mt-1 space-y-[8px] max-h-[140px] overflow-y-auto scrollbar-hide">
                 {friends.map((friend, index) => (
                   <li key={index} className="flex items-center gap-2 bg-[#1E1E2F] rounded-[13px] p-[9px]">
                     <div><img src={friend.img} className='rounded-[50px]' width={43} height={43} /></div>
