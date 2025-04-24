@@ -20,6 +20,10 @@ body {
   font-size: 14px;
   padding:7px 10px;
   overflow: hidden;
+  scrollbar-width: none;
+}
+html {
+  scrollbar-width: none;
 }
 
 @media (max-width: 416px) {
@@ -29,4 +33,7 @@ body {
 }
 *::-webkit-scrollbar {
   width: 0;
+}
+body::-webkit-scrollbar {
+  display: none;
 }
