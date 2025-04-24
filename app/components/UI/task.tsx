@@ -3,6 +3,7 @@
 import { ITaskProps, ITaskWithFuncProps } from '@/app/types/task'
 import { useEffect, useRef, useState } from 'react'
 import { Clock } from './svg'
+import { useRouter } from 'next/navigation'
 
 export const Task = (props:ITaskProps)=> {
   const [substring,setSubstring] = useState<number>(25);
@@ -27,8 +28,20 @@ export const Task = (props:ITaskProps)=> {
       window.removeEventListener('resize', updateSubstring);
     };
   }, []);
+  const {push} = useRouter();
+  const openModal = (task:any) => {
+    const queryParams = new URLSearchParams({
+      modal: 'dynamic',
+      title: task.title,
+      type: task.type,
+      date: task.date,
+      friends:encodeURIComponent(JSON.stringify(task.friends)),
+    }).toString();
+  
+  push(`?${queryParams}`);
+  };
   return(
-    <div className={`bg-[${props.color}] p-[10px] rounded-[8px] cursor-grab h-[69px] flex items-start justify-between`}>
+    <div  onClick={()=> openModal({date:props.date,title:props.title,type:props.type,friends:props.friends})}  className={`bg-[${props.color}] p-[10px] rounded-[8px] cursor-grab h-[69px] flex items-start justify-between`}>
     <div className='flex flex-col h-full justify-between'>
       <div className='text-[#1E1E1E] text-[1.14em] font-[400] text-nowrap'>{props.title.length >substring ?props.title.substring(0,substring)+`...` : props.title}</div>
       <div className='text-[#000000] text-[1em] font-[400]'>{props.type}</div>
@@ -40,6 +53,19 @@ export const Task = (props:ITaskProps)=> {
 }
 
 export const TaskWithFunc = (props:ITaskWithFuncProps) => {
+  const {push} = useRouter();
+  const openModal = (task:any) => {
+    const queryParams = new URLSearchParams({
+      modal: 'dynamic',
+      title: task.title,
+      type: task.type,
+      date: task.date,
+      friends:encodeURIComponent(JSON.stringify(task.friends)),
+    }).toString();
+  
+  push(`?${queryParams}`);
+  };
+  
   const ref = useRef<HTMLDivElement>(null);
   const [widthPercent, setWidthPercent] = useState<number>(100);
   const [showIcons, setShowIcons] = useState<boolean>(false);
@@ -175,8 +201,9 @@ if(time>0) {
 },[time])
 
   return (
-    <div className='flex items-center justify-between gap-[10px]'>
+    <div  className='flex items-center justify-between gap-[10px]'>
       <div
+      onClick={()=> openModal({date:props.date,title:props.title,type:props.type,friends:props.friends})}
         ref={ref}
         style={{
           width: `${widthPercent}%`,
