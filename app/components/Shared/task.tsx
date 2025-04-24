@@ -68,7 +68,7 @@ function ModalContent() {
               </ul>
             </div>
           )}
-          <span className='text-white text-[1em] font-[400]'>Дата окончания: {date}</span>
+          <span className='text-white text-[1em] font-[400] w-full flex justify-center'>Дата окончания: {date}</span>
         </div>
 
         <div className='flex w-full justify-center gap-[13px] mt-[20px]'>
