@@ -30,6 +30,7 @@ export const Task = (props:ITaskProps)=> {
   }, []);
   const {push} = useRouter();
   const openModal = (task:any) => {
+    console.log('qaqem beynit');
     const queryParams = new URLSearchParams({
       modal: 'dynamic',
       title: task.title,
@@ -55,6 +56,8 @@ export const Task = (props:ITaskProps)=> {
 export const TaskWithFunc = (props:ITaskWithFuncProps) => {
   const {push} = useRouter();
   const openModal = (task:any) => {
+    console.log('qaqem beynit');
+    
     const queryParams = new URLSearchParams({
       modal: 'dynamic',
       title: task.title,
