@@ -15,7 +15,7 @@ export default function Home() {
     taskService.createTask(router);
   };
   return (
-    <div className="container pt-[7px]">
+    <div className="container pt-[7px] scrollbar-hide">
       <Button
         type="Purple"
         onClick={handleClick}
