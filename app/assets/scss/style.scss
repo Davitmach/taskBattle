@@ -47,17 +47,10 @@ transform:  scale(0);
 /// Task Info Block
 
 .task_home_page_info_block > .tasks_box::-webkit-scrollbar {
-  width: 5px; 
+  width: 0px; 
 }
 
-.task_home_page_info_block > .tasks_box::-webkit-scrollbar-track {
-  background: transparent; 
-}
 
-.task_home_page_info_block > .tasks_box::-webkit-scrollbar-thumb {
-  background-color: #3a3a6f;
-  border-radius: 10px;
-}
 
 
 /// Container
@@ -66,14 +59,5 @@ transform:  scale(0);
 
  /// modal 
  .modal_page ul::-webkit-scrollbar {
-  width: 4px; 
-}
-
-.modal_page ul::-webkit-scrollbar-track {
-  background: transparent; 
-}
-
-.modal_page ul::-webkit-scrollbar-thumb {
-  background-color: #3a3a6f;
-  border-radius: 10px;
+  width: 0px; 
 }
