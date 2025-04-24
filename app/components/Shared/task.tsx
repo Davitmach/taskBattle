@@ -2,6 +2,7 @@
 
 import { useSearchParams, useRouter } from 'next/navigation';
 import { useEffect, useState, Suspense } from 'react';
+import { UserInfo } from '../UI/userInfo';
 
 function ModalContent() {
   const searchParams = useSearchParams();
@@ -57,13 +58,8 @@ function ModalContent() {
             <div className="mt-4 mb-[10px]">
               <ul className="mt-1 space-y-[8px] max-h-[140px] overflow-y-auto scrollbar-hide">
                 {friends.map((friend, index) => (
-                  <li key={index} className="flex items-center gap-2 bg-[#1E1E2F] rounded-[13px] p-[9px]">
-                    <div><img src={friend.img} className='rounded-[50px]' width={43} height={43} /></div>
-                    <div className='flex flex-col'>
-                      <span className='text-[1em] text-[#F1F1F1] font-[400]'>{friend.name}</span>
-                      <span className='text-[1em] text-[#F1F1F1] font-[400]'>Total Tasks:{friend.total}</span>
-                    </div>
-                  </li>
+                  <UserInfo  key={index} index={index} img={friend.img} name={friend.name} total={friend.total}/>
+                
                 ))}
               </ul>
             </div>

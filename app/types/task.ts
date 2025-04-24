@@ -10,6 +10,7 @@ interface IFriends {
         timeout: number
         date:string
         friends?: IFriends[]
+        phrase?:string
     }
     export interface ITaskProps {
         title: string
@@ -18,5 +19,6 @@ interface IFriends {
         color:string
         date:string
         friends?: IFriends[]
+        phrase?:string
 
     }

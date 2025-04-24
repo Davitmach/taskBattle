@@ -30,7 +30,7 @@ export const Task = (props:ITaskProps)=> {
   }, []);
   const {push} = useRouter();
   const openModal = (task:any) => {
-    console.log('qaqem beynit');
+
     const queryParams = new URLSearchParams({
       modal: 'dynamic',
       title: task.title,
@@ -47,7 +47,11 @@ export const Task = (props:ITaskProps)=> {
       <div className='text-[#1E1E1E] text-[1.14em] font-[400] text-nowrap'>{props.title.length >substring ?props.title.substring(0,substring)+`...` : props.title}</div>
       <div className='text-[#000000] text-[1em] font-[400]'>{props.type}</div>
     </div>
-   <div className='flex items-center gap-[3px] text-[1em] font-[400] text-[#1E1E1E] text-nowrap'><Clock/>{props.timeout} минут</div>
+    <div>
+      <div className='flex items-center gap-[3px] text-[1em] font-[400] text-[#1E1E1E] text-nowrap'><Clock/>{props.timeout} минут</div>
+      <div dangerouslySetInnerHTML={{ __html: props.phrase || '' }} />
+    </div>
+   
   </div>
 
   )
@@ -55,8 +59,10 @@ export const Task = (props:ITaskProps)=> {
 
 export const TaskWithFunc = (props:ITaskWithFuncProps) => {
   const {push} = useRouter();
+  const [active,setActive] = useState<boolean>(true);
   const openModal = (task:any) => {
-    console.log('qaqem beynit');
+    if(active) {
+  
     
     const queryParams = new URLSearchParams({
       modal: 'dynamic',
@@ -67,6 +73,7 @@ export const TaskWithFunc = (props:ITaskWithFuncProps) => {
     }).toString();
   
   push(`?${queryParams}`);
+    }
   };
   
   const ref = useRef<HTMLDivElement>(null);
@@ -82,13 +89,16 @@ export const TaskWithFunc = (props:ITaskWithFuncProps) => {
 
     const handleStart = (clientX: number) => {
       startXRef.current = clientX
+    
+      
     }
 
     const handleMove = (clientX: number) => {
       if (startXRef.current === null) return
       const deltaX = clientX - startXRef.current
-
+      
       if (deltaX < 0) { 
+        setActive(false)
         const newWidth = Math.max(67, 100 + deltaX / 2)
     
         if(newWidth < 80) {
@@ -96,6 +106,7 @@ export const TaskWithFunc = (props:ITaskWithFuncProps) => {
         }
         else {
           setShow(true);
+        
         }
         setWidthPercent(newWidth)
 
@@ -104,7 +115,9 @@ export const TaskWithFunc = (props:ITaskWithFuncProps) => {
           setShowIcons(true)
         }
       } else if (deltaX > 0) { 
-     
+     setTimeout(() => {
+      setActive(true)
+     }, 500);
  
         
         const newWidth = Math.min(100, widthPercent + (deltaX / 5))
@@ -219,9 +232,9 @@ if(time>0) {
           <div className='text-[#1E1E1E] text-[1.14em] font-[400] text-nowrap'>{props.title.length >substring ?props.title.substring(0,substring)+`...` : props.title}</div>
           <div className='text-[#000000] text-[1em] font-[400]'>{props.type}</div>
         </div>
-        {show &&<div className='flex items-center gap-[3px] text-[1em] font-[400] text-[#1E1E1E] text-nowrap'><Clock/>{time} минут</div>}
+        {show &&<div><div className='flex items-center gap-[3px] text-[1em] font-[400] text-[#1E1E1E] text-nowrap'><Clock/>{time} минут</div><div dangerouslySetInnerHTML={{ __html: props.phrase || '' }} /></div>}
       </div>
-
+      
  
       {showIcons && (
         <div className='anim_scale flex w-auto  gap-[10px]' style={{ transition: 'opacity 0.3s ease' }}>
