@@ -50,7 +50,7 @@ function ModalContent() {
           <path d="M2 2L17 17M17 2L2 17" stroke="white" strokeWidth="3"/>
         </svg>
         <div>
-          <h2 className='text-[#F1F1F1] text-[2.36em] font-[400] text-center'>{title}</h2>
+          <h2 className='text-[#F1F1F1] text-[2em] font-[400] text-center'>{title}</h2>
           <p className='text-[#F1F1F1] text-[1.43em] font-[400] text-center'>{type}</p>
 
           {friends.length > 0 && (
