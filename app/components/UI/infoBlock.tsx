@@ -1,6 +1,6 @@
 'use client';
 
-import { ITaskHomePageInfoBlockProps } from "@/app/types/infoBlock";
+import { IInfoBlock, ITaskHomePageInfoBlockProps } from "@/app/types/infoBlock";
 import { Title } from "./title";
 import { AccordingBtn } from "./accordingBtn";
 import { useCallback, useEffect, useRef, useState } from "react";
@@ -87,6 +87,40 @@ return <TaskWithFunc phrase='<p>qaqem</p>' date={e.date} friends={e.friends ? e.
         return  <Task date={e.date} friends={e.friends ? e.friends :[]} color={props.type == 'cancel' ? '#BE3A50D9' : props.type=='complete' ?'#A2E9BA':''} timeout={e.timeout} title={e.title} type={e.type as 'Совместное'|'Одиночное'} key={e.title}/>
       }
     })}</div>
+</div>
+)
+}
+
+export const InfoBlock = (props:IInfoBlock)=> {
+    const [open,setOpen] = useState(true);
+    const refDiv = useRef<HTMLDivElement>(null);
+    const [height,setHeight] = useState(0);
+    const [click,setClick] = useState(false);
+    const {LoadedState} = useLoadingState();
+
+    const HandleOpen = useCallback(()=> {
+        setClick(true);
+
+setOpen(!open);
+    },[open])
+
+useEffect(()=> {
+
+if(refDiv.current?.clientHeight) {
+    setHeight(refDiv.current.clientHeight);
+}
+
+},[])
+
+return(
+<div className={`${LoadedState && 'anim_fadeIn'} w-full task_home_page_info_block bg-[#1E1E2F] rounded-[16px] py-[10px] px-[15px] flex duration-[.2s] flex-col ${open == false ? 'gap-[0px]':'gap-[20px]'} `}>
+    <div className="flex items-center justify-between">
+        <div><Title color={'#D9D9D9'} className={`text-[1.43em] font-[400] `}>{props.title}</Title></div>
+        <div><AccordingBtn state={open} onClick={HandleOpen} color={'#D9D9D9'} innerColor="#1E1E2F"/></div>
+    </div>
+    <div 
+    style={click == false ? {height:'auto'} : open ? {height:`${height}px`}:{height:'0px'}}
+    ref={refDiv} className={` tasks_box  duration-[.2s] scrollbar-hide overflow-x-hidden flex flex-col gap-[10px] max-h-[230px]`}>{props.children}</div>
 </div>
 )
 }

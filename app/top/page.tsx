@@ -75,13 +75,13 @@ export default function Page() {
          <div className="w-full h-full relative">
          <ul className="flex flex-col gap-[5px] pb-[160px]">
             {Top.map((item,index)=> (
-                <UserInfo img={item.img} index={index} key={index} name={item.name} total={item.tasks} state={index+1}/>
+                <UserInfo color="#1E1E2F" img={item.img} index={index} key={index} name={item.name} total={item.tasks} state={index+1}/>
             ))}
          </ul>
         
          </div>
         </div>
-         <div className=" max-w-[400px]  fixed bottom-[80px] left-[50%] translate-x-[-50%] w-[92%]"><UserInfo className="  border border-white" img={'https://randomuser.me/api/portraits/lego/2.jpg'} index={1} name="David" total={455} state={4}/></div>
+         <div className=" max-w-[400px]  fixed bottom-[80px] left-[50%] translate-x-[-50%] w-[92%]"><UserInfo color="#1E1E2F" className="  border border-white" img={'https://randomuser.me/api/portraits/lego/2.jpg'} index={1} name="David" total={455} state={4}/></div>
          </>
     )
 }
