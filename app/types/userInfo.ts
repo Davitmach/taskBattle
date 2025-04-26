@@ -5,7 +5,8 @@ total:number;
 index:number;
 state?:number
 className?:string
-color:string
+color:string;
+friend?:boolean
 }
 export interface IAnyUserInfo {
     img:string;

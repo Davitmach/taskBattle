@@ -12,12 +12,45 @@ import { useLoadingState } from "@/app/store";
 import { desc } from "framer-motion/client";
 import { useParams } from "next/navigation";
 import { useState } from "react";
-
+type Task = {
+    title: string;
+    type: string;
+    timeout: number;
+    date: string;
+    friends?: { img: string; name: string; total: number }[];
+  };
+const data:Task[] = [
+    { title: "Написать вступление к проекту", type: "Одиночное", timeout: 10, date: "23:03:2024 24:34" },
+    { title: "Созвон с тимлидом", type: "Совместное", timeout: 25, friends: [{ img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSIH3cVN9nVOwezMJZgjRo0YhASylFMo1nJpw&s", name: "Аня", total: 3 },{ img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSIH3cVN9nVOwezMJZgjRo0YhASylFMo1nJpw&s", name: "Аня", total: 3 },{ img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSIH3cVN9nVOwezMJZgjRo0YhASylFMo1nJpw&s", name: "Аня", total: 3 },{ img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSIH3cVN9nVOwezMJZgjRo0YhASylFMo1nJpw&s", name: "Аня", total: 3 }], date: "23:03:2024 24:34" },
+    { title: "Дизайн главной страницы", type: "Одиночное", timeout: 40, date: "23:03:2024 24:34" },
+    { title: "Обсуждение архитектуры", type: "Совместное", timeout: 30, friends: [{ img: "/avatars/user2.png", name: "Богдан", total: 4 }], date: "23:03:2024 24:34" },
+    { title: "Тестирование логина", type: "Одиночное", timeout: 15, date: "23:03:2024 24:34" },
+    { title: "Вёрстка формы регистрации", type: "Одиночное", timeout: 35, date: "23:03:2024 24:34" },
+    { title: "Созвон по задачам спринта", type: "Совместное", timeout: 20, friends: [{ img: "/avatars/user3.png", name: "Вика", total: 2 }], date: "23:03:2024 24:34" },
+    { title: "Обновить README", type: "Одиночное", timeout: 10, date: "23:03:2024 24:34" },
+    { title: "UI ревью компонентов", type: "Совместное", timeout: 45, friends: [{ img: "/avatars/user4.png", name: "Сергей", total: 6 }], date: "23:03:2024 24:34" },
+    { title: "Фикс багов на проде", type: "Одиночное", timeout: 50, date: "23:03:2024 24:34" },
+    { title: "Обсудить идеи по улучшению UX", type: "Совместное", timeout: 30, friends: [{ img: "/avatars/user5.png", name: "Катя", total: 5 }], date: "23:03:2024 24:34" },
+    { title: "Переезд на новую библиотеку", type: "Одиночное", timeout: 60, date: "23:03:2024 24:34" },
+    { title: "Созвон с дизайнером", type: "Совместное", timeout: 25, friends: [{ img: "/avatars/user6.png", name: "Артур", total: 3 }], date: "23:03:2024 24:34" },
+    { title: "Рефакторинг модулей", type: "Одиночное", timeout: 45, date: "23:03:2024 24:34" },
+    { title: "Ревью pull request'ов", type: "Одиночное", timeout: 20, date: "23:03:2024 24:34" },
+    { title: "Составить план на неделю", type: "Одиночное", timeout: 15, date: "23:03:2024 24:34" },
+    { title: "Демо для заказчика", type: "Совместное", timeout: 30, friends: [{ img: "/avatars/user7.png", name: "Денис", total: 4 }], date: "23:03:2024 24:34" },
+    { title: "Оптимизация запросов", type: "Одиночное", timeout: 35, date: "23:03:2024 24:34" },
+    { title: "Созвон по багрепортам", type: "Совместное", timeout: 40, friends: [{ img: "/avatars/user8.png", name: "Настя", total: 2 }], date: "23:03:2024 24:34" },
+    { title: "Добавить документацию к API", type: "Одиночное", timeout: 25, date: "23:03:2024 24:34" },
+    { title: "UX-тестирование с пользователями", type: "Совместное", timeout: 50, friends: [{ img: "/avatars/user9.png", name: "Лёша", total: 7 }], date: "23:03:2024 24:34" },
+    { title: "Подготовка релизной версии", type: "Одиночное", timeout: 60, date: "23:03:2024 24:34" },
+    { title: "Ревью задач других команд", type: "Совместное", timeout: 30, friends: [{ img: "/avatars/user10.png", name: "Валя", total: 3 }], date: "23:03:2024 24:34" },
+    { title: "Проверка адаптивности сайта", type: "Одиночное", timeout: 20, date: "23:03:2024 24:34" },
+]
 export default function Page() {
     const router = useCustomRouter();
     const params = useParams();
     const {LoadedState} = useLoadingState();
     const [open,setOpen] = useState(false);
+    const [openReport,setOpenReport] = useState(false);
     const [info,setInfo] = useState({
         title:'',
         description:'',
@@ -42,11 +75,19 @@ router('/');
             info:''
         })
     }
+    const openRep= () => {
+        setOpenReport(true);
+       
+    }
+    const closeRep = ()=> {
+        setOpenReport(false);
+       
+    }
     return(
         <>
         <div className="container !gap-[10px] pt-[7px] scrollbar-hide relative"><Back onclick={back} className="absolute left-[15px] top-[15px] cursor-pointer"/>
         
-        <Button type='Purple' className={`${LoadedState && 'anim_fadeIn'} !bg-[#1E1E2F] py-[16px] w-full mt-[70px] flex gap-[7px] text-[1.43em]`} disabled={false} loading={false} >Пожаловаться<svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <Button onClick={openRep} type='Purple' className={`${LoadedState && 'anim_fadeIn'} !bg-[#1E1E2F] py-[16px] w-full mt-[70px] flex gap-[7px] text-[1.43em]`} disabled={false} loading={false} >Пожаловаться<svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
 <path d="M6.86 1H15.14L21 6.86V15.14L15.14 21H6.86L1 15.14V6.86L6.86 1Z" stroke="#D9D9D9" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
 <path d="M11 7V11" stroke="#D9D9D9" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
 <path d="M11 15H11.01" stroke="#D9D9D9" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
@@ -55,9 +96,9 @@ router('/');
 <AnyUserInfo img="https://randomuser.me/api/portraits/lego/2.jpg" date="2014.04.20" name="David" tasks={{inprocess:3,cancel:54,success:4}} friendship={false}/>
 <InfoBlock title="Друзья"><ul><UserInfo className="w-full" color="#2D2D4F" img="https://randomuser.me/api/portraits/lego/2.jpg" name="'de"  total={3} index={3}/></ul></InfoBlock>
 <InfoBlock title="Награды"><Reward  onClick={() => openM("Какой ты быстрый!!", "Награда за выполнение задния за 1 минуту", "Награда есть у 10% пользователей")}  info="Награда есть у 10% пользователей" title="Какой ты быстрый!!" description="Награда за выполнение задния за 1 минуту" /></InfoBlock>
-   <TaskHomePageInfoBlock type="complete" />
-   <TaskHomePageInfoBlock type="inprocess" />
-   <TaskHomePageInfoBlock type="cancel" />
+   <TaskHomePageInfoBlock data={data} type="complete" />
+   <TaskHomePageInfoBlock data={data} type="inprocess" />
+   <TaskHomePageInfoBlock data={data} type="cancel" />
         </div>
 
         {open &&<div className="bg-[#1E1E2FBF] w-full h-[100vh] z-[999999] fixed left-0 top-0"> <div className="min-h-[342px] anim_fadeIn bg-[#2D2D4F] flex flex-col justify-start relative items-center gap-[15px] p-[15px] rounded-[16px] fixed left-[50%] top-[50%] translate-x-[-50%] translate-y-[-50%] max-w-[400px] w-[91%] ">
@@ -72,6 +113,19 @@ router('/');
             <div className="text-white font-[400] text-[1.4em]">{info.title}</div>
             <div className="text-white font-[400] text-[1.4em]">{info.description}</div>
             <div className="text-[#FACC15] font-[400] text-[1.4em] w-full flex justify-start "><p className="max-w-[198px] w-full">{info.info}</p></div>
+            </div></div>}
+
+            {openReport && <div className="report_box bg-[#1E1E2FBF] w-full h-[100vh] z-[999999] fixed left-0 top-0"> <div className="min-h-[342px] anim_fadeIn bg-[#2D2D4F] flex flex-col justify-start relative items-center gap-[15px] p-[15px] rounded-[16px] fixed left-[50%] top-[50%] translate-x-[-50%] translate-y-[-50%] max-w-[400px] w-[91%] ">
+            <svg onClick={closeRep} className="absolute right-[15px] top-[15px] cursor-pointer" width="19" height="19" viewBox="0 0 19 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M2 2L17 17M17 2L2 17" stroke="white" strokeWidth="3"/>
+</svg>
+
+            <div className="font-[400] text-[1.43em] text-[#D9D9D9]">Пожаловаться</div>
+           <div className=" h-[253px] w-full relative"><textarea placeholder="Напиши свою жалобу..." ></textarea><svg className="absolute bottom-[15px] right-[15px] cursor-pointer" width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M21 1L10 12" stroke="#D9D9D9" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+<path d="M21 1L14 21L10 12L1 8L21 1Z" stroke="#D9D9D9" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+</svg>
+</div>
             </div></div>}
         </>
     )

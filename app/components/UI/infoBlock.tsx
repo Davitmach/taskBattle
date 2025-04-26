@@ -43,6 +43,7 @@ export const TaskHomePageInfoBlock = (props:ITaskHomePageInfoBlockProps) => {
     const [height,setHeight] = useState(0);
     const [click,setClick] = useState(false);
     const {LoadedState} = useLoadingState();
+    
 const [title,setTitle] = useState<string>('');
     const HandleOpen = useCallback(()=> {
         setClick(true);
@@ -79,7 +80,14 @@ return(
     </div>
     <div 
     style={click == false ? {height:'auto'} : open ? {height:`${height}px`}:{height:'0px'}}
-    ref={refDiv} className={` tasks_box  duration-[.2s] scrollbar-hide overflow-x-hidden flex flex-col gap-[10px] max-h-[230px]`}>{data.map((e)=> {
+    ref={refDiv} className={` tasks_box  duration-[.2s] scrollbar-hide overflow-x-hidden flex flex-col gap-[10px] max-h-[230px]`}>{props.data?props.data.map((e)=> {
+        if(props.type == 'inprocess') {
+  return <TaskWithFunc phrase='<p>qaqem</p>' date={e.date} friends={e.friends ? e.friends :[]}  timeout={e.timeout} title={e.title} type={e.type as 'Совместное'|'Одиночное'} key={e.title}/>
+        }
+        else {
+          return  <Task date={e.date} friends={e.friends ? e.friends :[]} color={props.type == 'cancel' ? '#BE3A50D9' : props.type=='complete' ?'#A2E9BA':''} timeout={e.timeout} title={e.title} type={e.type as 'Совместное'|'Одиночное'} key={e.title}/>
+        }
+      })  :  data.map((e)=> {
       if(props.type == 'inprocess') {
 return <TaskWithFunc phrase='<p>qaqem</p>' date={e.date} friends={e.friends ? e.friends :[]}  timeout={e.timeout} title={e.title} type={e.type as 'Совместное'|'Одиночное'} key={e.title}/>
       }

@@ -17,6 +17,15 @@ router('/user/:id',{id:3455})
 </div>
 </div>
 <div className="flex flex-col justify-center items-center gap-[4px]">
+  {
+    props.friend ? <div><svg width="24" height="21" viewBox="0 0 24 21" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M16 19.5V17.5C16 16.4391 15.5786 15.4217 14.8284 14.6716C14.0783 13.9214 13.0609 13.5 12 13.5H5C3.93913 13.5 2.92172 13.9214 2.17157 14.6716C1.42143 15.4217 1 16.4391 1 17.5V19.5" stroke="#F1F1F1" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+    <path d="M8.5 9.5C10.7091 9.5 12.5 7.70914 12.5 5.5C12.5 3.29086 10.7091 1.5 8.5 1.5C6.29086 1.5 4.5 3.29086 4.5 5.5C4.5 7.70914 6.29086 9.5 8.5 9.5Z" stroke="#F1F1F1" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+    <path d="M17 9.5L19 11.5L23 7.5" stroke="#F1F1F1" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+    </svg>
+    </div> :''
+  }
+  
   {props.state ? <><div>{props.state == 1 ?<svg width="13" height="18" viewBox="0 0 13 18" fill="none" xmlns="http://www.w3.org/2000/svg">
 <path d="M6.09091 11.1818C8.90254 11.1818 11.1818 8.90254 11.1818 6.09091C11.1818 3.27928 8.90254 1 6.09091 1C3.27928 1 1 3.27928 1 6.09091C1 8.90254 3.27928 11.1818 6.09091 11.1818Z" stroke="#FACC15" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
 <path d="M3.33459 10.3746L2.45459 17L6.09095 14.8182L9.72732 17L8.84732 10.3673" stroke="#FACC15" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>

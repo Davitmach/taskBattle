@@ -8,6 +8,8 @@ import { Menu } from "./components/Shared/menu";
 import { Loading } from "./components/Shared/loading";
 import { TgLoad } from "./components/Shared/tgLoad";
 import Task from "./components/Shared/task";
+import { NotificationProvider } from "./provider/notification";
+import { Notification } from "./components/Shared/notification";
 
 const tektur = Tektur({
   weight: ["400", "500", "600", "700", "800", "900"],
@@ -32,7 +34,11 @@ export default function RootLayout({
         content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
       />
       <body className={`${tektur.className}  antialiased scrollbar-hide`}>
-        <div className="mx-auto max-w-[400px] w-full  scrollbar-hide">{children}
+        <div className="mx-auto max-w-[400px] w-full  scrollbar-hide">
+          <NotificationProvider>
+          {children}
+          <Notification/>
+          </NotificationProvider>
 <Task/>
 
         </div>
