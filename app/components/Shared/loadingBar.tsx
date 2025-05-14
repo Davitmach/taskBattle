@@ -6,7 +6,8 @@ export const LoadingBar = (props:ILoadingBarProps) => {
         <div style={{
             width: props.width,
             height: props.height,
-         
+          
+            
             borderWidth: props.size,
           borderBottomColor: 'transparent',
             borderLeftColor: 'transparent',
