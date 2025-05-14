@@ -12,7 +12,7 @@ export const Menu = () => {
   const entries = Object.entries(PageConfig) as [keyof typeof PageConfig, (typeof PageConfig)[keyof typeof PageConfig]][];
 
   const [active, setActive] = useState<keyof typeof PageConfig>(entries[1][0]);
-
+// qaq
   useEffect(() => {
     const found = entries.find(([, path]) => path === Path);
     if (found) setActive(found[0]);
