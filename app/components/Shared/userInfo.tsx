@@ -1,6 +1,6 @@
 'use client';
 import { useEffect,useState } from "react";
-import { IAnyUserInfo } from "@/app/types/userInfo"
+import { IAnyUserInfo, IMyUserInfo } from "@/app/types/userInfo"
 import { Button } from "../UI/button"
 import { useLoadingState } from "@/app/store";
 
@@ -59,6 +59,56 @@ export const AnyUserInfo = (props: IAnyUserInfo) => {
                         )}
                     </Button>
                 </div>
+            </div>
+            <div className="flex w-full justify-between mt-[24px]">
+                <div className="flex flex-col justify-center items-center ">
+                    <h1 className="font-[400] text-[1em] text-[#00C896]">Выполненные</h1>
+                    <div className="font-[400] text-[1em] text-[#00C896]">{props.tasks.success}</div>
+                </div>
+                <div className="flex flex-col justify-center items-center ">
+                    <h1 className="font-[400] text-[1em] text-[#FACC15]">В процессе</h1>
+                    <div className="font-[400] text-[1em] text-[#FACC15]">{props.tasks.inprocess}</div>
+                </div>
+                <div className="flex flex-col justify-center items-center ">
+                    <h1 className="font-[400] text-[1em] text-[#FF4D6D]">Отмененные</h1>
+                    <div className="font-[400] text-[1em] text-[#FF4D6D]">{props.tasks.cancel}</div>
+                </div>
+            </div>
+        </div>
+    )
+}
+export const MyUserInfo = (props: IMyUserInfo) => {
+    const [substring, setSubstring] = useState(true); 
+    const {LoadedState} = useLoadingState()
+      useEffect(() => {       
+        const updateSubstringg = () => {         
+          if (window.innerWidth < 415) {   
+            setSubstring(false);
+          } 
+          else {
+            setSubstring(true);
+          }
+       
+        };
+      
+        updateSubstringg(); 
+        window.addEventListener('resize', updateSubstringg); 
+      
+        return () => {
+          window.removeEventListener('resize', updateSubstringg);
+        };
+      }, []);
+    return (
+        <div className={`mt-[18px] p-[10px] bg-[#1E1E2F] rounded-[16px] w-full ${LoadedState &&'anim_fadeIn'}`}>
+            <div className="flex gap-[10px] items-center justify-between">
+                <div className="flex gap-[8px]">
+                    <div><img src={props.img} width={44} height={44} className="rounded-[6px]"/></div>
+                    <div>
+                        <h1 className="text-[1em] text-[#D9D9D9] font-[400]">{props.name}</h1>
+                        <span className="text-[1.071em] text-[#D9D9D9] font-[400]">{substring  ? 'Аккаунт создан' :'Создан'}:{props.date}</span>
+                    </div>
+                </div>
+            
             </div>
             <div className="flex w-full justify-between mt-[24px]">
                 <div className="flex flex-col justify-center items-center ">

@@ -11,16 +11,20 @@
   "dependencies": {
     "@tailwindcss/vite": "^4.1.4",
     "@use-gesture/react": "^10.3.1",
+    "chart.js": "^4.4.9",
+    "d3": "^7.9.0",
     "framer-motion": "^12.7.4",
     "howler": "^2.2.4",
     "next": "15.3.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
+    "recharts": "^2.15.3",
     "sass": "^1.86.3",
     "zustand": "^5.0.3"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4.1.4",
+    "@types/d3": "^7.4.3",
     "@types/node": "^20",
     "@types/node-telegram-bot-api": "^0.64.8",
     "@types/react": "^19",

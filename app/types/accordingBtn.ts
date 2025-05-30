@@ -4,3 +4,9 @@ export interface IAccordingBtnProps {
     state:boolean,
     onClick: () => void
 }
+export interface IAccordingBtnWithoutAnimProps {
+    color:string,
+    innerColor?:string,
+    className:string
+    onClick: () => void
+}

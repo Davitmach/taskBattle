@@ -94,7 +94,7 @@ router('/');
 </svg>
 </Button>
 <AnyUserInfo img="https://randomuser.me/api/portraits/lego/2.jpg" date="2014.04.20" name="David" tasks={{inprocess:3,cancel:54,success:4}} friendship={false}/>
-<InfoBlock title="Друзья"><ul><UserInfo className="w-full" color="#2D2D4F" img="https://randomuser.me/api/portraits/lego/2.jpg" name="'de"  total={3} index={3}/></ul></InfoBlock>
+<InfoBlock title="Друзья"><ul><UserInfo  className="w-full" color="#2D2D4F" img="https://randomuser.me/api/portraits/lego/2.jpg" name="'de"  total={3} index={3}/></ul></InfoBlock>
 <InfoBlock title="Награды"><Reward  onClick={() => openM("Какой ты быстрый!!", "Награда за выполнение задния за 1 минуту", "Награда есть у 10% пользователей")}  info="Награда есть у 10% пользователей" title="Какой ты быстрый!!" description="Награда за выполнение задния за 1 минуту" /></InfoBlock>
    <TaskHomePageInfoBlock data={data} type="complete" />
    <TaskHomePageInfoBlock data={data} type="inprocess" />
