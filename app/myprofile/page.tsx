@@ -4,6 +4,8 @@ import { MyUserInfo } from "../components/Shared/userInfo";
 import { InfoBlock, TaskHomePageInfoBlock } from "../components/UI/infoBlock";
 import { Reward } from "../components/UI/reward";
 import { UserInfo } from "../components/UI/userInfo";
+import CustomChart from "../components/Shared/taskCharts";
+import { Button } from "../components/UI/button";
 type Task = {
     title: string;
     type: string;
@@ -37,6 +39,42 @@ const data:Task[] = [
     { title: "Ревью задач других команд", type: "Совместное", timeout: 30, friends: [{ img: "/avatars/user10.png", name: "Валя", total: 3 }], date: "23:03:2024 24:34" },
     { title: "Проверка адаптивности сайта", type: "Одиночное", timeout: 20, date: "23:03:2024 24:34" },
 ]
+  const serverData = [
+    { date: '2025-05-01', count: 0 },
+    { date: '2025-05-02', count: 0 },
+    { date: '2025-05-03', count: 0 },
+    { date: '2025-05-04', count: 0 },
+    { date: '2025-05-05', count: 0 },
+    { date: '2025-05-06', count: 0 },
+    { date: '2025-05-07', count: 0 },
+    { date: '2025-05-08', count: 0 },
+    { date: '2025-05-09', count: 0 },
+    { date: '2025-05-10', count: 0 },
+    { date: '2025-05-11', count: 100 },
+    { date: '2025-05-12', count: 0 },
+    { date: '2025-05-13', count: 0 },
+    { date: '2025-05-14', count: 0 },
+    { date: '2025-05-15', count: 5 },
+    { date: '2025-05-16', count: 0 },
+    { date: '2025-05-17', count: 0 },
+    { date: '2025-05-18', count: 0 },
+    { date: '2025-05-19', count: 0 },
+    { date: '2025-05-20', count: 0 },
+    { date: '2025-05-21', count: 30 },
+    { date: '2025-05-22', count: 0 },
+    { date: '2025-05-23', count: 0 },
+    { date: '2025-05-24', count: 0 },
+    { date: '2025-05-25', count: 0 },
+    { date: '2025-05-26', count: 0 },
+    { date: '2025-05-27', count: 0 },
+    { date: '2025-05-28', count: 4 },
+    { date: '2025-05-29', count: 0 },
+    { date: '2025-05-30', count: 0 },
+    { date: '2025-05-31', count: 0 },
+  ];
+
+  const labels = serverData.map(item => new Date(item.date).getDate());
+  const dataPoints = serverData.map(item => item.count);
 export default function Page() {
     const [open,setOpen] = useState(false);
     const [info,setInfo] = useState({
@@ -69,6 +107,14 @@ export default function Page() {
     success:3
 }}/>
 <InfoBlock title="Друзья"><ul><UserInfo delete={true} id="2312321" className="w-full" color="#2D2D4F" img="https://randomuser.me/api/portraits/lego/2.jpg" name="'de"  total={3} index={3}/></ul></InfoBlock>
+<InfoBlock title="Статистика">
+    <div className="flex w-full justify-between gap-[12px]">
+        <Button className="flex-1 h-[38px] text-[14px]" loading={false} type='Green'>День</Button>
+        <Button className="flex-1 h-[38px] text-[14px]" loading={false} type='Green'>Неделя</Button>
+        <Button className="flex-1 h-[38px] text-[14px]" loading={false} type='Green'>Месяц</Button>
+    </div>
+    <CustomChart dataPoints={dataPoints} labels={labels}/></InfoBlock>
+
 <InfoBlock title="Награды"><Reward  onClick={() => openM("Какой ты быстрый!!", "Награда за выполнение задния за 1 минуту", "Награда есть у 10% пользователей")}  info="Награда есть у 10% пользователей" title="Какой ты быстрый!!" description="Награда за выполнение задния за 1 минуту" /></InfoBlock>
    <TaskHomePageInfoBlock data={data} type="complete" />
    <TaskHomePageInfoBlock data={data} type="inprocess" />
