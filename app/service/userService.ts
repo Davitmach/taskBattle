@@ -4,7 +4,7 @@ import axios from 'axios';
 const DOMEN = process.env.NEXT_PUBLIC_SERVER;
 
 class UserService {
-  async Welcome() {
+  async Welcome(router:()=> void) {
     
     console.log("URL:", DOMEN + UserApiConfig.WELCOME);
 
@@ -24,8 +24,12 @@ class UserService {
         'tg-init-data': tg.initData,
       }
     });
+const res = data.data;
+if(res.status == 'unauthorized') {
+router()
+}
 
-    return data.data;
+    return res;
   }
 }
 

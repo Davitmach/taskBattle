@@ -2,11 +2,12 @@
 
 import { userService } from "@/app/service/userService";
 import { useLoadingState } from "@/app/store";
+import { useRouter } from "next/navigation";
 import { useEffect } from "react";
 
 export const Welcome = () => {
   const { LoadedState } = useLoadingState();
-
+const {refresh} = useRouter();
   useEffect(() => {
     let welcomeCalled = false;
     let checkInterval: NodeJS.Timeout;
@@ -16,11 +17,11 @@ export const Welcome = () => {
       if (LoadedState && !welcomeCalled) {
         welcomeCalled = true;
 
-        userService.Welcome();
+        userService.Welcome(refresh);
 
         // Повторять каждые 60 сек
         repeatInterval = setInterval(() => {
-          userService.Welcome();
+          userService.Welcome(refresh);
         }, 60000);
 
         clearInterval(checkInterval);
