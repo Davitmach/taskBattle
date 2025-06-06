@@ -14,7 +14,7 @@ class UserService {
     const name = unsafeData?.user?.first_name || "";
     const icon = unsafeData?.user?.photo_url || "";
     const chatId = unsafeData?.user?.id || "";
-
+try {
     const data = await axios.post(DOMEN + UserApiConfig.WELCOME, {
       name,
       icon,
@@ -27,10 +27,15 @@ class UserService {
 const res = data.data;
 
 
-console.log(data,'aqqaaedmedesidaeidae');
+
 
 
     return res;
+  }
+  catch(error:any) {
+    console.log(error);
+    
+  }
   }
 }
 
