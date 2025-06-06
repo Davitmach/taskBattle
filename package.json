@@ -10,7 +10,9 @@
   },
   "dependencies": {
     "@tailwindcss/vite": "^4.1.4",
+    "@tanstack/react-query": "^5.79.2",
     "@use-gesture/react": "^10.3.1",
+    "axios": "^1.9.0",
     "chart.js": "^4.4.9",
     "d3": "^7.9.0",
     "framer-motion": "^12.7.4",

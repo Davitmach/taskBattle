@@ -12,7 +12,7 @@ export default function Home() {
   const {LoadedState} = useLoadingState();
 
   const handleClick = () => {
-    taskService.createTask(router);
+taskService.openPageCreateTask(router)
   };
 
   return (
