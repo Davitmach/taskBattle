@@ -6,7 +6,8 @@ const DOMEN = process.env.NEXT_PUBLIC_SERVER;
 class UserService {
   async Welcome() {
     
-    
+    console.log("URL:", DOMEN + UserApiConfig.WELCOME);
+
     const tg = window.Telegram.WebApp;
     const unsafeData = tg.initDataUnsafe;
 
