@@ -17,11 +17,11 @@ const {refresh} = useRouter();
       if (LoadedState && !welcomeCalled) {
         welcomeCalled = true;
 
-        userService.Welcome(refresh);
+        userService.Welcome();
 
         // Повторять каждые 60 сек
         repeatInterval = setInterval(() => {
-          userService.Welcome(refresh);
+          userService.Welcome();
         }, 60000);
 
         clearInterval(checkInterval);

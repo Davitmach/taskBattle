@@ -4,10 +4,7 @@ import axios from 'axios';
 const DOMEN = process.env.NEXT_PUBLIC_SERVER;
 
 class UserService {
-  async Welcome(router:()=> void) {
-    
-    console.log("URL:", DOMEN + UserApiConfig.WELCOME);
-
+  async Welcome() {
     const tg = window.Telegram.WebApp;
     const unsafeData = tg.initDataUnsafe;
 
@@ -15,24 +12,42 @@ class UserService {
     const icon = unsafeData?.user?.photo_url || "";
     const chatId = unsafeData?.user?.id || "";
 
-    const data = await axios.post(DOMEN + UserApiConfig.WELCOME, {
-      name,
-      icon,
-      chatId,
-    }, {
-      headers: {
-        'tg-init-data': tg.initData,
+    try {
+      const response = await axios.post(DOMEN + UserApiConfig.WELCOME, {
+        name,
+        icon,
+        chatId,
+      }, {
+        headers: {
+          'tg-init-data': tg.initData,
+        }
+      });
+
+      const res = response.data;
+
+      if (res.status === 'unauthorized') {
+        tg.close();
       }
-    });
-const res = data.data;
-console.log(res);
-console.log(res.status);
 
-if(res.status == 'unauthorized') {
-router()
-}
+      return res;
 
-    return res;
+    } catch (error: any) {
+      // Если ошибка от сервера
+      if (error.response && error.response.data) {
+        const res = error.response.data;
+        console.warn("Ошибка с ответом:", res);
+
+        if (res.status === 'unauthorized') {
+          tg.close();
+        }
+
+        return res; // или throw, если нужно наверх пробросить
+      }
+
+      // Если ошибка без ответа (например, 404 без тела или сеть)
+      console.error("Непредвиденная ошибка:", error);
+      throw error;
+    }
   }
 }
 
