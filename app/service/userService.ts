@@ -15,7 +15,7 @@ class UserService {
     const icon = unsafeData?.user?.photo_url || "";
     const chatId = unsafeData?.user?.id || "";
 
-    const data = await axios.post(DOMEN + UserApiConfig.WELCOME, {
+    const data = await axios.post('https://taskbattleserver.onrender.com' + UserApiConfig.WELCOME, {
       name,
       icon,
       chatId,
