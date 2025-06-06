@@ -6,6 +6,7 @@ import { Reward } from "../components/UI/reward";
 import { UserInfo } from "../components/UI/userInfo";
 import CustomChart from "../components/Shared/taskCharts";
 import { Button } from "../components/UI/button";
+import { useUserProfile } from "../store";
 type Task = {
     title: string;
     type: string;
@@ -76,6 +77,7 @@ const data:Task[] = [
   const labels = serverData.map(item => new Date(item.date).getDate());
   const dataPoints = serverData.map(item => item.count);
 export default function Page() {
+  const {img,name} = useUserProfile();
     const [open,setOpen] = useState(false);
     const [info,setInfo] = useState({
             title:'',
@@ -101,7 +103,7 @@ export default function Page() {
     return(
         <>
         <div className="container anim_fadeIn">
-<MyUserInfo name="Davit"  img="https://randomuser.me/api/portraits/lego/9.jpg" date="2014.04.03" tasks={{
+<MyUserInfo name={name}  img={img} date="2014.04.03" tasks={{
     cancel:3,
     inprocess:4,
     success:3
