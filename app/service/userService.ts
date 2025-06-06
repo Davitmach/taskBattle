@@ -28,10 +28,11 @@ try {
     });
 const res = data.data;
 
-// if(res.user) {
-//   setImg(res.user.icon);
-//   setName(res.user.name);
-// }
+if (res && res.user) {
+  if (res.user.icon) setImg(res.user.icon);
+  if (res.user.name) setName(res.user.name);
+}
+
 
 
 
