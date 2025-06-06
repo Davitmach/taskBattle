@@ -27,7 +27,7 @@ class UserService {
 const res = data.data;
 
 
-console.log(data);
+console.log(data,'aqqaaedmedesidaeidae');
 
 
     return res;
