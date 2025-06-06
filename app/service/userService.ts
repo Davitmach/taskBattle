@@ -6,7 +6,7 @@ import { useUserProfile } from "../store";
 const DOMEN = process.env.NEXT_PUBLIC_SERVER;
 
 class UserService {
-  async Welcome(setImg:any,setName:any) {
+  async Welcome(setImg:any,setName:any,setCreatedAt:any,setTasks:any) {
   
     console.log("URL:", DOMEN + UserApiConfig.WELCOME);
 
@@ -31,6 +31,8 @@ const res = data.data;
 if (res && res.user) {
   if (res.user.icon) setImg(res.user.icon);
   if (res.user.name) setName(res.user.name);
+  if(res.taskCounter)  setTasks(res.taskCounter.cancelled,res.taskCounter.completed,res.taskCounter.in_progress)
+    if(res.user.createdAt) setCreatedAt(res.user.createdAt);
 }
 
 

@@ -77,7 +77,8 @@ const data:Task[] = [
   const labels = serverData.map(item => new Date(item.date).getDate());
   const dataPoints = serverData.map(item => item.count);
 export default function Page() {
-  const {img,name} = useUserProfile();
+  const {img,name,tasks,createdAt} = useUserProfile();
+  
     const [open,setOpen] = useState(false);
     const [info,setInfo] = useState({
             title:'',
@@ -103,10 +104,10 @@ export default function Page() {
     return(
         <>
         <div className="container anim_fadeIn">
-<MyUserInfo name={name}  img={img} date="2014.04.03" tasks={{
-    cancel:3,
-    inprocess:4,
-    success:3
+<MyUserInfo name={name}  img={img} date={createdAt} tasks={{
+    cancel:tasks.cancel,
+    inprocess:tasks.in_progress,
+    success:tasks.accept
 }}/>
 <InfoBlock title="Друзья"><ul><UserInfo delete={true} id="2312321" className="w-full" color="#2D2D4F" img="https://randomuser.me/api/portraits/lego/2.jpg" name="'de"  total={3} index={3}/></ul></InfoBlock>
 <InfoBlock title="Статистика">

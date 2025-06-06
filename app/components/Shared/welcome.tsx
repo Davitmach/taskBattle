@@ -7,7 +7,7 @@ import { useEffect } from "react";
 
 export const Welcome = () => {
   const { LoadedState } = useLoadingState();
-  const {setImg,setName} = useUserProfile();
+  const {setImg,setName,setCreatedAt,setTasks} = useUserProfile();
 const {refresh} = useRouter();
   useEffect(() => {
     let welcomeCalled = false;
@@ -18,11 +18,11 @@ const {refresh} = useRouter();
       if (LoadedState && !welcomeCalled) {
         welcomeCalled = true;
 
-        userService.Welcome(setImg,setName);
+        userService.Welcome(setImg,setName,setCreatedAt,setTasks);
 
         // Повторять каждые 60 сек
         repeatInterval = setInterval(() => {
-          userService.Welcome(setImg,setName);
+          userService.Welcome(setImg,setName,setCreatedAt,setTasks);
         }, 60000);
 
         clearInterval(checkInterval);
