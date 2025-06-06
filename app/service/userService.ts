@@ -36,7 +36,9 @@ const res = data.data;
     
     if(error?.response?.data?.status == "unauthorized") {
     console.log('deijduadaaeuddaeudaeuedahuaeduaedhuadeudae');
-       
+       setTimeout(() => {
+         window.location.reload();
+       }, 1000);
     }
   }
   }
