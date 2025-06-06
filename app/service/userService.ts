@@ -32,7 +32,13 @@ if (res && res.user) {
   if (res.user.icon) setImg(res.user.icon);
   if (res.user.name) setName(res.user.name);
   if(res.taskCounter)  setTasks(res.taskCounter.cancelled,res.taskCounter.completed,res.taskCounter.in_progress)
-    if(res.user.createdAt) setCreatedAt(res.user.createdAt);
+    if(res.user.createdAt) {
+      const formattedDate = new Date(res.user.createdAt)
+  .toISOString()
+  .slice(0, 10)
+  .replace(/-/g, '.');
+  setCreatedAt(formattedDate);
+    } 
 }
 
 
