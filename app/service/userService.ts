@@ -5,6 +5,8 @@ const DOMEN = process.env.NEXT_PUBLIC_SERVER;
 
 class UserService {
   async Welcome() {
+    
+    
     const tg = window.Telegram.WebApp;
     const unsafeData = tg.initDataUnsafe;
 
@@ -22,7 +24,7 @@ class UserService {
       }
     });
 
-    return data;
+    return data.data;
   }
 }
 

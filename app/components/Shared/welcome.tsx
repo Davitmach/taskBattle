@@ -1,20 +1,41 @@
 'use client';
 
 import { userService } from "@/app/service/userService";
+import { useLoadingState } from "@/app/store";
 import { useEffect } from "react";
 
 export const Welcome = () => {
+  const { LoadedState } = useLoadingState();
+
   useEffect(() => {
-  
-    userService.Welcome();
+    let welcomeCalled = false;
+    let checkInterval: NodeJS.Timeout;
+    let repeatInterval: NodeJS.Timeout;
 
-    const interval = setInterval(() => {
-      userService.Welcome();
-    }, 60000);
+    const tryWelcome = () => {
+      if (LoadedState && !welcomeCalled) {
+        welcomeCalled = true;
 
-   
-    return () => clearInterval(interval);
-  }, []);
+        userService.Welcome();
+
+        // Повторять каждые 60 сек
+        repeatInterval = setInterval(() => {
+          userService.Welcome();
+        }, 60000);
+
+        clearInterval(checkInterval);
+      }
+    };
+
+    // Проверять каждые 500 мс, пока LoadedState не станет true
+    checkInterval = setInterval(tryWelcome, 500);
+    tryWelcome(); // первая попытка сразу
+
+    return () => {
+      clearInterval(checkInterval);
+      clearInterval(repeatInterval);
+    };
+  }, [LoadedState]);
 
   return null;
 };
