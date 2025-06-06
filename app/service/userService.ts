@@ -25,6 +25,9 @@ class UserService {
       }
     });
 const res = data.data;
+console.log(res);
+console.log(res.status);
+
 if(res.status == 'unauthorized') {
 router()
 }
