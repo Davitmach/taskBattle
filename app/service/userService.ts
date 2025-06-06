@@ -1,10 +1,13 @@
+'use client';
 import { UserApiConfig } from "../config/apiConfig";
 import axios from 'axios';
+import { useUserProfile } from "../store";
 
 const DOMEN = process.env.NEXT_PUBLIC_SERVER;
 
 class UserService {
   async Welcome() {
+    const {setImg,setName} = useUserProfile();
     
     console.log("URL:", DOMEN + UserApiConfig.WELCOME);
 
@@ -26,7 +29,10 @@ try {
     });
 const res = data.data;
 
-
+if(res.user) {
+  setImg(res.user.icon);
+  setName(res.user.name);
+}
 
 
 
@@ -35,7 +41,6 @@ const res = data.data;
   catch(error:any) {
     
     if(error?.response?.data?.status == "unauthorized") {
-    console.log('deijduadaaeuddaeudaeuedahuaeduaedhuadeudae');
        setTimeout(() => {
          window.location.reload();
        }, 1000);

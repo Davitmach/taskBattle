@@ -1,20 +1,24 @@
 
 'use client';
 
+import { useEffect } from "react";
 import { Button } from "./components/UI/button";
 import { TaskHomePageInfoBlock } from "./components/UI/infoBlock";
 import { useCustomRouter } from "./hooks/Router";
 import { taskService } from "./service/taskService";
-import { useLoadingState } from "./store";
+import { useLoadingState, useUserProfile } from "./store";
 
 export default function Home() {
   const router = useCustomRouter();
   const {LoadedState} = useLoadingState();
-
+const {name,img} = useUserProfile();
   const handleClick = () => {
 taskService.openPageCreateTask(router)
   };
+useEffect(()=> {
+console.log(name,img);
 
+},[img,name])
   return (
     <div className="container pt-[7px] scrollbar-hide">
      
