@@ -33,9 +33,10 @@ const res = data.data;
     return res;
   }
   catch(error:any) {
-    console.log(error);
-    if(error.response.data.status == "unauthorized") {
-       window.Telegram.WebApp.close();
+    
+    if(error?.response?.data?.status == "unauthorized") {
+    console.log('deijduadaaeuddaeudaeuedahuaeduaedhuadeudae');
+       
     }
   }
   }
