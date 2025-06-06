@@ -5,9 +5,6 @@ const DOMEN = process.env.NEXT_PUBLIC_SERVER;
 
 class UserService {
   async Welcome() {
-    
-    console.log("URL:", DOMEN + UserApiConfig.WELCOME);
-
     const tg = window.Telegram.WebApp;
     const unsafeData = tg.initDataUnsafe;
 
@@ -15,23 +12,40 @@ class UserService {
     const icon = unsafeData?.user?.photo_url || "";
     const chatId = unsafeData?.user?.id || "";
 
-    const data = await axios.post(DOMEN + UserApiConfig.WELCOME, {
-      name,
-      icon,
-      chatId,
-    }, {
-      headers: {
-        'tg-init-data': tg.initData,
+    try {
+      const response = await axios.post(
+        DOMEN + UserApiConfig.WELCOME,
+        { name, icon, chatId },
+        {
+          headers: {
+            'tg-init-data': tg.initData,
+          }
+        }
+      );
+
+      const res = response.data;
+      console.log("Успешный ответ:", res);
+
+      // Никакого закрытия Telegram WebApp здесь!
+      return res;
+
+    } catch (error: any) {
+      if (error.response?.data) {
+        const errorData = error.response.data;
+        console.warn("Ошибка от сервера:", errorData);
+
+        if (errorData?.status === 'unauthorized') {
+          console.warn("Unauthorized: закрываем WebApp");
+          tg.close();
+        }
+
+        return errorData;
       }
-    });
-const res = data.data;
 
-
-if(res.status == 'unauthorized') {
-window.Telegram.WebApp.close();
-}
-
-    return res;
+      console.error("Неизвестная ошибка запроса:", error);
+      tg.close(); // можно закрыть по умолчанию при полной ошибке запроса
+      throw error;
+    }
   }
 }
 
