@@ -1,12 +1,13 @@
 'use client';
 
 import { userService } from "@/app/service/userService";
-import { useLoadingState } from "@/app/store";
+import { useLoadingState, useUserProfile } from "@/app/store";
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
 
 export const Welcome = () => {
   const { LoadedState } = useLoadingState();
+  const {setImg,setName} = useUserProfile();
 const {refresh} = useRouter();
   useEffect(() => {
     let welcomeCalled = false;
@@ -17,11 +18,11 @@ const {refresh} = useRouter();
       if (LoadedState && !welcomeCalled) {
         welcomeCalled = true;
 
-        userService.Welcome();
+        userService.Welcome(setImg,setName);
 
         // Повторять каждые 60 сек
         repeatInterval = setInterval(() => {
-          userService.Welcome();
+          userService.Welcome(setImg,setName);
         }, 60000);
 
         clearInterval(checkInterval);

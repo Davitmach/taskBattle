@@ -6,9 +6,8 @@ import { useUserProfile } from "../store";
 const DOMEN = process.env.NEXT_PUBLIC_SERVER;
 
 class UserService {
-  async Welcome() {
-    const {setImg,setName} = useUserProfile();
-    
+  async Welcome(setImg:any,setName:any) {
+  
     console.log("URL:", DOMEN + UserApiConfig.WELCOME);
 
     const tg = window.Telegram.WebApp;
