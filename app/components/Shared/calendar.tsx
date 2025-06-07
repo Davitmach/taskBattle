@@ -30,6 +30,7 @@ export const Calendar = (props:ICalendar)=> {
     }
   };
 
+  
   const prevMonth = () => {
     if (props.year === props.currentYear && props.month === props.currentMonth) return; 
     if (props.month === 0) {
