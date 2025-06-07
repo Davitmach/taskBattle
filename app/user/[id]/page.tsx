@@ -99,7 +99,11 @@ const data = userService.Report(params.id as string,refReport.current.value).the
     else if(e.error == 'Слишком короткое сообщение') {
         showNotification('Слишком короткое сообщение')
     }
+  console.log(e);
   
+    
+}).catch(e=> {
+    console.log(e,'error');
     
 })
 
