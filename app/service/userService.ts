@@ -84,7 +84,7 @@ console.log(res);
 return res;
 }
 catch(error:any) {
-console.log(error);
+console.log(error,'cers tapec');
 
 }
   }
