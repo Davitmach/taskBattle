@@ -2,13 +2,14 @@
 import { UserApiConfig } from "../config/apiConfig";
 import axios from 'axios';
 import { useUserProfile } from "../store";
+import { error } from "console";
 
 const DOMEN = process.env.NEXT_PUBLIC_SERVER;
 
 class UserService {
   async Welcome(setImg:any,setName:any,setCreatedAt:any,setTasks:any) {
   
-    console.log("URL:", DOMEN + UserApiConfig.WELCOME);
+   
 
     const tg = window.Telegram.WebApp;
     const unsafeData = tg.initDataUnsafe;
@@ -54,6 +55,38 @@ if (res && res.user) {
        }, 1000);
     }
   }
+  }
+  async Report(userId:string,report:string) {
+if(!userId || !report ) {
+  console.error('У вас нету userId либо сообщения ')
+  return  {
+    error:'У вас нету userId либо сообщения'
+  }
+}
+if(report.length < 5) {
+  console.warn('Слишком короткое сообщение')
+  return {
+    error:'Слишком короткое сообщение'
+  }
+}
+try {
+  const data = await axios.post(DOMEN+UserApiConfig.REPORT,{
+userId:userId,
+report:report
+  },{
+    headers:{
+      'tg-init-data':window.Telegram.WebApp.initData
+    }
+  })
+const res = data.data;
+console.log(res);
+
+return res;
+}
+catch(error:any) {
+console.log(error);
+
+}
   }
 }
 

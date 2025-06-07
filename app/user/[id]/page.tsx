@@ -8,10 +8,12 @@ import { InfoBlock, TaskHomePageInfoBlock } from "@/app/components/UI/infoBlock"
 import { Reward } from "@/app/components/UI/reward";
 import { UserInfo } from "@/app/components/UI/userInfo";
 import { useCustomRouter } from "@/app/hooks/Router";
+import { useNotification } from "@/app/provider/notification";
+import { userService } from "@/app/service/userService";
 import { useLoadingState } from "@/app/store";
 import { desc } from "framer-motion/client";
 import { useParams } from "next/navigation";
-import { useState } from "react";
+import { useRef, useState } from "react";
 type Task = {
     title: string;
     type: string;
@@ -51,6 +53,8 @@ export default function Page() {
     const {LoadedState} = useLoadingState();
     const [open,setOpen] = useState(false);
     const [openReport,setOpenReport] = useState(false);
+    const {showNotification} = useNotification();
+    const refReport = useRef<HTMLTextAreaElement>(null);
     const [info,setInfo] = useState({
         title:'',
         description:'',
@@ -82,6 +86,26 @@ router('/');
     const closeRep = ()=> {
         setOpenReport(false);
        
+    }
+
+
+    const SendReport = ()=> {
+        if(params.id && refReport.current) {
+            setOpenReport(false);
+const data = userService.Report(params.id as string,refReport.current.value).then(e=> {
+    if(e.error == 'У вас нету userId либо сообщения') {
+        showNotification('У вас нету userId либо сообщения')
+    }
+    else if(e.error == 'Слишком короткое сообщение') {
+        showNotification('Слишком короткое сообщение')
+    }
+  
+    
+})
+
+
+
+        }
     }
     return(
         <>
@@ -121,7 +145,7 @@ router('/');
 </svg>
 
             <div className="font-[400] text-[1.43em] text-[#D9D9D9]">Пожаловаться</div>
-           <div className=" h-[253px] w-full relative"><textarea placeholder="Напиши свою жалобу..." ></textarea><svg className="absolute bottom-[15px] right-[15px] cursor-pointer" width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+           <div className=" h-[253px] w-full relative"><textarea ref={refReport} placeholder="Напиши свою жалобу..." ></textarea><svg onClick={SendReport} className="absolute bottom-[15px] right-[15px] cursor-pointer" width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
 <path d="M21 1L10 12" stroke="#D9D9D9" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
 <path d="M21 1L14 21L10 12L1 8L21 1Z" stroke="#D9D9D9" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
 </svg>
