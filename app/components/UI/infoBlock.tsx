@@ -18,7 +18,7 @@ export const TaskHomePageInfoBlock = (props:ITaskHomePageInfoBlockProps) => {
     const [height,setHeight] = useState(0);
     const [click,setClick] = useState(false);
     const {LoadedState} = useLoadingState();
-
+const [tasks,setTasks] = useState([]);
 const [title,setTitle] = useState<string>('');
     const HandleOpen = useCallback(()=> {
         setClick(true);
@@ -49,7 +49,9 @@ switch (props.type) {
 },[props.type])
 
 useEffect(()=> {
-console.log(props.data,'data');
+if(props.data) {
+    setTasks(props.data as any)
+}
 
 },[props.data])
 
@@ -62,7 +64,7 @@ return(
     </div>
     <div 
     style={click == false ? {height:'auto'} : open ? {height:`${height}px`}:{height:'0px'}}
-    ref={refDiv} className={` tasks_box  duration-[.2s] scrollbar-hide overflow-x-hidden flex flex-col gap-[10px] max-h-[230px]`}>{props.data&&props.data.map((e)=> {
+    ref={refDiv} className={` tasks_box  duration-[.2s] scrollbar-hide overflow-x-hidden flex flex-col gap-[10px] max-h-[230px]`}>{tasks&&tasks.map((e:any)=> {
         if(props.type == 'IN_PROGRESS') {
   return <TaskWithFunc phrase='<p>qaqem</p>' date={e.date} friends={e.friends ? e.friends :[]}  timeout={e.timeout} title={e.title} type={e.type=='SINGLE'?'Одиночное':'Совместное'} key={e.title}/>
         }
