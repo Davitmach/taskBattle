@@ -72,8 +72,25 @@ class TaskService {
   // router("/");  
     
   }
-  getTasks() {
-    console.log(this.tasks);
+  async getTasks() {
+    const CheckTask = localStorage.getItem('TASKS');
+    if(CheckTask) {
+     const Parsed = JSON.parse(CheckTask);
+     return Parsed
+    }
+    else {
+     const Get = await axios.get(DOMEN+TaskApiConfig.TASKS,{
+      headers:{
+        'tg-init-data':window.Telegram.WebApp.initData
+      }
+     })
+     const data = Get.data;
+     if(data) {
+      if(data.status =='success') {
+      const set = localStorage.setItem('TASKS',JSON.stringify(data?.data))}
+      return data.data;
+     }
+    }
   }
   openPageCreateTask(router: ReturnType<typeof useCustomRouter>) {
       router('/newtask');
@@ -81,7 +98,7 @@ class TaskService {
   updateTasks() {}
   acceptTask() {}
   cancelTask() {}
-  getTask() {}
+
   setTask(tasks:TTask[]) {
   const SET = localStorage.setItem('TASKS',JSON.stringify(tasks));
   var CHECK = localStorage.getItem('TASKS');

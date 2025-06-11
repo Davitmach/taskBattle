@@ -1,5 +1,5 @@
 'use client'
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { MyUserInfo } from "../components/Shared/userInfo";
 import { InfoBlock, TaskHomePageInfoBlock } from "../components/UI/infoBlock";
 import { Reward } from "../components/UI/reward";
@@ -7,6 +7,7 @@ import { UserInfo } from "../components/UI/userInfo";
 import CustomChart from "../components/Shared/taskCharts";
 import { Button } from "../components/UI/button";
 import { useUserProfile } from "../store";
+import { taskService } from "../service/taskService";
 type Task = {
     title: string;
     type: string;
@@ -78,7 +79,11 @@ const data:Task[] = [
   const dataPoints = serverData.map(item => item.count);
 export default function Page() {
   const {img,name,tasks,createdAt} = useUserProfile();
-  
+  useEffect(()=> {
+const log = taskService.getTasks();
+console.log(log);
+
+  },[])
     const [open,setOpen] = useState(false);
     const [info,setInfo] = useState({
             title:'',
