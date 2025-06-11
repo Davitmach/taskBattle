@@ -81,11 +81,11 @@ class TaskService {
      })
      const data = Get.data;
      if(data) {
-      if(data.status =='success') {
+   
       const set = localStorage.setItem('TASKS',JSON.stringify(data?.data))}
       return data.data;
      
-    }
+    
   }
   async getOfflineTask() {
  const CheckTask = localStorage.getItem('TASKS');
