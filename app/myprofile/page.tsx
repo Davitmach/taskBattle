@@ -6,7 +6,7 @@ import { Reward } from "../components/UI/reward";
 import { UserInfo } from "../components/UI/userInfo";
 import CustomChart from "../components/Shared/taskCharts";
 import { Button } from "../components/UI/button";
-import { useUserProfile } from "../store";
+import { useLoadingState, useUserProfile } from "../store";
 import { taskService } from "../service/taskService";
 type Task = {
     title: string;
@@ -79,10 +79,23 @@ const data:Task[] = [
   const dataPoints = serverData.map(item => item.count);
 export default function Page() {
   const {img,name,tasks,createdAt} = useUserProfile();
+  const {LoadedState} = useLoadingState();
   useEffect(()=> {
-const log = taskService.getTasks();
+      const check = ()=> {
+      const log = taskService.getTasks();
 console.log(log);
+    }
+    if(LoadedState==true) {
+      check()
+    }
+    else {
+setTimeout(() => {
+  check()
+}, 1000);
+    }
 
+
+  
   },[])
     const [open,setOpen] = useState(false);
     const [info,setInfo] = useState({
