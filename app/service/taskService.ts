@@ -95,7 +95,16 @@ class TaskService {
   openPageCreateTask(router: ReturnType<typeof useCustomRouter>) {
       router('/newtask');
   }
-  updateTasks() {}
+  async updateTasks() {
+    const data = await axios.get(DOMEN+TaskApiConfig.TASKS,{
+      headers:{
+        'tg-init-data':window.Telegram.WebApp.initData
+      }
+    })
+    const res = data.data;
+    localStorage.setItem('TASKS',JSON.stringify(res?.data));
+    return res?.data;
+  }
   acceptTask() {}
   cancelTask() {}
 
@@ -112,6 +121,7 @@ class TaskService {
     
   }
   }
+
 }
 
 export const taskService = new TaskService();

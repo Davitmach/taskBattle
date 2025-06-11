@@ -88,8 +88,20 @@ console.log(error,'cers tapec');
 
 }
   }
-  async MyProfile() {
+  async Find(name:string) {
+    if(!name) {
+      return  {
+    error:'Вы не передали имя'
+  }
+    }
 
+    const Data = await axios.post(DOMEN+UserApiConfig.SEARCH,{
+      username:name
+    },{
+      headers:{
+        'tg-init-data':window.Telegram.WebApp.initData
+      }
+    })
   }
 }
 

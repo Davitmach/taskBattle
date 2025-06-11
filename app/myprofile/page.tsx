@@ -79,29 +79,25 @@ const data:Task[] = [
   const dataPoints = serverData.map(item => item.count);
 export default function Page() {
   const {img,name,tasks,createdAt} = useUserProfile();
-  const {LoadedState} = useLoadingState();
+  const [task,setTask] = useState([]);
   useEffect(()=> {
-      const check = ()=> {
-  const log = taskService.getTasks().then((e) => {
-  console.log(e);
-});
-
-
-    }
-    if(LoadedState==true) {
-       check()
-    }
-    else {
-setTimeout(() => {
-  check()
-}, 1000);
-    }
-
-
-  
+    taskService.getTasks().then((e)=> {
+      if(e) {
+        setTask(e);
+      }
+    })
   },[])
-    const [open,setOpen] = useState(false);
-    const [info,setInfo] = useState({
+  const {LoadedState} = useLoadingState();
+useEffect(()=> {
+console.log(task,'TASK');
+
+},[task])
+    const [open,setOpen] = useState<boolean>(false);
+    const [info,setInfo] = useState<{
+      title:string,
+      description:string,
+      info:string
+    }>({
             title:'',
             description:'',
             info:''

@@ -1,5 +1,6 @@
 'use client';
 
+import { taskService } from "@/app/service/taskService";
 import { userService } from "@/app/service/userService";
 import { useLoadingState, useUserProfile } from "@/app/store";
 import { useRouter } from "next/navigation";
@@ -10,6 +11,7 @@ export const Welcome = () => {
   const {img,name,createdAt,tasks,setImg,setName,setCreatedAt,setTasks} = useUserProfile();
   
   useEffect(()=> {
+    UpdateTasks()
 if(img=='' && name=='' && createdAt=='' && tasks.accept==0) {
   const get = localStorage.getItem('PROFILE_INFO');
   if(get) {
@@ -57,6 +59,15 @@ if(img=='' && name=='' && createdAt=='' && tasks.accept==0) {
       clearInterval(repeatInterval);
     };
   }, [LoadedState]);
+
+ const UpdateTasks = () => {
+  setTimeout(() => {
+    taskService.updateTasks();
+    UpdateTasks()
+  }, 30000);
+  
+
+ }
 
   return null;
 };
