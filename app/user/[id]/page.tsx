@@ -124,9 +124,9 @@ const data = userService.Report(params.id as string,refReport.current.value).the
 <AnyUserInfo img="https://randomuser.me/api/portraits/lego/2.jpg" date="2014.04.20" name="David" tasks={{inprocess:3,cancel:54,success:4}} friendship={false}/>
 <InfoBlock title="Друзья"><ul><UserInfo  className="w-full" color="#2D2D4F" img="https://randomuser.me/api/portraits/lego/2.jpg" name="'de"  total={3} index={3}/></ul></InfoBlock>
 <InfoBlock title="Награды"><Reward  onClick={() => openM("Какой ты быстрый!!", "Награда за выполнение задния за 1 минуту", "Награда есть у 10% пользователей")}  info="Награда есть у 10% пользователей" title="Какой ты быстрый!!" description="Награда за выполнение задния за 1 минуту" /></InfoBlock>
-   <TaskHomePageInfoBlock data={data} type="complete" />
-   <TaskHomePageInfoBlock data={data} type="inprocess" />
-   <TaskHomePageInfoBlock data={data} type="cancel" />
+   <TaskHomePageInfoBlock data={data} type='COMPLETED' />
+   <TaskHomePageInfoBlock data={data} type='IN_PROGRESS' />
+   <TaskHomePageInfoBlock data={data} type='CANCELLED' />
         </div>
 
         {open &&<div className="bg-[#1E1E2FBF] w-full h-[100vh] z-[999999] fixed left-0 top-0"> <div className="min-h-[342px] anim_fadeIn bg-[#2D2D4F] flex flex-col justify-start relative items-center gap-[15px] p-[15px] rounded-[16px] fixed left-[50%] top-[50%] translate-x-[-50%] translate-y-[-50%] max-w-[400px] w-[91%] ">

@@ -31,9 +31,9 @@ console.log(name,img);
       >
         Добавить задачу
       </Button>
-      <TaskHomePageInfoBlock type="complete" />
-      <TaskHomePageInfoBlock type="inprocess" />
-      <TaskHomePageInfoBlock type="cancel" />
+      <TaskHomePageInfoBlock type='COMPLETED' />
+      <TaskHomePageInfoBlock type='IN_PROGRESS' />
+      <TaskHomePageInfoBlock type='CANCELLED' />
     </div>
   );
 }
