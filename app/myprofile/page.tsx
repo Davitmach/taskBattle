@@ -103,9 +103,14 @@ export default function Page() {
         IN_PROGRESS: in_progress,
         CANCELLED: cancel,
       });
-    } else {
-      // Если нет задач — загружаем оффлайн
-      taskService.getOfflineTask().then((offlineTasks) => {
+    } 
+  });
+}
+  if(LoadedState==true) {
+GetTasks()
+  } 
+else {
+    taskService.getOfflineTask().then((offlineTasks) => {
         if (Array.isArray(offlineTasks)) {
           const cancel = offlineTasks.filter((e) => e.status === 'CANCELLED');
           const accept = offlineTasks.filter((e) => e.status === 'COMPLETED');
@@ -118,13 +123,6 @@ export default function Page() {
           });
         }
       });
-    }
-  });
-}
-  if(LoadedState==true) {
-GetTasks()
-  } 
-else {
   setTimeout(() => {
     GetTasks()
   }, 1000);
