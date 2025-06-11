@@ -47,11 +47,10 @@ export const Task = (props:ITaskProps)=> {
       <div className='text-[#1E1E1E] text-[1.14em] font-[400] text-nowrap'>{props.title.length >substring ?props.title.substring(0,substring)+`...` : props.title}</div>
       <div className='text-[#000000] text-[1em] font-[400]'>{props.type}</div>
     </div>
-    <div>
+    <div className='flex flex-col items-end'>
       <div className='flex items-center gap-[3px] text-[1em] font-[400] text-[#1E1E1E] text-nowrap'><Clock/>{props.timeout} минут</div>
       <div dangerouslySetInnerHTML={{ __html: props.phrase || '' }} />
     </div>
-   
   </div>
 
   )
