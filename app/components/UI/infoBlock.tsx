@@ -64,14 +64,14 @@ return(
     </div>
     <div 
     style={click == false ? {height:'auto'} : open ? {height:`${height}px`}:{height:'0px'}}
-    ref={refDiv} className={` tasks_box  duration-[.2s] scrollbar-hide overflow-x-hidden flex flex-col gap-[10px] max-h-[230px]`}>{tasks&&tasks.map((e:any)=> {
+    ref={refDiv} className={` tasks_box  duration-[.2s] scrollbar-hide overflow-x-hidden flex flex-col gap-[10px] max-h-[230px]`}>{tasks?tasks.map((e:any)=> {
         if(props.type == 'IN_PROGRESS') {
   return <TaskWithFunc phrase='<p>qaqem</p>' date={e.date} friends={e.friends ? e.friends :[]}  timeout={e.timeout} title={e.title} type={e.type=='SINGLE'?'Одиночное':'Совместное'} key={e.title}/>
         }
         else {
           return  <Task date={e.date} friends={e.friends ? e.friends :[]} color={props.type == 'CANCELLED' ? '#BE3A50D9' : props.type=='COMPLETED' ?'#A2E9BA':''} timeout={e.timeout} title={e.title} type={e.type=='SINGLE'?'Одиночное':'Совместное'} key={e.title}/>
         }
-      }) }</div>
+      }):'3424432324324' }</div>
 </div>
 )
 }
