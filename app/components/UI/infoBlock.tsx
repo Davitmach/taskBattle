@@ -47,6 +47,13 @@ switch (props.type) {
 
 }
 },[props.type])
+
+useEffect(()=> {
+console.log(props.data,'data');
+
+},[props.data])
+
+
 return(
 <div className={`${LoadedState && 'anim_fadeIn'} w-full task_home_page_info_block bg-[#1E1E2F] rounded-[16px] py-[10px] px-[15px] flex duration-[.2s] flex-col ${open == false ? 'gap-[0px]':'gap-[20px]'} `}>
     <div className="flex items-center justify-between">
