@@ -28,7 +28,7 @@ try {
       }
     });
 const res = data.data;
-
+localStorage.setItem('PROFILE_INFO',JSON.stringify(res));
 if (res && res.user) {
   if (res.user.icon) setImg(res.user.icon);
   if (res.user.name) setName(res.user.name);
@@ -87,6 +87,9 @@ catch(error:any) {
 console.log(error,'cers tapec');
 
 }
+  }
+  async MyProfile() {
+
   }
 }
 

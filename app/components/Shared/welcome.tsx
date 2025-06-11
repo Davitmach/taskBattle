@@ -3,12 +3,31 @@
 import { userService } from "@/app/service/userService";
 import { useLoadingState, useUserProfile } from "@/app/store";
 import { useRouter } from "next/navigation";
-import { useEffect } from "react";
+import { use, useEffect } from "react";
 
 export const Welcome = () => {
   const { LoadedState } = useLoadingState();
-  const {setImg,setName,setCreatedAt,setTasks} = useUserProfile();
-const {refresh} = useRouter();
+  const {img,name,createdAt,tasks,setImg,setName,setCreatedAt,setTasks} = useUserProfile();
+  
+  useEffect(()=> {
+if(img=='' && name=='' && createdAt=='' && tasks.accept==0) {
+  const get = localStorage.getItem('PROFILE_INFO');
+  if(get) {
+  const parse = JSON.parse(get);
+   if (parse.user.icon) setImg(parse.user.icon);
+  if (parse.user.name) setName(parse.user.name);
+  if(parse.taskCounter)  setTasks(parse.taskCounter.cancelled,parse.taskCounter.completed,parse.taskCounter.in_progress)
+    if(parse.user.createdAt) {
+      const formattedDate = new Date(parse.user.createdAt)
+  .toISOString()
+  .slice(0, 10)
+  .replace(/-/g, '.');
+  setCreatedAt(formattedDate);
+    } 
+}
+  }
+
+  },[])
   useEffect(() => {
     let welcomeCalled = false;
     let checkInterval: NodeJS.Timeout;
