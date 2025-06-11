@@ -43,7 +43,11 @@ export const TaskHomePageInfoBlock = (props:ITaskHomePageInfoBlockProps) => {
     const [height,setHeight] = useState(0);
     const [click,setClick] = useState(false);
     const {LoadedState} = useLoadingState();
-    
+    const [TASKS,setTASKS] = useState<any>([]);
+   
+    useEffect(()=> {
+setTASKS(props.data);
+    },[])
 const [title,setTitle] = useState<string>('');
     const HandleOpen = useCallback(()=> {
         setClick(true);
@@ -80,14 +84,14 @@ return(
     </div>
     <div 
     style={click == false ? {height:'auto'} : open ? {height:`${height}px`}:{height:'0px'}}
-    ref={refDiv} className={` tasks_box  duration-[.2s] scrollbar-hide overflow-x-hidden flex flex-col gap-[10px] max-h-[230px]`}>{props.data?props.data.map((e)=> {
+    ref={refDiv} className={` tasks_box  duration-[.2s] scrollbar-hide overflow-x-hidden flex flex-col gap-[10px] max-h-[230px]`}>{TASKS?TASKS.map((e:any)=> {
         if(props.type == 'IN_PROGRESS') {
   return <TaskWithFunc phrase='<p>qaqem</p>' date={e.date} friends={e.friends ? e.friends :[]}  timeout={e.timeout} title={e.title} type={e.type=='SINGLE'?'Одиночное':'Совместное'} key={e.title}/>
         }
         else {
           return  <Task date={e.date} friends={e.friends ? e.friends :[]} color={props.type == 'CANCELLED' ? '#BE3A50D9' : props.type=='COMPLETED' ?'#A2E9BA':''} timeout={e.timeout} title={e.title} type={e.type=='SINGLE'?'Одиночное':'Совместное'} key={e.title}/>
         }
-      })  :  data.map((e)=> {
+      })  :  data.map((e:any)=> {
       if(props.type == 'IN_PROGRESS') {
 return <TaskWithFunc phrase='<p>qaqem</p>' date={e.date} friends={e.friends ? e.friends :[]}  timeout={e.timeout} title={e.title} type={e.type as 'Совместное'|'Одиночное'} key={e.title}/>
       }
