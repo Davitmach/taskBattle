@@ -73,12 +73,7 @@ class TaskService {
     
   }
   async getTasks() {
-    const CheckTask = localStorage.getItem('TASKS');
-    if(CheckTask) {
-     const Parsed = JSON.parse(CheckTask);
-     return Parsed
-    }
-    else {
+   
      const Get = await axios.get(DOMEN+TaskApiConfig.TASKS,{
       headers:{
         'tg-init-data':window.Telegram.WebApp.initData
@@ -89,8 +84,16 @@ class TaskService {
       if(data.status =='success') {
       const set = localStorage.setItem('TASKS',JSON.stringify(data?.data))}
       return data.data;
-     }
+     
     }
+  }
+  async getOfflineTask() {
+ const CheckTask = localStorage.getItem('TASKS');
+    if(CheckTask) {
+     const Parsed = JSON.parse(CheckTask);
+     return Parsed
+    }
+    
   }
   openPageCreateTask(router: ReturnType<typeof useCustomRouter>) {
       router('/newtask');

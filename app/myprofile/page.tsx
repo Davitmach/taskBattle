@@ -88,23 +88,37 @@ export default function Page() {
     IN_PROGRESS: [],
     CANCELLED: [],
   });
-  useEffect(()=> {
-    taskService.getTasks().then((e)=> {
-      if(e) {
-      if(Array.isArray(e)) {
-        const cancel = e.filter((e)=> e.status=='CANCELLED');
-        const accept = e.filter((e)=> e.status=='COMPLETED');
-        const in_progress = e.filter((e)=> e.status=='IN_PROGRESS');
-         setTask({
-          COMPLETED:accept,
-          IN_PROGRESS:in_progress,
-         CANCELLED:cancel
-        });
-      }
-       
-      }
-    })
-  },[])
+useEffect(() => {
+  taskService.getTasks().then((tasks) => {
+    if (Array.isArray(tasks) && tasks.length > 0) {
+      const cancel = tasks.filter((e) => e.status === 'CANCELLED');
+      const accept = tasks.filter((e) => e.status === 'COMPLETED');
+      const in_progress = tasks.filter((e) => e.status === 'IN_PROGRESS');
+
+      setTask({
+        COMPLETED: accept,
+        IN_PROGRESS: in_progress,
+        CANCELLED: cancel,
+      });
+    } else {
+      // Если нет задач — загружаем оффлайн
+      taskService.getOfflineTask().then((offlineTasks) => {
+        if (Array.isArray(offlineTasks)) {
+          const cancel = offlineTasks.filter((e) => e.status === 'CANCELLED');
+          const accept = offlineTasks.filter((e) => e.status === 'COMPLETED');
+          const in_progress = offlineTasks.filter((e) => e.status === 'IN_PROGRESS');
+
+          setTask({
+            COMPLETED: accept,
+            IN_PROGRESS: in_progress,
+            CANCELLED: cancel,
+          });
+        }
+      });
+    }
+  });
+}, []);
+
   const {LoadedState} = useLoadingState();
 useEffect(()=> {
 console.log(task,'TASK');
