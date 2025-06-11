@@ -15,7 +15,7 @@ import { useLoadingState } from "@/app/store";
 export const TaskHomePageInfoBlock = (props:ITaskHomePageInfoBlockProps) => {
     const [open,setOpen] = useState(true);
     const refDiv = useRef<HTMLDivElement>(null);
-    const [height,setHeight] = useState(69);
+    const [height,setHeight] = useState(0);
     const [click,setClick] = useState(false);
     const {LoadedState} = useLoadingState();
 const [tasks,setTasks] = useState([]);
@@ -26,13 +26,18 @@ const [title,setTitle] = useState<string>('');
 setOpen(!open);
     },[open])
 
-// useEffect(()=> {
+useEffect(() => {
+  const updateHeight = () => {
+    if (refDiv.current?.clientHeight) {
+      setHeight(refDiv.current.clientHeight);
+    }
+  };
 
-// if(refDiv.current?.clientHeight) {
-//     setHeight(refDiv.current.clientHeight);
-// }
-
-// },[])
+  if ((props.data && props.data.length > 0) || tasks.length > 0) {
+    // Нужно немного подождать, чтобы DOM успел обновиться
+    setTimeout(updateHeight, 0);
+  }
+}, [props.data, tasks]);
 useEffect(()=> {
 switch (props.type) {
     case 'CANCELLED':
