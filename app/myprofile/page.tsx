@@ -154,9 +154,9 @@ console.log(task,'TASK');
     <CustomChart dataPoints={dataPoints} labels={labels}/></InfoBlock>
 
 <InfoBlock title="Награды"><Reward  onClick={() => openM("Какой ты быстрый!!", "Награда за выполнение задния за 1 минуту", "Награда есть у 10% пользователей")}  info="Награда есть у 10% пользователей" title="Какой ты быстрый!!" description="Награда за выполнение задния за 1 минуту" /></InfoBlock>
-   <TaskHomePageInfoBlock data={data} type="complete" />
-   <TaskHomePageInfoBlock data={data} type="inprocess" />
-   <TaskHomePageInfoBlock data={data} type="cancel" />
+   <TaskHomePageInfoBlock data={task.accept} type="complete" />
+   <TaskHomePageInfoBlock data={task.in_progress} type="inprocess" />
+   <TaskHomePageInfoBlock data={task.cancel} type="cancel" />
 
         </div>
           {open &&<div className="bg-[#1E1E2FBF] w-full h-[100vh] z-[999999] fixed left-0 top-0"> <div className="min-h-[342px] anim_fadeIn bg-[#2D2D4F] flex flex-col justify-start relative items-center gap-[15px] p-[15px] rounded-[16px] fixed left-[50%] top-[50%] translate-x-[-50%] translate-y-[-50%] max-w-[400px] w-[91%] ">
