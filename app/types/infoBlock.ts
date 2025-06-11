@@ -1,4 +1,4 @@
-export type TaskType = 'complete' | 'inprocess' | 'cancel'
+export type TaskType = 'COMPLETED' | 'IN_PROGRESS' | 'CANCELLED'
 type Task = {
     title: string;
     type: string;

@@ -33,9 +33,9 @@ const data = [
     { title: "Проверка адаптивности сайта", type: "Одиночное", timeout: 20, date: "23:03:2024 24:34" },
 ]
   const Colors = {
-    cancel:['#FF4D6D','#BE3A50D9'],
-    complete:['#00C896','#A2E9BA'],
-    inprocess:['#FACC15','#DDDD9C']
+    CANCELLED:['#FF4D6D','#BE3A50D9'],
+    COMPLETED:['#00C896','#A2E9BA'],
+   IN_PROGRESS:['#FACC15','#DDDD9C']
   }
 export const TaskHomePageInfoBlock = (props:ITaskHomePageInfoBlockProps) => {
     const [open,setOpen] = useState(true);
@@ -60,13 +60,13 @@ if(refDiv.current?.clientHeight) {
 },[])
 useEffect(()=> {
 switch (props.type) {
-    case 'cancel':
+    case 'CANCELLED':
         setTitle('Отмененные');
         break;
-    case 'complete':
+    case 'COMPLETED':
         setTitle('Выполненные');
         break;
-    case 'inprocess':
+    case 'IN_PROGRESS':
         setTitle('В процессе');
         break;
 
@@ -81,18 +81,18 @@ return(
     <div 
     style={click == false ? {height:'auto'} : open ? {height:`${height}px`}:{height:'0px'}}
     ref={refDiv} className={` tasks_box  duration-[.2s] scrollbar-hide overflow-x-hidden flex flex-col gap-[10px] max-h-[230px]`}>{props.data?props.data.map((e)=> {
-        if(props.type == 'inprocess') {
+        if(props.type == 'IN_PROGRESS') {
   return <TaskWithFunc phrase='<p>qaqem</p>' date={e.date} friends={e.friends ? e.friends :[]}  timeout={e.timeout} title={e.title} type={e.type as 'Совместное'|'Одиночное'} key={e.title}/>
         }
         else {
-          return  <Task date={e.date} friends={e.friends ? e.friends :[]} color={props.type == 'cancel' ? '#BE3A50D9' : props.type=='complete' ?'#A2E9BA':''} timeout={e.timeout} title={e.title} type={e.type as 'Совместное'|'Одиночное'} key={e.title}/>
+          return  <Task date={e.date} friends={e.friends ? e.friends :[]} color={props.type == 'CANCELLED' ? '#BE3A50D9' : props.type=='COMPLETED' ?'#A2E9BA':''} timeout={e.timeout} title={e.title} type={e.type as 'Совместное'|'Одиночное'} key={e.title}/>
         }
       })  :  data.map((e)=> {
-      if(props.type == 'inprocess') {
+      if(props.type == 'IN_PROGRESS') {
 return <TaskWithFunc phrase='<p>qaqem</p>' date={e.date} friends={e.friends ? e.friends :[]}  timeout={e.timeout} title={e.title} type={e.type as 'Совместное'|'Одиночное'} key={e.title}/>
       }
       else {
-        return  <Task date={e.date} friends={e.friends ? e.friends :[]} color={props.type == 'cancel' ? '#BE3A50D9' : props.type=='complete' ?'#A2E9BA':''} timeout={e.timeout} title={e.title} type={e.type as 'Совместное'|'Одиночное'} key={e.title}/>
+        return  <Task date={e.date} friends={e.friends ? e.friends :[]} color={props.type == 'CANCELLED' ? '#BE3A50D9' : props.type=='COMPLETED' ?'#A2E9BA':''} timeout={e.timeout} title={e.title} type={e.type as 'Совместное'|'Одиночное'} key={e.title}/>
       }
     })}</div>
 </div>

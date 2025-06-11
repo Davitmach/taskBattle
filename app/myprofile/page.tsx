@@ -80,13 +80,13 @@ const data:Task[] = [
 export default function Page() {
   const {img,name,tasks,createdAt} = useUserProfile();
   const [task, setTask] = useState<{
-    accept: any[];
-    in_progress: any[];
-    cancel: any[];
+    COMPLETED: any[];
+    IN_PROGRESS: any[];
+    CANCELLED: any[];
   }>({
-    accept: [],
-    in_progress: [],
-    cancel: [],
+   COMPLETED: [],
+    IN_PROGRESS: [],
+    CANCELLED: [],
   });
   useEffect(()=> {
     taskService.getTasks().then((e)=> {
@@ -96,9 +96,9 @@ export default function Page() {
         const accept = e.filter((e)=> e.status=='COMPLETED');
         const in_progress = e.filter((e)=> e.status=='IN_PROGRESS');
          setTask({
-          accept:accept,
-          in_progress:in_progress,
-          cancel:cancel
+          COMPLETED:accept,
+          IN_PROGRESS:in_progress,
+         CANCELLED:cancel
         });
       }
        
@@ -154,9 +154,9 @@ console.log(task,'TASK');
     <CustomChart dataPoints={dataPoints} labels={labels}/></InfoBlock>
 
 <InfoBlock title="Награды"><Reward  onClick={() => openM("Какой ты быстрый!!", "Награда за выполнение задния за 1 минуту", "Награда есть у 10% пользователей")}  info="Награда есть у 10% пользователей" title="Какой ты быстрый!!" description="Награда за выполнение задния за 1 минуту" /></InfoBlock>
-   <TaskHomePageInfoBlock data={task.accept} type="complete" />
-   <TaskHomePageInfoBlock data={task.in_progress} type="inprocess" />
-   <TaskHomePageInfoBlock data={task.cancel} type="cancel" />
+   <TaskHomePageInfoBlock data={task.COMPLETED} type='COMPLETED' />
+   <TaskHomePageInfoBlock data={task.IN_PROGRESS} type='IN_PROGRESS' />
+   <TaskHomePageInfoBlock data={task.CANCELLED} type='CANCELLED' />
 
         </div>
           {open &&<div className="bg-[#1E1E2FBF] w-full h-[100vh] z-[999999] fixed left-0 top-0"> <div className="min-h-[342px] anim_fadeIn bg-[#2D2D4F] flex flex-col justify-start relative items-center gap-[15px] p-[15px] rounded-[16px] fixed left-[50%] top-[50%] translate-x-[-50%] translate-y-[-50%] max-w-[400px] w-[91%] ">
