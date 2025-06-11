@@ -49,7 +49,7 @@ export const Task = (props:ITaskProps)=> {
     </div>
     <div className='flex flex-col items-end'>
       <div className='flex items-center gap-[3px] text-[1em] font-[400] text-[#1E1E1E] text-nowrap'><Clock/>{props.timeout} минут</div>
-      <div dangerouslySetInnerHTML={{ __html: props.phrase || '' }} />
+      <div className='phrase_box' dangerouslySetInnerHTML={{ __html: props.phrase || '' }} />
     </div>
   </div>
 

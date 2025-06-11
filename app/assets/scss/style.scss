@@ -68,7 +68,10 @@ transform:  scale(0);
 .task_home_page_info_block > .tasks_box::-webkit-scrollbar {
   width: 0px; 
 }
-
+ .phrase_box p {
+  font-size: 12px;
+  text-align: end;
+}
 
 
 
@@ -117,3 +120,5 @@ transform:  scale(0);
     background-color: #1E1E2F;
     width: 100%;
    }
+
+
