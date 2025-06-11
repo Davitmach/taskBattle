@@ -15,7 +15,7 @@ import { useLoadingState } from "@/app/store";
 export const TaskHomePageInfoBlock = (props:ITaskHomePageInfoBlockProps) => {
     const [open,setOpen] = useState(true);
     const refDiv = useRef<HTMLDivElement>(null);
-    const [height,setHeight] = useState(0);
+    const [height,setHeight] = useState(69);
     const [click,setClick] = useState(false);
     const {LoadedState} = useLoadingState();
 const [tasks,setTasks] = useState([]);
@@ -26,13 +26,13 @@ const [title,setTitle] = useState<string>('');
 setOpen(!open);
     },[open])
 
-useEffect(()=> {
+// useEffect(()=> {
 
-if(refDiv.current?.clientHeight) {
-    setHeight(refDiv.current.clientHeight);
-}
+// if(refDiv.current?.clientHeight) {
+//     setHeight(refDiv.current.clientHeight);
+// }
 
-},[])
+// },[])
 useEffect(()=> {
 switch (props.type) {
     case 'CANCELLED':
@@ -59,10 +59,7 @@ useEffect(()=> {
 console.log(tasks,'qaqawsda');
 
 },[tasks])
-useEffect(()=> {
-console.log(open,'open');
 
-},[open])
 return(
 <div className={`${LoadedState && 'anim_fadeIn'} w-full task_home_page_info_block bg-[#1E1E2F] rounded-[16px] py-[10px] px-[15px] flex duration-[.2s] flex-col ${open == false ? 'gap-[0px]':'gap-[20px]'} `}>
     <div className="flex items-center justify-between">
