@@ -82,11 +82,14 @@ export default function Page() {
   const {LoadedState} = useLoadingState();
   useEffect(()=> {
       const check = ()=> {
-      const log = taskService.getTasks();
-console.log(log);
+  const log = taskService.getTasks().then((e) => {
+  console.log(e);
+});
+
+
     }
     if(LoadedState==true) {
-      check()
+       check()
     }
     else {
 setTimeout(() => {
