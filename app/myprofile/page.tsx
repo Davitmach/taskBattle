@@ -79,11 +79,29 @@ const data:Task[] = [
   const dataPoints = serverData.map(item => item.count);
 export default function Page() {
   const {img,name,tasks,createdAt} = useUserProfile();
-  const [task,setTask] = useState([]);
+  const [task, setTask] = useState<{
+    accept: any[];
+    in_progress: any[];
+    cancel: any[];
+  }>({
+    accept: [],
+    in_progress: [],
+    cancel: [],
+  });
   useEffect(()=> {
     taskService.getTasks().then((e)=> {
       if(e) {
-        setTask(e);
+      if(Array.isArray(e)) {
+        const cancel = e.filter((e)=> e.status=='CANCELLED');
+        const accept = e.filter((e)=> e.status=='COMPLETED');
+        const in_progress = e.filter((e)=> e.status=='IN_PROGRESS');
+         setTask({
+          accept:accept,
+          in_progress:in_progress,
+          cancel:cancel
+        });
+      }
+       
       }
     })
   },[])
