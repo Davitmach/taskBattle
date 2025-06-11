@@ -53,7 +53,7 @@ if(props.data) {
     setTasks(props.data as any)
 }
 
-},[])
+},[props.data])
 
 
 return(
