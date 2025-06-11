@@ -79,6 +79,7 @@ const data:Task[] = [
   const dataPoints = serverData.map(item => item.count);
 export default function Page() {
   const {img,name,tasks,createdAt} = useUserProfile();
+ const {LoadedState} = useLoadingState();
   const [task, setTask] = useState<{
     COMPLETED: any[];
     IN_PROGRESS: any[];
@@ -89,6 +90,8 @@ export default function Page() {
     CANCELLED: [],
   });
  useEffect(() => {
+  const GetTasks = ()=> {
+
   taskService.getTasks().then((tasks) => {
     if (Array.isArray(tasks) && tasks.length > 0) {
       const cancel = tasks.filter((e) => e.status === 'CANCELLED');
@@ -117,9 +120,18 @@ export default function Page() {
       });
     }
   });
+}
+  if(LoadedState==true) {
+GetTasks()
+  } 
+else {
+  setTimeout(() => {
+    GetTasks()
+  }, 1000);
+}
 }, []);
 
-  const {LoadedState} = useLoadingState();
+ 
 useEffect(()=> {
 console.log(task,'TASK');
 
