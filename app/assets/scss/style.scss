@@ -71,6 +71,8 @@ transform:  scale(0);
  .phrase_box p {
   font-size: 12px;
   text-align: end;
+  max-width: 120px; 
+  width: 100%;
 }
 .phrase_box .red {
   color: D00000;
