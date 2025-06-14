@@ -229,7 +229,7 @@ const serverData = [
 const labels = serverData.map((item) => new Date(item.date).getDate());
 const dataPoints = serverData.map((item) => item.count);
 export default function Page() {
-  const { img, name, tasks, createdAt } = useUserProfile();
+  const { img, name, tasks, createdAt ,friends} = useUserProfile();
   const { LoadedState } = useLoadingState();
   const [task, setTask] = useState<{
     COMPLETED: any[];
@@ -326,17 +326,24 @@ export default function Page() {
           }}
         />
         <InfoBlock title="Друзья">
-          <ul>
-            <UserInfo
+          <ul className="flex flex-col gap-[8px]">
+            {
+friends && friends.length>0 &&
+friends.map((e)=> (
+<UserInfo
               delete={true}
-              id="2312321"
+              id={e.id}
+              friendId={e.userFriendId}
               className="w-full"
               color="#2D2D4F"
-              img="https://randomuser.me/api/portraits/lego/2.jpg"
-              name="'de"
-              total={3}
+              img={e.icon}
+              name={e.name}
+              total={e._count.tasks}
               index={3}
             />
+))
+            }
+      
           </ul>
         </InfoBlock>
         <InfoBlock title="Статистика">

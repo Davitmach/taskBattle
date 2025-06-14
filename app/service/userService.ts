@@ -1,5 +1,5 @@
 'use client';
-import { UserApiConfig } from "../config/apiConfig";
+import { FriendApiConfig, UserApiConfig } from "../config/apiConfig";
 import axios from 'axios';
 import { useUserProfile } from "../store";
 import { error } from "console";
@@ -105,6 +105,16 @@ console.log(error,'cers tapec');
     const res =Data.data;
     if(res.status == 'success') {
       return res.data;
+    }
+  }
+  async GetFriends() {
+    const friends = await axios.get(DOMEN+FriendApiConfig.FRIENDS,{
+      headers:{
+        'tg-init-data':window.Telegram.WebApp.initData
+      }
+    })
+    if(friends.data){
+      return friends.data.data
     }
   }
 }

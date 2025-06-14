@@ -1,5 +1,6 @@
 'use client';
 
+import { UserApiConfig } from "@/app/config/apiConfig";
 import { taskService } from "@/app/service/taskService";
 import { userService } from "@/app/service/userService";
 import { useLoadingState, useUserProfile } from "@/app/store";
@@ -28,7 +29,12 @@ if(img=='' && name=='' && createdAt=='' && tasks.accept==0) {
     } 
 }
   }
-
+userService.GetFriends().then((e)=> {
+  if(e) {
+    
+  }
+  
+})
   },[])
   useEffect(() => {
     let welcomeCalled = false;

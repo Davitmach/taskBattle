@@ -1,5 +1,6 @@
 export interface IUserInfoProps {
   id?:string
+  friendId?:string
     img:string;
 name:string;
 total:number;   

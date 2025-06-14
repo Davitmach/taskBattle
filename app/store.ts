@@ -23,10 +23,14 @@ tasks:{
   accept:number,
   in_progress:number,
 },
-setTasks:(cancel:number,accept:number,in_progress:number)=> void
+setTasks:(cancel:number,accept:number,in_progress:number)=> void,
+friends:any[],
+setFriends:(friends:any[])=> void
 }
 export const useUserProfile = create<UserProfile>((set)=> ({
   name:'',
+  friends:[],
+  setFriends:(newFriends:any[])=> set({friends:newFriends}),
   img:'',
   setImg:(newState:string)=> set({img:newState}),
   setName:(newState:string)=> set({name:newState}),
