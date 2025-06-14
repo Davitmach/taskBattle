@@ -26,9 +26,9 @@ export default function Page() {
     if (refInput.current) {
       userService.Find(refInput.current.value).then((e) => {
         if (e) {
-            console.log(e);
+            console.log(e,'daeaedaedeaedae');
             
-          setData(e.data);
+          setData(e);
         }
       });
     }
