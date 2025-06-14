@@ -47,6 +47,15 @@ const data:Task[] = [
     { title: "Ревью задач других команд", type: "Совместное", timeout: 30, friends: [{ img: "/avatars/user10.png", name: "Валя", total: 3 }], date: "23:03:2024 24:34" },
     { title: "Проверка адаптивности сайта", type: "Одиночное", timeout: 20, date: "23:03:2024 24:34" },
 ]
+type UserData = {
+  createdAt: string;
+  icon:string;
+  name:string;
+  taskCounter:any;
+
+
+  
+};
 export default function Page() {
     const router = useCustomRouter();
     const params = useParams();
@@ -55,6 +64,13 @@ export default function Page() {
     const [openReport,setOpenReport] = useState(false);
     const {showNotification} = useNotification();
     const refReport = useRef<HTMLTextAreaElement>(null);
+    const [data,setData] = useState<UserData>({
+        createdAt:'',
+        icon:'',
+        name:'',
+        taskCounter:''
+    });
+    const [date,setDate] = useState<string>();
     const [info,setInfo] = useState({
         title:'',
         description:'',
@@ -92,7 +108,7 @@ useEffect(()=> {
 console.log(params.id);
 if(params.id) {
     userService.User(params.id as string).then((e)=> {
-        console.log(e,'deadaedea');
+        setData(e);
         
     })
 }
@@ -119,6 +135,18 @@ const data = userService.Report(params.id as string,refReport.current.value).the
 
         }
     }
+
+useEffect(()=> {
+if(data) {
+    if(!data.createdAt) return;
+     const formattedDate = new Date(data.createdAt)
+  .toISOString()
+  .slice(0, 10)
+  .replace(/-/g, '.');
+  setDate(formattedDate);
+}
+},[data])
+
     return(
         <>
         <div className="container !gap-[10px] pt-[7px] scrollbar-hide relative"><Back onclick={back} className="absolute left-[15px] top-[15px] cursor-pointer"/>
@@ -129,12 +157,12 @@ const data = userService.Report(params.id as string,refReport.current.value).the
 <path d="M11 15H11.01" stroke="#D9D9D9" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
 </svg>
 </Button>
-<AnyUserInfo img="https://randomuser.me/api/portraits/lego/2.jpg" date="2014.04.20" name="David" tasks={{inprocess:3,cancel:54,success:4}} friendship={false}/>
+<AnyUserInfo img={data.icon} date="2014.04.20" name={data.name} tasks={{inprocess:data.taskCounter.in_progress,cancel:data.taskCounter.cancelled,success:data.taskCounter.completed}} friendship={false}/>
 <InfoBlock title="Друзья"><ul><UserInfo  className="w-full" color="#2D2D4F" img="https://randomuser.me/api/portraits/lego/2.jpg" name="'de"  total={3} index={3}/></ul></InfoBlock>
 <InfoBlock title="Награды"><Reward  onClick={() => openM("Какой ты быстрый!!", "Награда за выполнение задния за 1 минуту", "Награда есть у 10% пользователей")}  info="Награда есть у 10% пользователей" title="Какой ты быстрый!!" description="Награда за выполнение задния за 1 минуту" /></InfoBlock>
-   <TaskHomePageInfoBlock data={data} type='COMPLETED' />
+   {/* <TaskHomePageInfoBlock data={data} type='COMPLETED' />
    <TaskHomePageInfoBlock data={data} type='IN_PROGRESS' />
-   <TaskHomePageInfoBlock data={data} type='CANCELLED' />
+   <TaskHomePageInfoBlock data={data} type='CANCELLED' /> */}
         </div>
 
         {open &&<div className="bg-[#1E1E2FBF] w-full h-[100vh] z-[999999] fixed left-0 top-0"> <div className="min-h-[342px] anim_fadeIn bg-[#2D2D4F] flex flex-col justify-start relative items-center gap-[15px] p-[15px] rounded-[16px] fixed left-[50%] top-[50%] translate-x-[-50%] translate-y-[-50%] max-w-[400px] w-[91%] ">
