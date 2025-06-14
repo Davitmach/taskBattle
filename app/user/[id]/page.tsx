@@ -90,7 +90,12 @@ router('/');
 
 useEffect(()=> {
 console.log(params.id);
-
+if(params.id) {
+    userService.User(params.id as string).then((e)=> {
+        console.log(e,'deadaedea');
+        
+    })
+}
 },[params])
     const SendReport = ()=> {
         if(params.id && refReport.current) {

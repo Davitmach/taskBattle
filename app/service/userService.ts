@@ -1,3 +1,4 @@
+
 'use client';
 import { FriendApiConfig, UserApiConfig } from "../config/apiConfig";
 import axios from 'axios';
@@ -115,6 +116,18 @@ console.log(error,'cers tapec');
     })
     if(friends.data){
       return friends.data.data
+    }
+  }
+  async User(id:string) {
+    if(!id) return;
+
+    const user = await axios.get(DOMEN+UserApiConfig.GETUSER+id,{
+      headers:{
+        'tg-init-data':window.Telegram.WebApp.initData
+      }
+    })
+    if(user.data) {
+      return user.data.data
     }
   }
   
