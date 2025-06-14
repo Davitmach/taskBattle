@@ -176,7 +176,7 @@ setLoad(false)
     {data.friends.length>0
     &&
     data.friends.map((e)=> (
-        <UserInfo  className="w-full" color="#2D2D4F" id={e.id}  img={e.icon} name={e.name}  total={3} index={3}/>
+        <UserInfo  className="w-full" color="#2D2D4F" id={e.id}  img={e.icon} name={e.name}  total={e.taskCount} index={3}/>
     ))
     }
     </ul></InfoBlock>
