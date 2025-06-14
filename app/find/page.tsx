@@ -72,7 +72,7 @@ export default function Page() {
         </svg>
       </div>
       <div className="mt-[8px]">
-        <ul>
+        <ul className="flex flex-col gap-[8px]">
           {data &&
             data.length > 0 &&
             data.map((e) => (
