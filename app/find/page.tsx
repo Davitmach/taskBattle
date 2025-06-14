@@ -26,6 +26,8 @@ export default function Page() {
     if (refInput.current) {
       userService.Find(refInput.current.value).then((e) => {
         if (e) {
+            console.log(e);
+            
           setData(e.data);
         }
       });
