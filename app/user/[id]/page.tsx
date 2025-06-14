@@ -53,7 +53,7 @@ type UserData = {
   name:string;
   taskCounter:any;
   rewards:any[]
-
+friend:any;
 friends:any[]
   
 };
@@ -71,7 +71,8 @@ export default function Page() {
         name:'',
         taskCounter:'',
         rewards:[],
-        friends:[]
+        friends:[],
+        friend:null
     });
     const [date,setDate] = useState<string>();
     const [info,setInfo] = useState({
@@ -161,6 +162,7 @@ if(data) {
 useEffect(()=> {
 setLoad(false)
 },[])
+
     return(
         <>
         <div className="container !gap-[10px] pt-[7px] scrollbar-hide relative"><Back onclick={back} className="absolute left-[15px] top-[15px] cursor-pointer"/>
@@ -171,12 +173,12 @@ setLoad(false)
 <path d="M11 15H11.01" stroke="#D9D9D9" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
 </svg>
 </Button>
-<AnyUserInfo img={data.icon} date={date as string} name={data.name} tasks={{inprocess:data.taskCounter.in_progress,cancel:data.taskCounter.cancelled,success:data.taskCounter.completed}} friendship={false}/>
+<AnyUserInfo img={data.icon} date={date as string} name={data.name} tasks={{inprocess:data.taskCounter.in_progress,cancel:data.taskCounter.cancelled,success:data.taskCounter.completed}} friendship={data.friend==false ? false : data.friend.status == 'ACCEPTED' && true}/>
 <InfoBlock title="Друзья"><ul className="flex flex-col gap-[8px]">
     {data.friends.length>0
     &&
-    data.friends.map((e)=> (
-        <UserInfo  className="w-full" color="#2D2D4F" id={e.id}  img={e.icon} name={e.name}  total={e.taskCount} index={3}/>
+    data.friends.map((e,index)=> (
+        <UserInfo  className="w-full" color="#2D2D4F" id={e.id}  img={e.icon} name={e.name}  total={e.taskCount} index={index}/>
     ))
     }
     </ul></InfoBlock>
