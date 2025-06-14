@@ -113,7 +113,7 @@ if(params.id) {
     userService.User(params.id as string).then((e)=> {
         setData(e);
         console.log(e);
-        setLoad(false);
+        setLoad(true);
         
         
     })
@@ -155,7 +155,7 @@ if(data) {
 
 
 useEffect(()=> {
-setLoad(true)
+setLoad(false)
 },[])
     return(
         <>
