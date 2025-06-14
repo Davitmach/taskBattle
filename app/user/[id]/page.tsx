@@ -52,6 +52,7 @@ type UserData = {
   icon:string;
   name:string;
   taskCounter:any;
+  rewards:any[]
 
 
   
@@ -59,7 +60,7 @@ type UserData = {
 export default function Page() {
     const router = useCustomRouter();
     const params = useParams();
-    const {LoadedState} = useLoadingState();
+    const {LoadedState,setLoad} = useLoadingState();
     const [open,setOpen] = useState(false);
     const [openReport,setOpenReport] = useState(false);
     const {showNotification} = useNotification();
@@ -68,7 +69,8 @@ export default function Page() {
         createdAt:'',
         icon:'',
         name:'',
-        taskCounter:''
+        taskCounter:'',
+        rewards:[]
     });
     const [date,setDate] = useState<string>();
     const [info,setInfo] = useState({
@@ -76,6 +78,7 @@ export default function Page() {
         description:'',
         info:''
     })
+
     const back = ()=> {
 router('/');
     }
@@ -109,6 +112,9 @@ console.log(params.id);
 if(params.id) {
     userService.User(params.id as string).then((e)=> {
         setData(e);
+        console.log(e);
+        setLoad(false);
+        
         
     })
 }
@@ -147,6 +153,10 @@ if(data) {
 }
 },[data])
 
+
+useEffect(()=> {
+setLoad(true)
+},[])
     return(
         <>
         <div className="container !gap-[10px] pt-[7px] scrollbar-hide relative"><Back onclick={back} className="absolute left-[15px] top-[15px] cursor-pointer"/>
@@ -159,7 +169,13 @@ if(data) {
 </Button>
 <AnyUserInfo img={data.icon} date="2014.04.20" name={data.name} tasks={{inprocess:data.taskCounter.in_progress,cancel:data.taskCounter.cancelled,success:data.taskCounter.completed}} friendship={false}/>
 <InfoBlock title="Друзья"><ul><UserInfo  className="w-full" color="#2D2D4F" img="https://randomuser.me/api/portraits/lego/2.jpg" name="'de"  total={3} index={3}/></ul></InfoBlock>
-<InfoBlock title="Награды"><Reward  onClick={() => openM("Какой ты быстрый!!", "Награда за выполнение задния за 1 минуту", "Награда есть у 10% пользователей")}  info="Награда есть у 10% пользователей" title="Какой ты быстрый!!" description="Награда за выполнение задния за 1 минуту" /></InfoBlock>
+<InfoBlock title="Награды">
+    {data.rewards.length>0 &&
+    data.rewards.map((e)=> (
+        <Reward  onClick={() => openM(e.title, e.description, "Награда есть у 10% пользователей")}  info="Награда есть у 10% пользователей" title={e.title} description={e.description} />
+    ))
+    }
+</InfoBlock>
    {/* <TaskHomePageInfoBlock data={data} type='COMPLETED' />
    <TaskHomePageInfoBlock data={data} type='IN_PROGRESS' />
    <TaskHomePageInfoBlock data={data} type='CANCELLED' /> */}
