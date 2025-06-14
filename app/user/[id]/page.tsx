@@ -54,7 +54,7 @@ type UserData = {
   taskCounter:any;
   rewards:any[]
 
-
+friends:any[]
   
 };
 export default function Page() {
@@ -70,13 +70,14 @@ export default function Page() {
         icon:'',
         name:'',
         taskCounter:'',
-        rewards:[]
+        rewards:[],
+        friends:[]
     });
     const [date,setDate] = useState<string>();
     const [info,setInfo] = useState({
         title:'',
         description:'',
-        info:''
+        info:'',
     })
 
     const back = ()=> {
@@ -167,8 +168,15 @@ setLoad(false)
 <path d="M11 15H11.01" stroke="#D9D9D9" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
 </svg>
 </Button>
-<AnyUserInfo img={data.icon} date="2014.04.20" name={data.name} tasks={{inprocess:data.taskCounter.in_progress,cancel:data.taskCounter.cancelled,success:data.taskCounter.completed}} friendship={false}/>
-<InfoBlock title="Друзья"><ul><UserInfo  className="w-full" color="#2D2D4F" img="https://randomuser.me/api/portraits/lego/2.jpg" name="'de"  total={3} index={3}/></ul></InfoBlock>
+<AnyUserInfo img={data.icon} date={date as string} name={data.name} tasks={{inprocess:data.taskCounter.in_progress,cancel:data.taskCounter.cancelled,success:data.taskCounter.completed}} friendship={false}/>
+<InfoBlock title="Друзья"><ul className="flex flex-col gap-[8px]">
+    {data.friends.length>0
+    &&
+    data.friends.map((e)=> (
+        <UserInfo  className="w-full" color="#2D2D4F" img={e.icon} name={e.name}  total={3} index={3}/>
+    ))
+    }
+    </ul></InfoBlock>
 <InfoBlock title="Награды">
     {data.rewards.length>0 &&
     data.rewards.map((e)=> (
