@@ -29,12 +29,7 @@ if(img=='' && name=='' && createdAt=='' && tasks.accept==0) {
     } 
 }
   }
-userService.GetFriends().then((e)=> {
-  if(e) {
-   setFriends(e.data);
-  }
-  
-})
+
   },[])
   useEffect(() => {
     let welcomeCalled = false;
@@ -74,6 +69,15 @@ userService.GetFriends().then((e)=> {
   
 
  }
+useEffect(()=>{
 
+userService.GetFriends().then((e)=> {
+  if(e) {
+    console.log(e,'edadaedeadae');
+    
+   setFriends(e.data);
+  }
+})
+},[LoadedState])
   return null;
 };
