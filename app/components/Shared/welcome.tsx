@@ -9,7 +9,7 @@ import { use, useEffect } from "react";
 
 export const Welcome = () => {
   const { LoadedState } = useLoadingState();
-  const {img,name,createdAt,tasks,setImg,setName,setCreatedAt,setTasks} = useUserProfile();
+  const {img,name,createdAt,tasks,setImg,setName,setCreatedAt,setTasks,setFriends} = useUserProfile();
   
   useEffect(()=> {
     UpdateTasks()
@@ -31,7 +31,7 @@ if(img=='' && name=='' && createdAt=='' && tasks.accept==0) {
   }
 userService.GetFriends().then((e)=> {
   if(e) {
-    
+   setFriends(e.data);
   }
   
 })
