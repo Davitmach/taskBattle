@@ -242,21 +242,6 @@ export default function Page() {
   });
   useEffect(() => {
     const GetTasks = () => {
-      taskService.getTasks().then((tasks) => {
-        if (Array.isArray(tasks) && tasks.length > 0) {
-          const cancel = tasks.filter((e) => e.status === "CANCELLED");
-          const accept = tasks.filter((e) => e.status === "COMPLETED");
-          const in_progress = tasks.filter((e) => e.status === "IN_PROGRESS");
-
-          setTask({
-            COMPLETED: accept,
-            IN_PROGRESS: in_progress,
-            CANCELLED: cancel,
-          });
-        }
-      });
-    };
-    if (LoadedState == true) {
       taskService.getOfflineTask().then((offlineTasks) => {
         console.log(offlineTasks,'qaqdedadeadae');
         
@@ -274,9 +259,28 @@ export default function Page() {
           });
         }
       });
+      taskService.getTasks().then((tasks) => {
+        if (Array.isArray(tasks) && tasks.length > 0) {
+          const cancel = tasks.filter((e) => e.status === "CANCELLED");
+          const accept = tasks.filter((e) => e.status === "COMPLETED");
+          const in_progress = tasks.filter((e) => e.status === "IN_PROGRESS");
+
+          setTask({
+            COMPLETED: accept,
+            IN_PROGRESS: in_progress,
+            CANCELLED: cancel,
+          });
+        }
+      });
+    };
+    if (LoadedState == true) {
       GetTasks();
+    } else {
       
-    } 
+      setTimeout(() => {
+        GetTasks();
+      }, 1000);
+    }
   }, []);
 
   useEffect(() => {
