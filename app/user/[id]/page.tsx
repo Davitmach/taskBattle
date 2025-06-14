@@ -13,7 +13,7 @@ import { userService } from "@/app/service/userService";
 import { useLoadingState } from "@/app/store";
 import { desc } from "framer-motion/client";
 import { useParams } from "next/navigation";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 type Task = {
     title: string;
     type: string;
@@ -88,7 +88,10 @@ router('/');
        
     }
 
+useEffect(()=> {
+console.log(params.id);
 
+},[params])
     const SendReport = ()=> {
         if(params.id && refReport.current) {
             setOpenReport(false);
