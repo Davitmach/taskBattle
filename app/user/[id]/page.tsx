@@ -117,6 +117,9 @@ if(params.id) {
         setLoad(true);
         
         
+    }).catch(e=> {
+        console.log(e,'sawdaerfrsffa');
+        
     })
 }
 },[params])
