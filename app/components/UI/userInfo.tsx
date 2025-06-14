@@ -5,7 +5,9 @@ import { Select } from "./select";
 export const UserInfo = (props:IUserInfoProps) => {
   const router = useCustomRouter();
   const handleClick = () => {
-router('/user/:id',{id:3455})
+    if(props.id) {
+router('/user/:id',{id: props.id.toString()})
+    }
   }
   const Delete = (e:React.MouseEvent<HTMLOrSVGElement>)=> {
  e.stopPropagation();

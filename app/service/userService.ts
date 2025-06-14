@@ -102,6 +102,10 @@ console.log(error,'cers tapec');
         'tg-init-data':window.Telegram.WebApp.initData
       }
     })
+    const res =Data.data;
+    if(res.status == 'success') {
+      return res.data;
+    }
   }
 }
 
