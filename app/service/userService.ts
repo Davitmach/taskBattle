@@ -117,6 +117,7 @@ console.log(error,'cers tapec');
       return friends.data.data
     }
   }
+  
 }
 
 export const userService = new UserService();

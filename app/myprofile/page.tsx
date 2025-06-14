@@ -229,7 +229,7 @@ const serverData = [
 const labels = serverData.map((item) => new Date(item.date).getDate());
 const dataPoints = serverData.map((item) => item.count);
 export default function Page() {
-  const { img, name, tasks, createdAt ,friends} = useUserProfile();
+  const { img, name, tasks, createdAt ,friends,rewards} = useUserProfile();
   const { LoadedState } = useLoadingState();
   const [task, setTask] = useState<{
     COMPLETED: any[];
@@ -374,18 +374,24 @@ friends.map((e)=> (
         </InfoBlock>
 
         <InfoBlock title="Награды">
-          <Reward
+          {
+            rewards && rewards.length>0 &&
+            rewards.map((e)=> (
+  <Reward
             onClick={() =>
               openM(
-                "Какой ты быстрый!!",
-                "Награда за выполнение задния за 1 минуту",
+                e.title,
+               e.description,
                 "Награда есть у 10% пользователей"
               )
             }
-            info="Награда есть у 10% пользователей"
-            title="Какой ты быстрый!!"
+            info={e.title}
+            title={e.description}
             description="Награда за выполнение задния за 1 минуту"
           />
+            ))
+          }
+        
         </InfoBlock>
         <TaskHomePageInfoBlock data={task.COMPLETED} type="COMPLETED" />
         <TaskHomePageInfoBlock data={task.IN_PROGRESS} type="IN_PROGRESS" />

@@ -9,7 +9,7 @@ import { use, useEffect } from "react";
 
 export const Welcome = () => {
   const { LoadedState } = useLoadingState();
-  const {img,name,createdAt,tasks,setImg,setName,setCreatedAt,setTasks,setFriends} = useUserProfile();
+  const {img,name,createdAt,tasks,setImg,setName,setCreatedAt,setTasks,setFriends,setRewards} = useUserProfile();
   
   useEffect(()=> {
     UpdateTasks()
@@ -17,6 +17,7 @@ if(img=='' && name=='' && createdAt=='' && tasks.accept==0) {
   const get = localStorage.getItem('PROFILE_INFO');
   if(get) {
   const parse = JSON.parse(get);
+  if(parse.user.rewards) setRewards(parse.user.rewards);
    if (parse.user.icon) setImg(parse.user.icon);
   if (parse.user.name) setName(parse.user.name);
   if(parse.taskCounter)  setTasks(parse.taskCounter.cancelled,parse.taskCounter.completed,parse.taskCounter.in_progress)

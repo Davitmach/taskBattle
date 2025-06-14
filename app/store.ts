@@ -18,6 +18,8 @@ interface UserProfile {
   setCreatedAt:(newDate:string)=> void,
   setName:(newName:string)=> void;
   setImg:(newImg:string)=> void;
+  rewards:any[],
+  setRewards:(newRew:any[])=> void,
 tasks:{
   cancel:number,
   accept:number,
@@ -29,6 +31,8 @@ setFriends:(friends:any[])=> void
 }
 export const useUserProfile = create<UserProfile>((set)=> ({
   name:'',
+  rewards:[],
+  setRewards:(newRew:any[]) => set({rewards:newRew}),
   friends:[],
   setFriends:(newFriends:any[])=> set({friends:newFriends}),
   img:'',
