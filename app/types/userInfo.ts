@@ -20,7 +20,7 @@ export interface IAnyUserInfo {
     img:string;
     name:string;
   date:string;
-  friendship:boolean;
+  friendship:boolean |'pending';
   tasks:{
     success:number;
     inprocess:number;

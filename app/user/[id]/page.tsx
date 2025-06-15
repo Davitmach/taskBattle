@@ -168,6 +168,14 @@ if(data) {
 useEffect(()=> {
 setLoad(false)
 },[])
+const friendship =
+  data.friend === false
+    ? false
+    : data.friend === true
+      ? true
+      : data.friend.status === 'PENDING'
+        ? 'pending'
+        : true;
 
     return(
         <>
@@ -179,7 +187,7 @@ setLoad(false)
 <path d="M11 15H11.01" stroke="#D9D9D9" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
 </svg>
 </Button>
-<AnyUserInfo img={data.icon} date={date as string} name={data.name} tasks={{inprocess:data.taskCounter.in_progress,cancel:data.taskCounter.cancelled,success:data.taskCounter.completed}} friendship={data.friend==false ?false:true}/>
+<AnyUserInfo img={data.icon} date={date as string} name={data.name} tasks={{inprocess:data.taskCounter.in_progress,cancel:data.taskCounter.cancelled,success:data.taskCounter.completed}} friendship={friendship}/>
 <InfoBlock title="Друзья"><ul className="flex flex-col gap-[8px]">
     {data.friends.length>0
     &&
