@@ -120,7 +120,9 @@ if(params.id) {
         
     }).catch(e=> {
         console.log(e,'sawdaerfrsffa');
-        
+        if(e.response.data.status == 'You cannot view your own profile with this endpoint') {
+            router('/')
+        }
     })
 }
 },[params])
