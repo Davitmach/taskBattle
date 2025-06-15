@@ -71,7 +71,7 @@ if(img=='' && name=='' && createdAt=='' && tasks.accept==0) {
 
  }
 useEffect(()=>{
-
+if(LoadedState==true) {
 userService.GetFriends().then((e)=> {
   if(e) {
     console.log(e,'edadaedeadae');
@@ -79,6 +79,7 @@ userService.GetFriends().then((e)=> {
    setFriends(e);
   }
 })
+}
 },[LoadedState])
   return null;
 };
