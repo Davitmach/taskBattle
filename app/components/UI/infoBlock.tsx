@@ -28,11 +28,13 @@ setOpen(!open);
 
 useEffect(() => {
   const updateHeight = () => {
-    if(props.data) {
+    console.log(props.data,'qaqs tapec');
+    
+   
     if (refDiv.current?.clientHeight) {
       setHeight(refDiv.current.clientHeight);
     }
-  };}
+  };
 
   if ((props.data && props.data.length > 0) || tasks.length > 0) {
     // Нужно немного подождать, чтобы DOM успел обновиться
