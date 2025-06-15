@@ -28,7 +28,7 @@ setOpen(!open);
 
 useEffect(() => {
   const updateHeight = () => {
-    console.log(props.data,'qaqs tapec');
+    
     
    
     if (refDiv.current?.clientHeight) {
@@ -101,13 +101,23 @@ export const InfoBlock = (props:IInfoBlock)=> {
 setOpen(!open);
     },[open])
 
-useEffect(()=> {
+useEffect(() => {
+  const updateHeight = () => {
+    
+    
+   
+    if (refDiv.current?.clientHeight) {
+      console.log(props.children,'cer qaq');
+      
+      setHeight(refDiv.current.clientHeight);
+    }
+  };
 
-if(refDiv.current?.clientHeight) {
-    setHeight(refDiv.current.clientHeight);
-}
-
-},[])
+  if ((props.children && props.children) ) {
+    // Нужно немного подождать, чтобы DOM успел обновиться
+    setTimeout(updateHeight, 0);
+  }
+}, [props.children]);
 
 return(
 <div className={`${LoadedState && 'anim_fadeIn'} w-full task_home_page_info_block bg-[#1E1E2F] rounded-[16px] py-[10px] px-[15px] flex duration-[.2s] flex-col ${open == false ? 'gap-[0px]':'gap-[20px]'} `}>
