@@ -25,12 +25,12 @@ router('/user/:id',{id: props.id.toString()})
 </div>
 <div className="flex flex-col justify-center items-center gap-[4px]">
     {
-    props.delete ==true &&
+    props.delete ==true ?
       <svg onClick={Delete} width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
 <path d="M18 6L6 18" stroke="#FF4D6D" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
 <path d="M6 6L18 18" stroke="#FF4D6D" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
 </svg>
-
+:props.delete=='cancel' && <div className="text-[#FF4D6D] text-[13px]">Отменить</div>
   }
   {
     props.friend ? <div><svg width="24" height="21" viewBox="0 0 24 21" fill="none" xmlns="http://www.w3.org/2000/svg">

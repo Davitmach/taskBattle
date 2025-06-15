@@ -331,7 +331,7 @@ export default function Page() {
 friends && friends.length>0 &&
 friends.map((e)=> (
 <UserInfo
-              delete={true}
+              delete={e.status =='ACCEPTED' ? true : e.status =='PENDING' &&'cancel'}
               id={e.id}
               friendId={e.userFriendId}
               className="w-full"

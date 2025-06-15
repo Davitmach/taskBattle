@@ -11,7 +11,7 @@ color:string;
 friend?:boolean
 friendSelect?:string[];
 setFriendSelect?: React.Dispatch<React.SetStateAction<string[]>>;
-delete?:boolean
+delete?:boolean|'cancel'
 
 
 isSelectFriend?:boolean
