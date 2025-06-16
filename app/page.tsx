@@ -15,10 +15,7 @@ const {name,img} = useUserProfile();
   const handleClick = () => {
 taskService.openPageCreateTask(router)
   };
-useEffect(()=> {
-console.log(name,img);
 
-},[img,name])
   return (
     <div className="container pt-[7px] scrollbar-hide">
      

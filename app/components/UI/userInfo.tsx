@@ -10,9 +10,7 @@ router('/user/:id',{id: props.id.toString()})
     }
   }
   const Delete = (e:React.MouseEvent<HTMLOrSVGElement>)=> {
- e.stopPropagation();
- console.log(props.friendId);
- 
+ e.stopPropagation(); 
   }
     return(
 <li onClick={handleClick} style={{background:props.color}} key={props.index} className={`flex items-center gap-2  rounded-[13px] p-[9px] justify-between cursor-pointer ${props.className && props.className}`}>

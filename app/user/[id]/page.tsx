@@ -185,8 +185,9 @@ if(data) {
 }
 },[data])
 
-
 useEffect(()=> {
+    console.log(params.id,'PROVERKA');
+    
 setLoad(false)
 },[])
 const friendship =

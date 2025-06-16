@@ -48,10 +48,7 @@ export const Calendar = (props:ICalendar)=> {
   const totalCells = offset + daysInMonth;
 
 const calendarCells = Array.from({ length: daysInMonth }, (_, i) => i + 1);
-useEffect(()=> {
-console.log(props.month);
 
-},[props.month])
 
     return(
         <div className="flex flex-col items-center fadeIn bg-[#1E1E2F] rounded-[16px] py-[12px] px-[18px] w-full">

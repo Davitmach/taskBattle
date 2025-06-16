@@ -26,16 +26,14 @@ export default function Page() {
     if (refInput.current) {
       userService.Find(refInput.current.value).then((e) => {
         if (e) {
-            console.log(e,'daeaedaedeaedae');
+
             
           setData(e);
         }
       });
     }
   };
-  useEffect(() => {
-    console.log(data, "ddeadeadae");
-  }, [data]);
+
   return (
     <div className="w-full h-[100vh] anim_fadeIn">
       <Back

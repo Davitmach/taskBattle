@@ -61,12 +61,11 @@ class TaskService {
       'tg-init-data':'33555'
     }
   })
-  console.log(data);
+ 
   
 
 
-  console.log("Создание задачи:");
-  console.log({ hour, minutes, day, month, year, title, type, friendId });
+
 
 
   // router("/");  
@@ -116,7 +115,7 @@ class TaskService {
   var CHECK = localStorage.getItem('TASKS');
   if(CHECK) {
   const PARSE = JSON.parse(CHECK);
-  console.log(process.env.NEXT_PUBLIC_QAQ);
+
 
   }
   else {

@@ -63,10 +63,7 @@ if(props.data) {
 
 },[props.data])
 
-useEffect(()=> {
-console.log(tasks,'qaqawsda');
 
-},[tasks])
 
 return(
 <div className={`${LoadedState && 'anim_fadeIn'} w-full task_home_page_info_block bg-[#1E1E2F] rounded-[16px] py-[10px] px-[15px] flex duration-[.2s] flex-col ${open == false ? 'gap-[0px]':'gap-[20px]'} `}>
@@ -106,9 +103,7 @@ useEffect(() => {
     
     
    
-    if (refDiv.current?.clientHeight) {
-      console.log(props.children,'cer qaq');
-      
+    if (refDiv.current?.clientHeight) {    
       setHeight(refDiv.current.clientHeight);
     }
   };

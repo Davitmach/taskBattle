@@ -29,10 +29,7 @@ export default function Page() {
         const GoBack = ()=> {
     router('/');
         }
-        useEffect(()=> {
-console.log(selectedFriend);
 
-        },[selectedFriend])
         const CreateTask = ()=> {
           if(!refMin.current || !refHour.current || !refTitle.current) return;
             const type: "MULTI" | "SINGLE" = active === "Совместное" ? "MULTI" : "SINGLE";

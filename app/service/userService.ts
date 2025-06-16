@@ -81,12 +81,12 @@ report:report
     }
   })
 const res = data.data;
-console.log(res);
+
 
 return res;
 }
 catch(error:any) {
-console.log(error,'cers tapec');
+console.error(error,'cers tapec');
 
 }
   }

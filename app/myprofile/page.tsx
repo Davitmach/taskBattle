@@ -243,7 +243,6 @@ export default function Page() {
   useEffect(() => {
     const GetTasks = () => {
       taskService.getOfflineTask().then((offlineTasks) => {
-        console.log(offlineTasks,'qaqdedadeadae');
         
         if (Array.isArray(offlineTasks)) {
           const cancel = offlineTasks.filter((e) => e.status === "CANCELLED");
@@ -283,9 +282,6 @@ export default function Page() {
     }
   }, []);
 
-  useEffect(() => {
-    console.log(task, "TASK");
-  }, [task]);
   const [open, setOpen] = useState<boolean>(false);
   const [info, setInfo] = useState<{
     title: string;

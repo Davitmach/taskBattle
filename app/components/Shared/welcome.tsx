@@ -74,7 +74,7 @@ useEffect(()=>{
 if(LoadedState==true) {
 userService.GetFriends().then((e)=> {
   if(e) {
-    console.log(e,'edadaedeadae');
+   
     
    setFriends(e);
   }
