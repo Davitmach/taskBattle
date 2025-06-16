@@ -72,6 +72,9 @@ export const AnyUserInfo = (props: IAnyUserInfo) => {
                             console.log(props.userId);
                             
                         }
+                        else {
+                             console.log(props.userId);
+                        }
                      
                     }} type='Green' loading={false} className="text-[1em] py-[11px] px-[7px]">
                         {props.friendship === true ? (
