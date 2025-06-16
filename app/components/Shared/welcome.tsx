@@ -84,7 +84,12 @@ userService.GetFriends().then((e)=> {
 },[LoadedState])
 
 useEffect(()=> {
-console.log(path);
+  console.log(path);
+  
+if(!path) {
+  console.log('qaqem');
+  
+}
 
 },[path])
   return null;
