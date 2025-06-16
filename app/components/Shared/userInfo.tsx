@@ -27,7 +27,7 @@ export const AnyUserInfo = (props: IAnyUserInfo) => {
       }, []);
     return (
         <div className={`p-[10px] bg-[#1E1E2F] rounded-[16px] w-full ${LoadedState &&'anim_fadeIn'}`}>
-            <div className="flex gap-[10px] items-center justify-between">
+            <div className="flex gap-[10px] items-start justify-between">
                 <div className="flex gap-[8px]">
                     <div><img src={props.img} width={44} height={44} className="rounded-[6px]"/></div>
                     <div>
@@ -38,8 +38,8 @@ export const AnyUserInfo = (props: IAnyUserInfo) => {
                 <div>
                     {typeof props.friendship !=='boolean' &&  props.friendship.status=='pending' && props.friendship.side=='incoming' ? 
                     
-                    <div>
-                        <Button type='Green' loading={false} className="text-[1em] py-[11px] px-[7px]">
+                    <div className="flex flex-col gap-[8px]">
+                        <Button type='Green' loading={false} className="w-full text-[1em] py-[11px] px-[7px]">
                      <span>Принять</span>
                       <svg width="15" height="13" viewBox="0 0 15 13" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M9.86364 11.6364V10.4546C9.86364 9.8277 9.61461 9.2265 9.17134 8.78324C8.72808 8.33997 8.12688 8.09094 7.5 8.09094H3.36364C2.73676 8.09094 2.13556 8.33997 1.69229 8.78324C1.24903 9.2265 1 9.8277 1 10.4546V11.6364" stroke="#1E1E2F" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round"/>
@@ -48,7 +48,7 @@ export const AnyUserInfo = (props: IAnyUserInfo) => {
                                     <path d="M14 5.72729H10.4546" stroke="#1E1E2F" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round"/>
                                 </svg>
                     </Button>
-                        <Button type='Green' loading={false} className=" text-[1em] py-[11px] px-[7px]">
+                        <Button type='Green' loading={false} className="w-full text-[1em] py-[11px] px-[7px]">
                      <span>Отклонить</span>
                         <svg width="15" height="13" viewBox="0 0 15 13" fill="none" xmlns="http://www.w3.org/2000/svg">
                                  <path d="M9.86364 11.6364V10.4546C9.86364 9.8277 9.61461 9.2265 9.17134 8.78324C8.72808 8.33997 8.12688 8.09094 7.5 8.09094H3.36364C2.73676 8.09094 2.13556 8.33997 1.69229 8.78324C1.24903 9.2265 1 9.8277 1 10.4546V11.6364" stroke="#1E1E2F" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round"/>
