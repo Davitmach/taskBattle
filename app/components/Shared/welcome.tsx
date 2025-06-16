@@ -1,6 +1,7 @@
 'use client';
 
 import { UserApiConfig } from "@/app/config/apiConfig";
+import { useCustomRouter } from "@/app/hooks/Router";
 import { taskService } from "@/app/service/taskService";
 import { userService } from "@/app/service/userService";
 import { useLoadingState, useUserProfile } from "@/app/store";
@@ -9,6 +10,7 @@ import { use, useEffect } from "react";
 
 export const Welcome = () => {
   const path = usePathname();
+  const push= useCustomRouter();
   const { LoadedState } = useLoadingState();
   const {img,name,createdAt,tasks,setImg,setName,setCreatedAt,setTasks,setFriends,setRewards} = useUserProfile();
   
@@ -92,5 +94,15 @@ if(!path) {
 }
 
 },[path])
+
+
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      const navigationEntry = performance.getEntriesByType('navigation')[0] as PerformanceNavigationTiming
+      if (navigationEntry?.type === 'reload' && path !== '/') {
+        push('/')
+      }
+    }
+  }, [])
   return null;
 };
