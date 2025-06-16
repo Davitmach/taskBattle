@@ -131,6 +131,29 @@ console.log(error,'cers tapec');
       return data.data
     }
   }
+  async DeleteFriend(userId:string,friendId:string,queryClient:QueryClient) {
+     if(!friendId) return;
+     const data = await axios.get(DOMEN+FriendApiConfig.CANCELFRIEND+friendId,{
+      headers:{
+        'tg-init-data':window.Telegram.WebApp.initData
+      }
+     })
+     if(data) {
+          queryClient.invalidateQueries({ queryKey: ['user', userId] });
+      return data.data
+     }
+  }
+   async AddFriend(userId:string,queryClient:QueryClient) {
+    const data = await axios.get(DOMEN+FriendApiConfig.ADDFRIEND+userId,{
+      headers:{
+        'tg-init-data':window.Telegram.WebApp.initData
+      }
+    })
+    if(data) {
+        queryClient.invalidateQueries({ queryKey: ['user', userId] });
+      return data.data
+    }
+   }
   async User(id:string) {
     if(!id) return;
 

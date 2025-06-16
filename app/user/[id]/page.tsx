@@ -193,7 +193,10 @@ const friendship =
   data.friend === false
     ? false
     : data.friend.status === 'ACCEPTED'
-      ? true
+      ? {
+        status:'accepted' as const,
+        id:data.friend.id
+      }
       : data.friend.status=='PENDING' && data.friend.side=='incoming'
         ? {
             status:'pending' as const,

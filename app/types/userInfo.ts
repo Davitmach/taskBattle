@@ -23,8 +23,8 @@ export interface IAnyUserInfo {
     name:string;
   date:string;
   friendship:boolean |{
-    status:'pending',
-    side:'outgoing'|'incoming',
+    status:'pending'|'accepted',
+    side?:'outgoing'|'incoming',
     id:string,
     
   };
