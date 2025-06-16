@@ -11,7 +11,7 @@ import { useCustomRouter } from "@/app/hooks/Router";
 import { useNotification } from "@/app/provider/notification";
 import { userService } from "@/app/service/userService";
 import { useLoadingState } from "@/app/store";
-import { useParams } from "next/navigation";
+import { useParams, usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 type Task = {
     title: string;
@@ -65,6 +65,7 @@ friends:any[]
 export default function Page() {
     const router = useCustomRouter();
     const params = useParams();
+    const path = usePathname();
     const {LoadedState,setLoad} = useLoadingState();
     const [open,setOpen] = useState(false);
     const [openReport,setOpenReport] = useState(false);
@@ -186,7 +187,7 @@ if(data) {
 },[data])
 
 useEffect(()=> {
-    console.log(params.id,'PROVERKA');
+    console.log(path,'PROVERKA');
     
 setLoad(false)
 },[])
