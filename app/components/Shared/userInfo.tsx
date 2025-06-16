@@ -3,9 +3,12 @@ import { useEffect,useState } from "react";
 import { IAnyUserInfo, IMyUserInfo } from "@/app/types/userInfo"
 import { Button } from "../UI/button"
 import { useLoadingState } from "@/app/store";
+import { userService } from "@/app/service/userService";
+import { useQueryClient } from "@tanstack/react-query";
 
 export const AnyUserInfo = (props: IAnyUserInfo) => {
     const [substring, setSubstring] = useState(true); 
+   const queryClient = useQueryClient();
     const {LoadedState} = useLoadingState()
       useEffect(() => {       
         const updateSubstringg = () => {         
@@ -41,7 +44,7 @@ export const AnyUserInfo = (props: IAnyUserInfo) => {
                     <div className={`flex  gap-[8px]`}>
                         <Button onClick={()=> {
                             if( typeof props.friendship  =='boolean')return;
-                            console.log(props.friendship.id);
+                            userService.AcceptFriend(props.userId, props.friendship.id,queryClient)
                             
                             
                         }} type='Green' loading={false} className="flex gap-[3px] !w-[109px] text-[1em] py-[11px] px-[7px]">

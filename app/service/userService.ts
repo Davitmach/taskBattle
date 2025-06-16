@@ -4,10 +4,11 @@ import { FriendApiConfig, UserApiConfig } from "../config/apiConfig";
 import axios from 'axios';
 import { useUserProfile } from "../store";
 import { error } from "console";
-
+import { QueryClient } from "@tanstack/react-query";
 const DOMEN = process.env.NEXT_PUBLIC_SERVER;
 
 class UserService {
+
   async Welcome(setImg:any,setName:any,setCreatedAt:any,setTasks:any) {
   
    
@@ -118,7 +119,7 @@ console.log(error,'cers tapec');
       return friends.data.data
     }
   }
-  async AcceptFriend(friendId:string) {
+  async AcceptFriend(userId:string,friendId:string,queryClient:QueryClient) {
     if(!friendId) return;
     const data = await axios.get(DOMEN+FriendApiConfig.ACCEPTFRIEND+friendId,{
       headers:{
@@ -126,6 +127,7 @@ console.log(error,'cers tapec');
       }
     })
     if(data.data) {
+      queryClient.invalidateQueries({ queryKey: ['user', userId] });
       return data.data
     }
   }
@@ -138,6 +140,7 @@ console.log(error,'cers tapec');
       }
     })
     if(user.data) {
+      
       return user.data.data
     }
   }
