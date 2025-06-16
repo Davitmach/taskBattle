@@ -4,10 +4,11 @@ import { UserApiConfig } from "@/app/config/apiConfig";
 import { taskService } from "@/app/service/taskService";
 import { userService } from "@/app/service/userService";
 import { useLoadingState, useUserProfile } from "@/app/store";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { use, useEffect } from "react";
 
 export const Welcome = () => {
+  const path = usePathname();
   const { LoadedState } = useLoadingState();
   const {img,name,createdAt,tasks,setImg,setName,setCreatedAt,setTasks,setFriends,setRewards} = useUserProfile();
   
@@ -81,5 +82,10 @@ userService.GetFriends().then((e)=> {
 })
 }
 },[LoadedState])
+
+useEffect(()=> {
+console.log(path);
+
+},[path])
   return null;
 };
