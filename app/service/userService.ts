@@ -131,7 +131,7 @@ console.error(error,'cers tapec');
       return data.data
     }
   }
-  async DeleteFriend(userId:string,friendId:string,queryClient:QueryClient) {
+  async DeleteFriend(userId:string,friendId:string,queryClient?:QueryClient) {
      if(!friendId) return;
      const data = await axios.get(DOMEN+FriendApiConfig.CANCELFRIEND+friendId,{
       headers:{
@@ -139,7 +139,9 @@ console.error(error,'cers tapec');
       }
      })
      if(data) {
+      if(queryClient) {
           queryClient.invalidateQueries({ queryKey: ['user', userId] });
+      }
       return data.data
      }
   }

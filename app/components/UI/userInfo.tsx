@@ -12,12 +12,29 @@ export const UserInfo = (props:IUserInfoProps) => {
 router('/user/:id',{id: props.id.toString()})
     }
   }
-  const Delete = (e:React.MouseEvent<HTMLOrSVGElement>)=> {
- e.stopPropagation(); 
- if(props.id && props.friendId) {
- userService.DeleteFriend(props.id,props.friendId,queryClient);
- }
+const Delete = async (e: React.MouseEvent<HTMLOrSVGElement>) => {
+  e.stopPropagation();
+  
+  if (props.id && props.friendId) {
+    try {
+      // Удаляем друга и ждем завершения запроса
+      await userService.DeleteFriend(props.id, props.friendId);
+      
+      // 1. Инвалидируем кэш запроса друзей
+      queryClient.invalidateQueries({
+        queryKey: ['userFriends'] // Тот же ключ, что и в useQuery для друзей
+      });
+      
+      // 2. Опционально: сразу делаем новый запрос
+      await queryClient.refetchQueries({
+        queryKey: ['userFriends']
+      });
+      
+    } catch (error) {
+      console.error('Ошибка при удалении друга:', error);
+    }
   }
+};
     return(
 <li onClick={handleClick} style={{background:props.color}} key={props.index} className={`flex items-center gap-2  rounded-[13px] p-[9px] justify-between cursor-pointer ${props.className && props.className}`}>
   <div style={{background:props.color}} className={`flex items-center gap-2  rounded-[13px]`}>
