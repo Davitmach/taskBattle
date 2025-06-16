@@ -143,9 +143,9 @@ const {
     queryFn: () => userService.User(params.id as string),
     enabled: !!params.id,
    retry: false,
-  refetchInterval: 5000, // 5 секунд
-  refetchIntervalInBackground: true, // Обновлять, даже если вкладка не в фокусе
-  staleTime: 3000, // Данные считаются "свежими" 3 секунды
+  refetchInterval: 5000, 
+  refetchIntervalInBackground: true, 
+  staleTime: 3000, 
   });
 
  

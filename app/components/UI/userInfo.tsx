@@ -1,8 +1,11 @@
 import { useCustomRouter } from "@/app/hooks/Router"
 import { IUserInfoProps } from "@/app/types/userInfo"
 import { Select } from "./select";
+import { userService } from "@/app/service/userService";
+import { useQueryClient } from "@tanstack/react-query";
 
 export const UserInfo = (props:IUserInfoProps) => {
+  const queryClient = useQueryClient();
   const router = useCustomRouter();
   const handleClick = () => {
     if(props.id) {
@@ -11,6 +14,9 @@ router('/user/:id',{id: props.id.toString()})
   }
   const Delete = (e:React.MouseEvent<HTMLOrSVGElement>)=> {
  e.stopPropagation(); 
+ if(props.id && props.friendId) {
+ userService.DeleteFriend(props.id,props.friendId,queryClient);
+ }
   }
     return(
 <li onClick={handleClick} style={{background:props.color}} key={props.index} className={`flex items-center gap-2  rounded-[13px] p-[9px] justify-between cursor-pointer ${props.className && props.className}`}>
@@ -28,7 +34,7 @@ router('/user/:id',{id: props.id.toString()})
 <path d="M18 6L6 18" stroke="#FF4D6D" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
 <path d="M6 6L18 18" stroke="#FF4D6D" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
 </svg>
-:props.delete=='cancel' && <div className="text-[#FF4D6D] text-[13px]">Отменить</div>
+:props.delete=='cancel' && <div onClick={Delete}  className="text-[#FF4D6D] text-[13px]">Отменить</div>
   }
   {
     props.friend ? <div><svg width="24" height="21" viewBox="0 0 24 21" fill="none" xmlns="http://www.w3.org/2000/svg">
