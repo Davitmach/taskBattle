@@ -54,7 +54,8 @@ export const Welcome = () => {
 
   // Обработка успешного запроса друзей
   useEffect(() => {
-    if (friends) setFriends(friends);
+    if (friends) {setFriends(friends)}
+    else {setFriends([]) };
   }, [friends]);
 
   // 3. Автоматическое обновление задач
