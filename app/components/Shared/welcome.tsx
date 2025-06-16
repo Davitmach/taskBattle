@@ -55,13 +55,10 @@ export const Welcome = () => {
   // Обработка успешного запроса друзей
   useEffect(() => {
     if (friends) {setFriends(friends)}
-    else {setFriends([]) };
+  console.log(friends,'adedaedaeda');
+  
   }, [friends]);
-useEffect(()=> {
-if(friendError) {
-  setFriends([])
-}
-},[friendError])
+
   // 3. Автоматическое обновление задач
   useQuery({
     queryKey: ['updateTasks'],
