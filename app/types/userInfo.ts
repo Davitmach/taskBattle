@@ -11,7 +11,7 @@ color:string;
 friend?:boolean
 friendSelect?:string[];
 setFriendSelect?: React.Dispatch<React.SetStateAction<string[]>>;
-delete?:boolean|'cancel'
+delete?:boolean|'cancel'|'cancel/accept'
 
 
 isSelectFriend?:boolean
@@ -20,7 +20,10 @@ export interface IAnyUserInfo {
     img:string;
     name:string;
   date:string;
-  friendship:boolean |'pending';
+  friendship:boolean |{
+    status:'pending',
+    side:'outgoing'|'incoming'
+  };
   tasks:{
     success:number;
     inprocess:number;

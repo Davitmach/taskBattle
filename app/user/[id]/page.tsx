@@ -11,7 +11,6 @@ import { useCustomRouter } from "@/app/hooks/Router";
 import { useNotification } from "@/app/provider/notification";
 import { userService } from "@/app/service/userService";
 import { useLoadingState } from "@/app/store";
-import { desc } from "framer-motion/client";
 import { useParams } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 type Task = {
@@ -56,6 +55,7 @@ type UserData = {
 friend:boolean | {
 status:"ACCEPTED"|"PENDING",
 id:string,
+side:"incoming"|'outgoing'
 
 };
 friends:any[]
@@ -173,9 +173,15 @@ const friendship =
     ? false
     : data.friend === true
       ? true
-      : data.friend.status === 'PENDING'
-        ? 'pending'
-        : true;
+      : data.friend.status=='PENDING' && data.friend.side=='incoming'
+        ? {
+            status:'pending' as const,
+            side:'incoming' as const
+        }
+        : {
+            status:'pending' as const,
+            side:'outgoing' as const
+        };
 
     return(
         <>
