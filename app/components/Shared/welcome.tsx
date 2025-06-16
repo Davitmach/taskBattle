@@ -46,7 +46,7 @@ export const Welcome = () => {
   }, [profile]);
 
   // 2. Запрос друзей
-  const { data: friends } = useQuery({
+  const { data: friends,error:friendError } = useQuery({
     queryKey: ['userFriends'],
     queryFn: () => userService.GetFriends(),
     enabled: LoadedState,
@@ -57,7 +57,11 @@ export const Welcome = () => {
     if (friends) {setFriends(friends)}
     else {setFriends([]) };
   }, [friends]);
-
+useEffect(()=> {
+if(friendError) {
+  setFriends([])
+}
+},[friendError])
   // 3. Автоматическое обновление задач
   useQuery({
     queryKey: ['updateTasks'],
