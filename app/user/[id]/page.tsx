@@ -1,6 +1,6 @@
 'use client';
 
-
+import { useQuery } from '@tanstack/react-query';
 import { AnyUserInfo } from "@/app/components/Shared/userInfo";
 import { Back } from "@/app/components/UI/back";
 import { Button } from "@/app/components/UI/button";
@@ -46,7 +46,7 @@ const data:Task[] = [
     { title: "Ревью задач других команд", type: "Совместное", timeout: 30, friends: [{ img: "/avatars/user10.png", name: "Валя", total: 3 }], date: "23:03:2024 24:34" },
     { title: "Проверка адаптивности сайта", type: "Одиночное", timeout: 20, date: "23:03:2024 24:34" },
 ]
-type UserData = {
+type UserData = {   
   createdAt: string;
   icon:string;
   name:string;
@@ -113,23 +113,36 @@ router('/');
        
     }
 
-useEffect(()=> {
-console.log(params.id);
-if(params.id) {
-    userService.User(params.id as string).then((e)=> {
-        setData(e);
-        console.log(e);
-        setLoad(true);
+// useEffect(()=> {
+// console.log(params.id);
+// if(params.id) {
+//     userService.User(params.id as string).then((e)=> {
+//         setData(e);
+//         console.log(e);
+//         setLoad(true);
         
         
-    }).catch(e=> {
-        console.log(e,'sawdaerfrsffa');
-        if(e.response.data.status == 'You cannot view your own profile with this endpoint') {
-            router('/')
-        }
-    })
-}
-},[params])
+//     }).catch(e=> {
+//         console.log(e,'sawdaerfrsffa');
+//         if(e.response.data.status == 'You cannot view your own profile with this endpoint') {
+//             router('/')
+//         }
+//     })
+// }
+// },[params])
+const {
+    data: userData,
+    isLoading,
+    isError,
+    error,
+  } = useQuery({
+    queryKey: ['user', params.id], 
+    queryFn: () => userService.User(params.id as string),
+    enabled: !!params.id,
+    retry: false, 
+  });
+
+ 
     const SendReport = ()=> {
         if(params.id && refReport.current) {
             setOpenReport(false);
@@ -152,7 +165,10 @@ const data = userService.Report(params.id as string,refReport.current.value).the
 
         }
     }
+useEffect(()=> {
+console.log(userData,'reacetquery');
 
+},[userData])
 useEffect(()=> {
 if(data) {
     if(!data.createdAt) return;

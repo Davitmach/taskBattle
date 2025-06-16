@@ -118,6 +118,17 @@ console.log(error,'cers tapec');
       return friends.data.data
     }
   }
+  async AcceptFriend(friendId:string) {
+    if(!friendId) return;
+    const data = await axios.get(DOMEN+FriendApiConfig.ACCEPTFRIEND+friendId,{
+      headers:{
+        'tg-init-data':window.Telegram.WebApp.initData
+      }
+    })
+    if(data.data) {
+      return data.data
+    }
+  }
   async User(id:string) {
     if(!id) return;
 
