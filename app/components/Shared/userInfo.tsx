@@ -39,7 +39,12 @@ export const AnyUserInfo = (props: IAnyUserInfo) => {
                     {typeof props.friendship !=='boolean' &&  props.friendship.status=='pending' && props.friendship.side=='incoming' ? 
                     
                     <div className={`flex  gap-[8px]`}>
-                        <Button type='Green' loading={false} className="flex gap-[3px] !w-[109px] text-[1em] py-[11px] px-[7px]">
+                        <Button onClick={()=> {
+                            if( typeof props.friendship  =='boolean')return;
+                            console.log(props.friendship.id);
+                            
+                            
+                        }} type='Green' loading={false} className="flex gap-[3px] !w-[109px] text-[1em] py-[11px] px-[7px]">
                      <span>Принять</span>
                       <svg width="15" height="13" viewBox="0 0 15 13" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M9.86364 11.6364V10.4546C9.86364 9.8277 9.61461 9.2265 9.17134 8.78324C8.72808 8.33997 8.12688 8.09094 7.5 8.09094H3.36364C2.73676 8.09094 2.13556 8.33997 1.69229 8.78324C1.24903 9.2265 1 9.8277 1 10.4546V11.6364" stroke="#1E1E2F" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round"/>
@@ -48,7 +53,12 @@ export const AnyUserInfo = (props: IAnyUserInfo) => {
                                     <path d="M14 5.72729H10.4546" stroke="#1E1E2F" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round"/>
                                 </svg>
                     </Button>
-                        <Button type='Green' loading={false} className="flex gap-[3px] !w-[109px] text-[1em] py-[11px] px-[7px]">
+                        <Button onClick={()=> {
+                            if( typeof props.friendship  =='boolean')return;
+                            console.log(props.friendship.id);
+                            
+                            
+                        }} type='Green' loading={false} className="flex gap-[3px] !w-[109px] text-[1em] py-[11px] px-[7px]">
                      <span>Отклонить</span>
                         <svg width="15" height="13" viewBox="0 0 15 13" fill="none" xmlns="http://www.w3.org/2000/svg">
                                  <path d="M9.86364 11.6364V10.4546C9.86364 9.8277 9.61461 9.2265 9.17134 8.78324C8.72808 8.33997 8.12688 8.09094 7.5 8.09094H3.36364C2.73676 8.09094 2.13556 8.33997 1.69229 8.78324C1.24903 9.2265 1 9.8277 1 10.4546V11.6364" stroke="#1E1E2F" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round"/>
@@ -57,7 +67,13 @@ export const AnyUserInfo = (props: IAnyUserInfo) => {
                              </svg>
                     </Button>
                     </div>
-                    :    <Button type='Green' loading={false} className="text-[1em] py-[11px] px-[7px]">
+                    :    <Button onClick={()=> {
+                        if(props.friendship==true) {
+                            console.log(props.userId);
+                            
+                        }
+                     
+                    }} type='Green' loading={false} className="text-[1em] py-[11px] px-[7px]">
                         {props.friendship === true ? (
                              <span className="flex items-center gap-[6px]">
                             Удалить

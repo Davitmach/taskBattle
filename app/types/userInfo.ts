@@ -18,11 +18,15 @@ isSelectFriend?:boolean
 }
 export interface IAnyUserInfo {
     img:string;
+    
+  userId:string
     name:string;
   date:string;
   friendship:boolean |{
     status:'pending',
-    side:'outgoing'|'incoming'
+    side:'outgoing'|'incoming',
+    id:string,
+    
   };
   tasks:{
     success:number;

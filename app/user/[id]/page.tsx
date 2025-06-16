@@ -47,6 +47,7 @@ type Task = {
 //     { title: "Проверка адаптивности сайта", type: "Одиночное", timeout: 20, date: "23:03:2024 24:34" },
 // ]
 type UserData = {   
+    id:string,
   createdAt: string;
   icon:string;
   name:string;
@@ -70,6 +71,7 @@ export default function Page() {
     const {showNotification} = useNotification();
     const refReport = useRef<HTMLTextAreaElement>(null);
     const [data,setData] = useState<UserData>({
+        id:'',
         createdAt:'',
         icon:'',
         name:'',
@@ -195,11 +197,15 @@ const friendship =
       : data.friend.status=='PENDING' && data.friend.side=='incoming'
         ? {
             status:'pending' as const,
-            side:'incoming' as const
+            side:'incoming' as const,
+            id:data.friend.id,
+      
         }
         : {
             status:'pending' as const,
-            side:'outgoing' as const
+            side:'outgoing' as const,
+            id:data.friend.id,
+          
         };
 
     return(
@@ -212,7 +218,7 @@ const friendship =
 <path d="M11 15H11.01" stroke="#D9D9D9" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
 </svg>
 </Button>
-<AnyUserInfo img={data.icon} date={date as string} name={data.name} tasks={{inprocess:data.taskCounter.in_progress,cancel:data.taskCounter.cancelled,success:data.taskCounter.completed}} friendship={friendship}/>
+<AnyUserInfo userId={data.id} img={data.icon} date={date as string} name={data.name} tasks={{inprocess:data.taskCounter.in_progress,cancel:data.taskCounter.cancelled,success:data.taskCounter.completed}} friendship={friendship}/>
 <InfoBlock title="Друзья"><ul className="flex flex-col gap-[8px]">
     {data.friends.length>0
     &&
