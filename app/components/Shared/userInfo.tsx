@@ -36,7 +36,28 @@ export const AnyUserInfo = (props: IAnyUserInfo) => {
                     </div>
                 </div>
                 <div>
-                    <Button type='Green' loading={false} className="text-[1em] py-[11px] px-[7px]">
+                    {typeof props.friendship !=='boolean' &&  props.friendship.status=='pending' && props.friendship.side=='incoming' ? 
+                    
+                    <div>
+                        <Button type='Green' loading={false} className="text-[1em] py-[11px] px-[7px]">
+                     <span>Принять</span>
+                      <svg width="15" height="13" viewBox="0 0 15 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M9.86364 11.6364V10.4546C9.86364 9.8277 9.61461 9.2265 9.17134 8.78324C8.72808 8.33997 8.12688 8.09094 7.5 8.09094H3.36364C2.73676 8.09094 2.13556 8.33997 1.69229 8.78324C1.24903 9.2265 1 9.8277 1 10.4546V11.6364" stroke="#1E1E2F" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round"/>
+                                    <path d="M5.43175 5.72727C6.73715 5.72727 7.79539 4.66904 7.79539 3.36364C7.79539 2.05824 6.73715 1 5.43175 1C4.12635 1 3.06812 2.05824 3.06812 3.36364C3.06812 4.66904 4.12635 5.72727 5.43175 5.72727Z" stroke="#1E1E2F" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round"/>
+                                    <path d="M12.2273 3.95453V7.49998" stroke="#1E1E2F" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round"/>
+                                    <path d="M14 5.72729H10.4546" stroke="#1E1E2F" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round"/>
+                                </svg>
+                    </Button>
+                        <Button type='Green' loading={false} className=" text-[1em] py-[11px] px-[7px]">
+                     <span>Отклонить</span>
+                        <svg width="15" height="13" viewBox="0 0 15 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                 <path d="M9.86364 11.6364V10.4546C9.86364 9.8277 9.61461 9.2265 9.17134 8.78324C8.72808 8.33997 8.12688 8.09094 7.5 8.09094H3.36364C2.73676 8.09094 2.13556 8.33997 1.69229 8.78324C1.24903 9.2265 1 9.8277 1 10.4546V11.6364" stroke="#1E1E2F" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round"/>
+                                 <path d="M5.43175 5.72727C6.73715 5.72727 7.79539 4.66904 7.79539 3.36364C7.79539 2.05824 6.73715 1 5.43175 1C4.12635 1 3.06812 2.05824 3.06812 3.36364C3.06812 4.66904 4.12635 5.72727 5.43175 5.72727Z" stroke="#1E1E2F" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round"/>
+                                 <path d="M14 5.72729H10.4546" stroke="#1E1E2F" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round"/>
+                             </svg>
+                    </Button>
+                    </div>
+                    :    <Button type='Green' loading={false} className="text-[1em] py-[11px] px-[7px]">
                         {props.friendship === true ? (
                              <span className="flex items-center gap-[6px]">
                             Удалить
@@ -56,23 +77,16 @@ export const AnyUserInfo = (props: IAnyUserInfo) => {
                                     <path d="M14 5.72729H10.4546" stroke="#1E1E2F" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round"/>
                                 </svg>
                             </span>
-                        ) : props.friendship.status=='pending' && props.friendship.side=='outgoing' ?  <span className="flex items-center gap-[6px]">
+                        ) : props.friendship.status=='pending' && props.friendship.side=='outgoing' &&  <span className="flex items-center gap-[6px]">
                             Отменить
                              <svg width="15" height="13" viewBox="0 0 15 13" fill="none" xmlns="http://www.w3.org/2000/svg">
                                  <path d="M9.86364 11.6364V10.4546C9.86364 9.8277 9.61461 9.2265 9.17134 8.78324C8.72808 8.33997 8.12688 8.09094 7.5 8.09094H3.36364C2.73676 8.09094 2.13556 8.33997 1.69229 8.78324C1.24903 9.2265 1 9.8277 1 10.4546V11.6364" stroke="#1E1E2F" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round"/>
                                  <path d="M5.43175 5.72727C6.73715 5.72727 7.79539 4.66904 7.79539 3.36364C7.79539 2.05824 6.73715 1 5.43175 1C4.12635 1 3.06812 2.05824 3.06812 3.36364C3.06812 4.66904 4.12635 5.72727 5.43175 5.72727Z" stroke="#1E1E2F" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round"/>
                                  <path d="M14 5.72729H10.4546" stroke="#1E1E2F" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round"/>
                              </svg>
-                         </span> :props.friendship.status=='pending' && props.friendship.side=='incoming' &&<span className="flex items-center gap-[6px]">
-                            Посмотреть
-                              <svg width="15" height="13" viewBox="0 0 15 13" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M9.86364 11.6364V10.4546C9.86364 9.8277 9.61461 9.2265 9.17134 8.78324C8.72808 8.33997 8.12688 8.09094 7.5 8.09094H3.36364C2.73676 8.09094 2.13556 8.33997 1.69229 8.78324C1.24903 9.2265 1 9.8277 1 10.4546V11.6364" stroke="#1E1E2F" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round"/>
-                                    <path d="M5.43175 5.72727C6.73715 5.72727 7.79539 4.66904 7.79539 3.36364C7.79539 2.05824 6.73715 1 5.43175 1C4.12635 1 3.06812 2.05824 3.06812 3.36364C3.06812 4.66904 4.12635 5.72727 5.43175 5.72727Z" stroke="#1E1E2F" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round"/>
-                                    <path d="M12.2273 3.95453V7.49998" stroke="#1E1E2F" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round"/>
-                                    <path d="M14 5.72729H10.4546" stroke="#1E1E2F" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round"/>
-                                </svg>
                          </span>}
-                    </Button>
+                    </Button>}
+                
                 </div>
             </div>
             <div className="flex w-full justify-between mt-[24px]">
