@@ -20,32 +20,32 @@ type Task = {
     date: string;
     friends?: { img: string; name: string; total: number }[];
   };
-const data:Task[] = [
-    { title: "Написать вступление к проекту", type: "Одиночное", timeout: 10, date: "23:03:2024 24:34" },
-    { title: "Созвон с тимлидом", type: "Совместное", timeout: 25, friends: [{ img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSIH3cVN9nVOwezMJZgjRo0YhASylFMo1nJpw&s", name: "Аня", total: 3 },{ img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSIH3cVN9nVOwezMJZgjRo0YhASylFMo1nJpw&s", name: "Аня", total: 3 },{ img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSIH3cVN9nVOwezMJZgjRo0YhASylFMo1nJpw&s", name: "Аня", total: 3 },{ img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSIH3cVN9nVOwezMJZgjRo0YhASylFMo1nJpw&s", name: "Аня", total: 3 }], date: "23:03:2024 24:34" },
-    { title: "Дизайн главной страницы", type: "Одиночное", timeout: 40, date: "23:03:2024 24:34" },
-    { title: "Обсуждение архитектуры", type: "Совместное", timeout: 30, friends: [{ img: "/avatars/user2.png", name: "Богдан", total: 4 }], date: "23:03:2024 24:34" },
-    { title: "Тестирование логина", type: "Одиночное", timeout: 15, date: "23:03:2024 24:34" },
-    { title: "Вёрстка формы регистрации", type: "Одиночное", timeout: 35, date: "23:03:2024 24:34" },
-    { title: "Созвон по задачам спринта", type: "Совместное", timeout: 20, friends: [{ img: "/avatars/user3.png", name: "Вика", total: 2 }], date: "23:03:2024 24:34" },
-    { title: "Обновить README", type: "Одиночное", timeout: 10, date: "23:03:2024 24:34" },
-    { title: "UI ревью компонентов", type: "Совместное", timeout: 45, friends: [{ img: "/avatars/user4.png", name: "Сергей", total: 6 }], date: "23:03:2024 24:34" },
-    { title: "Фикс багов на проде", type: "Одиночное", timeout: 50, date: "23:03:2024 24:34" },
-    { title: "Обсудить идеи по улучшению UX", type: "Совместное", timeout: 30, friends: [{ img: "/avatars/user5.png", name: "Катя", total: 5 }], date: "23:03:2024 24:34" },
-    { title: "Переезд на новую библиотеку", type: "Одиночное", timeout: 60, date: "23:03:2024 24:34" },
-    { title: "Созвон с дизайнером", type: "Совместное", timeout: 25, friends: [{ img: "/avatars/user6.png", name: "Артур", total: 3 }], date: "23:03:2024 24:34" },
-    { title: "Рефакторинг модулей", type: "Одиночное", timeout: 45, date: "23:03:2024 24:34" },
-    { title: "Ревью pull request'ов", type: "Одиночное", timeout: 20, date: "23:03:2024 24:34" },
-    { title: "Составить план на неделю", type: "Одиночное", timeout: 15, date: "23:03:2024 24:34" },
-    { title: "Демо для заказчика", type: "Совместное", timeout: 30, friends: [{ img: "/avatars/user7.png", name: "Денис", total: 4 }], date: "23:03:2024 24:34" },
-    { title: "Оптимизация запросов", type: "Одиночное", timeout: 35, date: "23:03:2024 24:34" },
-    { title: "Созвон по багрепортам", type: "Совместное", timeout: 40, friends: [{ img: "/avatars/user8.png", name: "Настя", total: 2 }], date: "23:03:2024 24:34" },
-    { title: "Добавить документацию к API", type: "Одиночное", timeout: 25, date: "23:03:2024 24:34" },
-    { title: "UX-тестирование с пользователями", type: "Совместное", timeout: 50, friends: [{ img: "/avatars/user9.png", name: "Лёша", total: 7 }], date: "23:03:2024 24:34" },
-    { title: "Подготовка релизной версии", type: "Одиночное", timeout: 60, date: "23:03:2024 24:34" },
-    { title: "Ревью задач других команд", type: "Совместное", timeout: 30, friends: [{ img: "/avatars/user10.png", name: "Валя", total: 3 }], date: "23:03:2024 24:34" },
-    { title: "Проверка адаптивности сайта", type: "Одиночное", timeout: 20, date: "23:03:2024 24:34" },
-]
+// const data:Task[] = [
+//     { title: "Написать вступление к проекту", type: "Одиночное", timeout: 10, date: "23:03:2024 24:34" },
+//     { title: "Созвон с тимлидом", type: "Совместное", timeout: 25, friends: [{ img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSIH3cVN9nVOwezMJZgjRo0YhASylFMo1nJpw&s", name: "Аня", total: 3 },{ img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSIH3cVN9nVOwezMJZgjRo0YhASylFMo1nJpw&s", name: "Аня", total: 3 },{ img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSIH3cVN9nVOwezMJZgjRo0YhASylFMo1nJpw&s", name: "Аня", total: 3 },{ img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSIH3cVN9nVOwezMJZgjRo0YhASylFMo1nJpw&s", name: "Аня", total: 3 }], date: "23:03:2024 24:34" },
+//     { title: "Дизайн главной страницы", type: "Одиночное", timeout: 40, date: "23:03:2024 24:34" },
+//     { title: "Обсуждение архитектуры", type: "Совместное", timeout: 30, friends: [{ img: "/avatars/user2.png", name: "Богдан", total: 4 }], date: "23:03:2024 24:34" },
+//     { title: "Тестирование логина", type: "Одиночное", timeout: 15, date: "23:03:2024 24:34" },
+//     { title: "Вёрстка формы регистрации", type: "Одиночное", timeout: 35, date: "23:03:2024 24:34" },
+//     { title: "Созвон по задачам спринта", type: "Совместное", timeout: 20, friends: [{ img: "/avatars/user3.png", name: "Вика", total: 2 }], date: "23:03:2024 24:34" },
+//     { title: "Обновить README", type: "Одиночное", timeout: 10, date: "23:03:2024 24:34" },
+//     { title: "UI ревью компонентов", type: "Совместное", timeout: 45, friends: [{ img: "/avatars/user4.png", name: "Сергей", total: 6 }], date: "23:03:2024 24:34" },
+//     { title: "Фикс багов на проде", type: "Одиночное", timeout: 50, date: "23:03:2024 24:34" },
+//     { title: "Обсудить идеи по улучшению UX", type: "Совместное", timeout: 30, friends: [{ img: "/avatars/user5.png", name: "Катя", total: 5 }], date: "23:03:2024 24:34" },
+//     { title: "Переезд на новую библиотеку", type: "Одиночное", timeout: 60, date: "23:03:2024 24:34" },
+//     { title: "Созвон с дизайнером", type: "Совместное", timeout: 25, friends: [{ img: "/avatars/user6.png", name: "Артур", total: 3 }], date: "23:03:2024 24:34" },
+//     { title: "Рефакторинг модулей", type: "Одиночное", timeout: 45, date: "23:03:2024 24:34" },
+//     { title: "Ревью pull request'ов", type: "Одиночное", timeout: 20, date: "23:03:2024 24:34" },
+//     { title: "Составить план на неделю", type: "Одиночное", timeout: 15, date: "23:03:2024 24:34" },
+//     { title: "Демо для заказчика", type: "Совместное", timeout: 30, friends: [{ img: "/avatars/user7.png", name: "Денис", total: 4 }], date: "23:03:2024 24:34" },
+//     { title: "Оптимизация запросов", type: "Одиночное", timeout: 35, date: "23:03:2024 24:34" },
+//     { title: "Созвон по багрепортам", type: "Совместное", timeout: 40, friends: [{ img: "/avatars/user8.png", name: "Настя", total: 2 }], date: "23:03:2024 24:34" },
+//     { title: "Добавить документацию к API", type: "Одиночное", timeout: 25, date: "23:03:2024 24:34" },
+//     { title: "UX-тестирование с пользователями", type: "Совместное", timeout: 50, friends: [{ img: "/avatars/user9.png", name: "Лёша", total: 7 }], date: "23:03:2024 24:34" },
+//     { title: "Подготовка релизной версии", type: "Одиночное", timeout: 60, date: "23:03:2024 24:34" },
+//     { title: "Ревью задач других команд", type: "Совместное", timeout: 30, friends: [{ img: "/avatars/user10.png", name: "Валя", total: 3 }], date: "23:03:2024 24:34" },
+//     { title: "Проверка адаптивности сайта", type: "Одиночное", timeout: 20, date: "23:03:2024 24:34" },
+// ]
 type UserData = {   
   createdAt: string;
   icon:string;
@@ -166,7 +166,10 @@ const data = userService.Report(params.id as string,refReport.current.value).the
         }
     }
 useEffect(()=> {
-console.log(userData,'reacetquery');
+if(userData) {
+    setLoad(true);
+    setData(userData);
+}
 
 },[userData])
 useEffect(()=> {
