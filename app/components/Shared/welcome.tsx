@@ -95,12 +95,12 @@ export const Welcome = () => {
   // Редирект при перезагрузке
   useEffect(() => {
     if (typeof window !== 'undefined') {
-      const navigationEntry = performance.getEntriesByType('navigation')[0] as PerformanceNavigationTiming;
+      const navigationEntry = performance.getEntriesByType('navigation')[0] as PerformanceNavigationTiming
       if (navigationEntry?.type === 'reload' && path !== '/') {
-        push('/');
+        push('/')
       }
     }
-  }, [path, push]);
+  }, [])
 
   return null;
 };
