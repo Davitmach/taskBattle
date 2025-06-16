@@ -52,7 +52,7 @@ type UserData = {
   name:string;
   taskCounter:any;
   rewards:any[]
-friend:boolean | {
+friend:false | {
 status:"ACCEPTED"|"PENDING",
 id:string,
 side:"incoming"|'outgoing'
@@ -171,7 +171,7 @@ setLoad(false)
 const friendship =
   data.friend === false
     ? false
-    : data.friend === true
+    : data.friend.status === 'ACCEPTED'
       ? true
       : data.friend.status=='PENDING' && data.friend.side=='incoming'
         ? {
