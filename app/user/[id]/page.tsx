@@ -205,7 +205,11 @@ useEffect(() => {
   }
 }, [data]);
 
- 
+ useEffect(()=> {
+if(isLoading) {
+    setLoad(false)
+}
+ },[isLoading])
   const friendship =
     data.friend === false
       ? false
