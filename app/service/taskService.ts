@@ -56,9 +56,9 @@ class TaskService {
     showNotification('Вы не выбрали друзей') 
     return
   }
-  const date = new Date(
+  const localDate = new Date(
   Number(year),
-  Number(month) , // Месяцы в JS начинаются с 0
+  Number(month) , 
   Number(day)+1,
   Number(hour),
   Number(minutes),
@@ -66,7 +66,12 @@ class TaskService {
   0  // миллисекунды
 );
 
-const endTime = date.toISOString();
+const timezoneOffset = localDate.getTimezoneOffset() * 60 * 1000;
+
+// Преобразуем локальную дату в UTC вручную
+const utcDate = new Date(localDate.getTime() - timezoneOffset);
+
+const endTime = utcDate.toISOString();
 console.log(hour,'час');
 console.log(minutes,'минуты')
   console.log(day,endTime);
