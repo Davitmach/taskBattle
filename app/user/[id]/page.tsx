@@ -158,8 +158,10 @@ export default function Page() {
   });
 useEffect(()=> {
 if(isError) {
+  setLoad(true);
   console.log(isError,'ERRORROFORFORRFROFFFFFFFFFFFFFFFFFF');
   router('/')
+  
   
 }
 },[isError])
