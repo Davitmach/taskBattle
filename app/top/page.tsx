@@ -7,8 +7,10 @@ import { useEffect, useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { userService } from "../service/userService";
 import { Task } from "../components/UI/task";
+import { useLoadingState } from "../store";
 
 export default function Page() {
+  const {setLoad} = useLoadingState();
   const [tasks, setTasks] = useState<
     {
       top:{
@@ -48,6 +50,7 @@ export default function Page() {
   });
   useEffect(() => {
     if(isLoading) {
+      setLoad(false);
       const check= localStorage.getItem('TOP');
       if(check) {
       const parse = JSON.parse(check);
@@ -59,9 +62,11 @@ export default function Page() {
   }, [isLoading]);
 useEffect(()=> {
 if(data) {
+  setLoad(true);
   setTasks(data?.data);
 }
 },[data])
+
   return (
     <>
       <div className="container pt-[7px] scrollbar-hide relative anim_fadeIn">
