@@ -58,6 +58,8 @@ switch (props.type) {
 
 useEffect(()=> {
 if(props.data) {
+  console.log(props,'qaqqaqqq');
+  
     setTasks(props.data as any)
 }
 
