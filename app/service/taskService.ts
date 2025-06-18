@@ -58,7 +58,7 @@ class TaskService {
   }
   const date = new Date(
   Number(year),
-  Number(month) - 1, // Месяцы в JS начинаются с 0
+  Number(month) , // Месяцы в JS начинаются с 0
   Number(day),
   Number(hour),
   Number(minutes),
@@ -68,7 +68,7 @@ class TaskService {
 
 const endTime = date.toISOString();
 
-  console.log(endTime);
+  console.log(day,endTime);
   
   // const data = await axios.post(DOMEN+TaskApiConfig.CREATETASK,{
   //   title:title,
