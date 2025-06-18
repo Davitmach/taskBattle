@@ -83,6 +83,7 @@ if(data) {
           <ul className="flex flex-col gap-[5px] pb-[160px]">
             {tasks?.top?.map((item, index) => (
               <UserInfo
+              id={item.id}
                 color="#1E1E2F"
                 img={item.icon}
                 index={index}
