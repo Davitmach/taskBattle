@@ -56,11 +56,30 @@ class TaskService {
     showNotification('Вы не выбрали друзей') 
     return
   }
-  const data = await axios.get(DOMEN+TaskApiConfig.TASKS,{
-    headers:{
-      'tg-init-data':'33555'
-    }
-  })
+  const date = new Date(
+  Number(year),
+  Number(month) - 1, // Месяцы в JS начинаются с 0
+  Number(day),
+  Number(hour),
+  Number(minutes),
+  0, // секунды
+  0  // миллисекунды
+);
+
+const endTime = date.toISOString();
+
+  console.log(endTime);
+  
+  // const data = await axios.post(DOMEN+TaskApiConfig.CREATETASK,{
+  //   title:title,
+  //   type:type,
+  //   status:'IN_PROGRESS',
+    
+  // },{
+  //   headers:{
+  //     'tg-init-data':'33555'
+  //   }
+  // })
  
   
 
