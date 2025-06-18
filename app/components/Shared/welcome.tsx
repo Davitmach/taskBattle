@@ -59,7 +59,9 @@ export const Welcome = () => {
   
   }, [friends]);
 useEffect(()=> {
-console.log(friendError,'error friend');
+
+console.log(friendError?.message);
+
 
 },[friendError])
   useQuery({
