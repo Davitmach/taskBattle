@@ -60,7 +60,9 @@ export const Welcome = () => {
   }, [friends]);
 useEffect(()=> {
 
-console.log(friendError?.message);
+if(friendError?.message=='Request failed with status code 404') {
+  setFriends([])
+}
 
 
 },[friendError])
