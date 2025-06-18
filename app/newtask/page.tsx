@@ -11,12 +11,14 @@ import { Calendar } from "../components/Shared/calendar";
 import { Button } from "../components/UI/button";
 import { taskService } from "../service/taskService";
 import { useNotification } from "../provider/notification";
+import { useUserProfile } from "../store";
 
 export default function Page() {
           const now = new Date();
   const currentMonth = now.getMonth();
   const currentYear = now.getFullYear();
        const router = useCustomRouter();
+       const {friends} = useUserProfile();
        const [active,setActive] = useState('Одиночное');
        const [selectedFriend,setSelectedFriend] = useState<string[]>([]);
          const [month, setMonth] = useState(currentMonth);
@@ -45,7 +47,14 @@ export default function Page() {
              <Radio setActive={setActive} active={active}  text={'Совместное'}/>
               <Radio setActive={setActive} active={active}  text={'Одиночное'}/>
               </div>
-             {active=='Совместное' && <InfoBlock title="Друзья" ><ul className="flex flex-col gap-[8px]"><UserInfo setFriendSelect={setSelectedFriend} friendSelect={selectedFriend} isSelectFriend={true} id="1"  className="w-full" color="#2D2D4F" img="https://randomuser.me/api/portraits/lego/2.jpg" name="'de"  total={3} index={3}/><UserInfo setFriendSelect={setSelectedFriend} isSelectFriend={true} friendSelect={selectedFriend} id="2"  className="w-full" color="#2D2D4F" img="https://randomuser.me/api/portraits/lego/2.jpg" name="'de"  total={3} index={3}/><UserInfo setFriendSelect={setSelectedFriend} isSelectFriend={true} id="3" friendSelect={selectedFriend}  className="w-full" color="#2D2D4F" img="https://randomuser.me/api/portraits/lego/2.jpg" name="'de"  total={3} index={3}/><UserInfo setFriendSelect={setSelectedFriend} isSelectFriend={true} id="4" friendSelect={selectedFriend}  className="w-full" color="#2D2D4F" img="https://randomuser.me/api/portraits/lego/2.jpg" name="'de"  total={3} index={3}/><UserInfo setFriendSelect={setSelectedFriend} isSelectFriend={true} id="5" friendSelect={selectedFriend}  className="w-full" color="#2D2D4F" img="https://randomuser.me/api/portraits/lego/2.jpg" name="'de"  total={3} index={3}/></ul></InfoBlock>} 
+             {active=='Совместное' && <InfoBlock title="Друзья" ><ul className="flex flex-col gap-[8px]">
+              {
+                friends.length>0 && friends.map((e,index)=> (
+<UserInfo setFriendSelect={setSelectedFriend} friendSelect={selectedFriend} isSelectFriend={true} id={e.id}  className="w-full" color="#2D2D4F" img={e.icon} name={e.name}  total={e._count.tasks} index={index}/>
+                ))
+              }
+              
+</ul></InfoBlock>} 
         <Calendar setDay={setActiveDay} setMonth={setMonth} setYear={setYear} year={year}  currentMonth={currentMonth} currentYear={currentYear} day={activeDay} month={month} refHour={refHour} refMin={refMin}/>
         <Button onClick={CreateTask} loading={false} type='Purple' className="w-full py-[8px] text-[27px]">Создать задачу</Button>
         </div>
