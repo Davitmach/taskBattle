@@ -62,6 +62,7 @@ export const TaskWithFunc = (props:ITaskWithFuncProps) => {
   const openModal = (task:any) => {
     if(active) {
   
+    console.log(props,'props');
     
     const queryParams = new URLSearchParams({
       modal: 'dynamic',
