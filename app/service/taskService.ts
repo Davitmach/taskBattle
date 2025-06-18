@@ -81,24 +81,27 @@ console.log(hour,'час');
 console.log(minutes,'минуты')
   console.log(day,endTime);
   
-  // const data = await axios.post(DOMEN+TaskApiConfig.CREATETASK,{
-  //   title:title,
-  //   type:type,
-  //   status:'IN_PROGRESS',
-    
-  // },{
-  //   headers:{
-  //     'tg-init-data':'33555'
-  //   }
-  // })
+  const data = await axios.post(DOMEN+TaskApiConfig.CREATETASK,{
+    title:title,
+    type:type,
+    status:'IN_PROGRESS',
+    endTime:endTime,
+    friendId:friendId
+  },{
+    headers:{
+      'tg-init-data':'33555'
+    }
+  })
  
   
+console.log(data);
+if(data.data) {
+  router("/");  
+  return data.data
+  
+}
 
 
-
-
-
-  // router("/");  
     
   }
   async getTasks() {
