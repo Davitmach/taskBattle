@@ -58,7 +58,10 @@ export const Welcome = () => {
   console.log(friends,'adedaedaeda');
   
   }, [friends]);
+useEffect(()=> {
+console.log(friendError,'error friend');
 
+},[friendError])
   useQuery({
     queryKey: ['updateTasks'],
     queryFn: () => taskService.updateTasks(),
