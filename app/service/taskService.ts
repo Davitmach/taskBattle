@@ -59,7 +59,7 @@ class TaskService {
   const date = new Date(
   Number(year),
   Number(month) , // Месяцы в JS начинаются с 0
-  Number(day),
+  Number(day)+1,
   Number(hour),
   Number(minutes),
   0, // секунды
