@@ -156,7 +156,13 @@ export default function Page() {
     refetchIntervalInBackground: true,
     staleTime: 3000,
   });
-
+useEffect(()=> {
+if(isError) {
+  console.log(isError);
+  router('/')
+  
+}
+},[isError])
   const SendReport = () => {
     if (params.id && refReport.current) {
       setOpenReport(false);
