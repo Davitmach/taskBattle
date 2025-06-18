@@ -128,6 +128,7 @@ console.error(error,'cers tapec');
     })
     if(data.data) {
       queryClient.invalidateQueries({ queryKey: ['user', userId] });
+      queryClient.invalidateQueries({ queryKey: ['userFriends'] });
       return data.data
     }
   }
@@ -141,6 +142,7 @@ console.error(error,'cers tapec');
      if(data) {
       if(queryClient) {
           queryClient.invalidateQueries({ queryKey: ['user', userId] });
+          queryClient.invalidateQueries({ queryKey: ['userFriends'] });
       }
       return data.data
      }
@@ -153,6 +155,7 @@ console.error(error,'cers tapec');
     })
     if(data) {
         queryClient.invalidateQueries({ queryKey: ['user', userId] });
+        queryClient.invalidateQueries({ queryKey: ['userFriends'] });
       return data.data
     }
    }

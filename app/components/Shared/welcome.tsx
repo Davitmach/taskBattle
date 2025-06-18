@@ -50,7 +50,10 @@ export const Welcome = () => {
     queryKey: ['userFriends'],
     queryFn: () => userService.GetFriends(),
     enabled: LoadedState,
-     refetchInterval: 30000,
+     retry: false,
+    refetchInterval: 5000,
+    refetchIntervalInBackground: true,
+    staleTime: 3000,
   });
 
   useEffect(() => {
