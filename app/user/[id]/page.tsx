@@ -179,6 +179,7 @@ export default function Page() {
     if (userData) {
       setLoad(true);
       setData(userData);
+console.log(userData,'qadaedeadaeda');
 
     }
   }, [userData]);
