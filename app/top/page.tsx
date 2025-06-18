@@ -59,7 +59,7 @@ export default function Page() {
   }, [isLoading]);
 useEffect(()=> {
 if(data) {
-  setTasks(data);
+  setTasks(data?.data);
 }
 },[data])
   return (
