@@ -89,7 +89,7 @@ console.log(minutes,'минуты')
     friendId:friendId
   },{
     headers:{
-      'tg-init-data':'33555'
+      'tg-init-data':window.Telegram.WebApp.initData
     }
   })
  
