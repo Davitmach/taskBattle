@@ -67,7 +67,8 @@ class TaskService {
 );
 
 const endTime = date.toISOString();
-
+console.log(hour,'час');
+console.log(minutes,'минуты')
   console.log(day,endTime);
   
   // const data = await axios.post(DOMEN+TaskApiConfig.CREATETASK,{
