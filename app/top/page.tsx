@@ -94,11 +94,11 @@ if(data) {
         <UserInfo
           color="#1E1E2F"
           className="  border border-white"
-          img={tasks.me.icon}
+          img={tasks?.me?.icon}
           index={1}
-          name={tasks.me.name}
-          total={tasks.me.totalTasks}
-          state={tasks.me.rank}
+          name={tasks?.me?.name}
+          total={tasks?.me?.totalTasks}
+          state={tasks?.me?.rank}
         />
       </div>
     </>
