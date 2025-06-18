@@ -59,6 +59,7 @@ export const Task = (props:ITaskProps)=> {
 export const TaskWithFunc = (props:ITaskWithFuncProps) => {
   const {push} = useRouter();
   const [active,setActive] = useState<boolean>(true);
+  console.log(props,'props');
   const openModal = (task:any) => {
     if(active) {
   
