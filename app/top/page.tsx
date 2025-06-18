@@ -76,7 +76,7 @@ if(data) {
         </div>
         <div className="w-full h-full relative">
           <ul className="flex flex-col gap-[5px] pb-[160px]">
-            {tasks.top.map((item, index) => (
+            {tasks?.top?.map((item, index) => (
               <UserInfo
                 color="#1E1E2F"
                 img={item.icon}
