@@ -41,10 +41,11 @@ export default function RootLayout({
           <NotificationProvider>
             <Welcome/>
           {children}
+          <Task/>
           <Notification/>
           </NotificationProvider>
           </QueryProvider>
-<Task/>
+
 
         </div>
         <Loading />
