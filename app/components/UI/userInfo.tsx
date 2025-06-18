@@ -22,10 +22,10 @@ const Delete = async (e: React.MouseEvent<HTMLOrSVGElement>) => {
       
       // 1. Инвалидируем кэш запроса друзей
       queryClient.invalidateQueries({
-        queryKey: ['userFriends'] // Тот же ключ, что и в useQuery для друзей
+        queryKey: ['userFriends'] 
       });
       
-      // 2. Опционально: сразу делаем новый запрос
+     
       await queryClient.refetchQueries({
         queryKey: ['userFriends']
       });

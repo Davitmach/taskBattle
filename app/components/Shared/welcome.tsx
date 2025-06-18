@@ -50,16 +50,15 @@ export const Welcome = () => {
     queryKey: ['userFriends'],
     queryFn: () => userService.GetFriends(),
     enabled: LoadedState,
+     refetchInterval: 30000,
   });
 
-  // Обработка успешного запроса друзей
   useEffect(() => {
     if (friends) {setFriends(friends)}
   console.log(friends,'adedaedaeda');
   
   }, [friends]);
 
-  // 3. Автоматическое обновление задач
   useQuery({
     queryKey: ['updateTasks'],
     queryFn: () => taskService.updateTasks(),
