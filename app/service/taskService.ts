@@ -56,19 +56,24 @@ class TaskService {
     showNotification('Вы не выбрали друзей') 
     return
   }
+  
   const localDate = new Date(
   Number(year),
   Number(month) , 
   Number(day),
   Number(hour),
   Number(minutes),
-  0, // секунды
-  0  // миллисекунды
+  0, 
+  0  
 );
-
+const now = new Date();
+if (localDate < now) {
+  showNotification("Нельзя выбрать прошедшую дату");
+  return;
+}
 const timezoneOffset = localDate.getTimezoneOffset() * 60 * 1000;
 
-// Преобразуем локальную дату в UTC вручную
+
 const utcDate = new Date(localDate.getTime() - timezoneOffset);
 
 const endTime = utcDate.toISOString();
