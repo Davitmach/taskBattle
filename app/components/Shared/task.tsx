@@ -39,7 +39,7 @@ function ModalContent() {
     newParams.delete('friends');
     newParams.delete('type');
     newParams.delete('date');
-    // router.push('/');
+    router.back()
   };
 
   if (!isOpen) return null;
