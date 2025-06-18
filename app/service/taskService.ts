@@ -59,7 +59,7 @@ class TaskService {
   const localDate = new Date(
   Number(year),
   Number(month) , 
-  Number(day)+1,
+  Number(day),
   Number(hour),
   Number(minutes),
   0, // секунды
