@@ -172,6 +172,15 @@ console.error(error,'cers tapec');
       return user.data.data
     }
   }
+  async Top() {
+    const top = await axios.get(DOMEN+UserApiConfig.TOP,{
+      headers:{
+        'tg-init-data':window.Telegram.WebApp.initData
+      }
+    })
+    localStorage.setItem('TOP',JSON.stringify(top.data))
+    return top.data;
+  }
   
 }
 

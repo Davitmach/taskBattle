@@ -3,6 +3,9 @@ import { Title } from "../components/UI/title";
 import { Back } from "../components/UI/back";
 import { useCustomRouter } from "../hooks/Router";
 import { UserInfo } from "../components/UI/userInfo";
+import { useEffect } from "react";
+import { useQuery } from "@tanstack/react-query";
+import { userService } from "../service/userService";
 
 
 export default function Page() {
@@ -65,6 +68,24 @@ export default function Page() {
       ]
       
     const router = useCustomRouter();
+  
+  const {
+    data,
+    isLoading,
+    isError,
+    error,
+  } = useQuery({
+    queryKey: ['top'],
+    queryFn: () => userService.Top(),
+    retry: false,
+    refetchInterval: 5000,
+    refetchIntervalInBackground: true,
+    staleTime: 3000,
+  });
+  useEffect(()=> {
+console.log(data);
+
+  },[data])
     return(
     <>
         <div className="container pt-[7px] scrollbar-hide relative anim_fadeIn">
