@@ -148,9 +148,10 @@ if(data.data) {
       }
     })
     if(data) {
+      await query.invalidateQueries({ queryKey: ['userProfile'] });
       showNotification('Вы успешно выполнили задание!!')
       router('/')
-       query.invalidateQueries({ queryKey: ['userProfile'] });
+      
       return data.data;
     }
   }
@@ -161,9 +162,10 @@ if(data.data) {
       }
     })
     if(data) {
+     await query.invalidateQueries({ queryKey: ['userProfile'] });
       showNotification('К сожалению вы отказались от задания...');
       router('/')
-      query.invalidateQueries({ queryKey: ['userProfile'] });
+      
       return data.data;
     }
   }
