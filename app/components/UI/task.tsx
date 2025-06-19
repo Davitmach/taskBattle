@@ -41,14 +41,35 @@ export const Task = (props:ITaskProps)=> {
   
   push(`?${queryParams}`);
   };
-  const formatTime = (minutes: number): string => {
+const formatTime = (minutes: number): string => {
   if (minutes < 60) {
-    return `${minutes} минут`;
+    return `${minutes} ${decline(minutes, ['минута', 'минуты', 'минут'])}`;
   }
+
   const hours = minutes / 60;
-  const rounded = Math.round(hours * 10) / 10;
-  return `${rounded} ${rounded === 1 ? 'час' : 'часа'}`;
+
+  if (hours < 24) {
+    const roundedHours = Math.round(hours * 10) / 10;
+    return `${roundedHours} ${decline(roundedHours, ['час', 'часа', 'часов'])}`;
+  }
+
+  const days = hours / 24;
+  const roundedDays = Math.round(days * 10) / 10;
+  return `${roundedDays} ${decline(roundedDays, ['день', 'дня', 'дней'])}`;
 };
+
+// Функция склонения числительных
+function decline(number: number, words: [string, string, string]) {
+  const n = Math.abs(Math.floor(number));
+  const lastDigit = n % 10;
+  const lastTwoDigits = n % 100;
+
+  if (lastTwoDigits >= 11 && lastTwoDigits <= 14) return words[2];
+  if (lastDigit === 1) return words[0];
+  if (lastDigit >= 2 && lastDigit <= 4) return words[1];
+  return words[2];
+}
+
   return(
     <div  onClick={()=> openModal({date:props.date,title:props.title,type:props.type,friends:props.friends})}  className={`bg-[${props.color}] p-[10px] rounded-[8px] cursor-grab h-[69px] flex items-start justify-between`}>
     <div className='flex flex-col h-full justify-between'>
@@ -226,12 +247,33 @@ if(time>0) {
 },[time])
 const formatTime = (minutes: number): string => {
   if (minutes < 60) {
-    return `${minutes} минут`;
+    return `${minutes} ${decline(minutes, ['минута', 'минуты', 'минут'])}`;
   }
+
   const hours = minutes / 60;
-  const rounded = Math.round(hours * 10) / 10;
-  return `${rounded} ${rounded === 1 ? 'час' : 'часа'}`;
+
+  if (hours < 24) {
+    const roundedHours = Math.round(hours * 10) / 10;
+    return `${roundedHours} ${decline(roundedHours, ['час', 'часа', 'часов'])}`;
+  }
+
+  const days = hours / 24;
+  const roundedDays = Math.round(days * 10) / 10;
+  return `${roundedDays} ${decline(roundedDays, ['день', 'дня', 'дней'])}`;
 };
+
+// Функция склонения числительных
+function decline(number: number, words: [string, string, string]) {
+  const n = Math.abs(Math.floor(number));
+  const lastDigit = n % 10;
+  const lastTwoDigits = n % 100;
+
+  if (lastTwoDigits >= 11 && lastTwoDigits <= 14) return words[2];
+  if (lastDigit === 1) return words[0];
+  if (lastDigit >= 2 && lastDigit <= 4) return words[1];
+  return words[2];
+}
+
 
   return (
     <div  className='flex items-center justify-between gap-[10px]'>
