@@ -90,11 +90,9 @@ function decline(number: number, words: [string, string, string]) {
 export const TaskWithFunc = (props:ITaskWithFuncProps) => {
   const {push} = useRouter();
   const [active,setActive] = useState<boolean>(true);
-  console.log(props,'props');
+
   const openModal = (task:any) => {
     if(active) {
-  
-    console.log(props,'props');
     
     const queryParams = new URLSearchParams({
       modal: 'dynamic',

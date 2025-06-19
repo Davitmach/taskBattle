@@ -58,7 +58,7 @@ export const Welcome = () => {
 
   useEffect(() => {
     if (friends) {setFriends(friends)}
-  console.log(friends,'adedaedaeda');
+ 
   
   }, [friends]);
 useEffect(()=> {

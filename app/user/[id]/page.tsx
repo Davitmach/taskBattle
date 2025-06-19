@@ -159,7 +159,7 @@ export default function Page() {
 useEffect(()=> {
 if(isError) {
   setLoad(true);
-  console.log(isError,'ERRORROFORFORRFROFFFFFFFFFFFFFFFFFF');
+
   router('/')
   
   
@@ -176,7 +176,7 @@ if(isError) {
           } else if (e.error == "Слишком короткое сообщение") {
             showNotification("Слишком короткое сообщение");
           }
-          console.log(e);
+       
         })
         .catch((e) => {
           console.log(e, "error");

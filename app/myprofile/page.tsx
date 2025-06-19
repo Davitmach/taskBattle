@@ -320,23 +320,13 @@ const currentChartData =
 
 const validData = Array.isArray(currentChartData) && currentChartData.length > 0;
 
-const labels = validData
-  ? currentChartData.map((item) => {
-      const date = new Date(item.date);
-      if (activeChart === "день") return `${date.getHours()}:00`;
-      if (activeChart === "неделя")
-        return date.toLocaleDateString("ru-RU", { weekday: "short" });
-      return `${date.getDate()}.${date.getMonth() + 1}`;
-    })
-  : [];
+const labels = currentChartData.map((item) => new Date(item.date).getDate());
 
-const dataPoints = validData
-  ? currentChartData.map((item) => item.count)
-  : [];
-  console.log(dataPoints,labels,'какик');
+const dataPoints = currentChartData.map((item) => item.count);
+  console.log(labels,dataPoints,'crem vret');
   
 }
-},[chart])
+},[chart,activeChart])
 
   return (
     <>

@@ -78,9 +78,7 @@ const timezoneOffset = localDate.getTimezoneOffset() * 60 * 1000;
 const utcDate = new Date(localDate.getTime() - timezoneOffset);
 
 const endTime = utcDate.toISOString();
-console.log(hour,'час');
-console.log(minutes,'минуты')
-  console.log(day,endTime);
+
   
   const data = await axios.post(DOMEN+TaskApiConfig.CREATETASK,{
     title:title,
@@ -94,8 +92,7 @@ console.log(minutes,'минуты')
     }
   })
  
-  
-console.log(data);
+
 if(data.data) {
   router("/");  
   return data.data
