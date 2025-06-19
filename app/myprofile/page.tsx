@@ -192,46 +192,48 @@ const data: Task[] = [
     date: "23:03:2024 24:34",
   },
 ];
-const serverData = [
-  { date: "2025-05-01", count: 0 },
-  { date: "2025-05-02", count: 0 },
-  { date: "2025-05-03", count: 0 },
-  { date: "2025-05-04", count: 0 },
-  { date: "2025-05-05", count: 0 },
-  { date: "2025-05-06", count: 0 },
-  { date: "2025-05-07", count: 0 },
-  { date: "2025-05-08", count: 0 },
-  { date: "2025-05-09", count: 0 },
-  { date: "2025-05-10", count: 0 },
-  { date: "2025-05-11", count: 100 },
-  { date: "2025-05-12", count: 0 },
-  { date: "2025-05-13", count: 0 },
-  { date: "2025-05-14", count: 0 },
-  { date: "2025-05-15", count: 5 },
-  { date: "2025-05-16", count: 0 },
-  { date: "2025-05-17", count: 0 },
-  { date: "2025-05-18", count: 0 },
-  { date: "2025-05-19", count: 0 },
-  { date: "2025-05-20", count: 0 },
-  { date: "2025-05-21", count: 30 },
-  { date: "2025-05-22", count: 0 },
-  { date: "2025-05-23", count: 0 },
-  { date: "2025-05-24", count: 0 },
-  { date: "2025-05-25", count: 0 },
-  { date: "2025-05-26", count: 0 },
-  { date: "2025-05-27", count: 0 },
-  { date: "2025-05-28", count: 4 },
-  { date: "2025-05-29", count: 0 },
-  { date: "2025-05-30", count: 0 },
-  { date: "2025-05-31", count: 0 },
-];
+// const serverData = [
+//   { date: "2025-05-01", count: 0 },
+//   { date: "2025-05-02", count: 0 },
+//   { date: "2025-05-03", count: 0 },
+//   { date: "2025-05-04", count: 0 },
+//   { date: "2025-05-05", count: 0 },
+//   { date: "2025-05-06", count: 0 },
+//   { date: "2025-05-07", count: 0 },
+//   { date: "2025-05-08", count: 0 },
+//   { date: "2025-05-09", count: 0 },
+//   { date: "2025-05-10", count: 0 },
+//   { date: "2025-05-11", count: 100 },
+//   { date: "2025-05-12", count: 0 },
+//   { date: "2025-05-13", count: 0 },
+//   { date: "2025-05-14", count: 0 },
+//   { date: "2025-05-15", count: 5 },
+//   { date: "2025-05-16", count: 0 },
+//   { date: "2025-05-17", count: 0 },
+//   { date: "2025-05-18", count: 0 },
+//   { date: "2025-05-19", count: 0 },
+//   { date: "2025-05-20", count: 0 },
+//   { date: "2025-05-21", count: 30 },
+//   { date: "2025-05-22", count: 0 },
+//   { date: "2025-05-23", count: 0 },
+//   { date: "2025-05-24", count: 0 },
+//   { date: "2025-05-25", count: 0 },
+//   { date: "2025-05-26", count: 0 },
+//   { date: "2025-05-27", count: 0 },
+//   { date: "2025-05-28", count: 4 },
+//   { date: "2025-05-29", count: 0 },
+//   { date: "2025-05-30", count: 0 },
+//   { date: "2025-05-31", count: 0 },
+// ];
 
-const labels = serverData.map((item) => new Date(item.date).getDate());
-const dataPoints = serverData.map((item) => item.count);
+// const labels = serverData.map((item) => new Date(item.date).getDate());
+// const dataPoints = serverData.map((item) => item.count);
 export default function Page() {
   const [activeChart,setActiveChart] = useState<'день'|'неделя'|'месяц'>('день')
   const { img, name, tasks, createdAt ,friends,rewards,chart} = useUserProfile();
   const { LoadedState } = useLoadingState();
+  const [labels,setLabels] = useState<number[]>([0]);
+  const [data,setData] = useState<number[]>([0]);
   const [task, setTask] = useState<{
     COMPLETED: any[];
     IN_PROGRESS: any[];
@@ -323,7 +325,8 @@ const validData = Array.isArray(currentChartData) && currentChartData.length > 0
 const labels = currentChartData.map((item) => new Date(item.date).getDate());
 
 const dataPoints = currentChartData.map((item) => item.count);
-  console.log(labels,dataPoints,'crem vret');
+  setLabels(labels);
+  setData(dataPoints)
   
 }
 },[chart,activeChart])
@@ -395,7 +398,7 @@ friends.map((e)=> (
               Месяц
             </Button>
           </div>
-          <CustomChart dataPoints={dataPoints} labels={labels} />
+          <CustomChart dataPoints={data} labels={labels} />
         </InfoBlock>
 
         <InfoBlock title="Награды">
