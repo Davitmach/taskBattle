@@ -140,8 +140,8 @@ if(data.data) {
     localStorage.setItem('TASKS',JSON.stringify(res?.data));
     return res?.data;
   }
-  acceptTask() {}
-  cancelTask() {}
+  acceptTask(id:string) {}
+  cancelTask(id:string) {}
 
   setTask(tasks:TTask[]) {
   const SET = localStorage.setItem('TASKS',JSON.stringify(tasks));

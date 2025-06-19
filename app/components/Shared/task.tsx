@@ -13,7 +13,7 @@ function ModalContent() {
   const type = searchParams.get('type');
   const date = searchParams.get('date');
   const friendsRaw = searchParams.get('friends');
-
+const status = searchParams.get('status');
   const [isOpen, setIsOpen] = useState(false);
   const [friends, setFriends] = useState<{id:string, name: string; icon: string; total: number }[]>([]);
 
@@ -39,6 +39,7 @@ function ModalContent() {
     newParams.delete('friends');
     newParams.delete('type');
     newParams.delete('date');
+    newParams.delete('status')
     router.back()
   };
 
@@ -66,8 +67,7 @@ function ModalContent() {
           )}
           <span className='text-white text-[1em] font-[400] w-full flex justify-center'>Дата окончания: {date}</span>
         </div>
-
-        <div className='flex w-full justify-center gap-[13px] mt-[20px]'>
+{status =='process' && <div className='flex w-full justify-center gap-[13px] mt-[20px]'>
           <svg width="50" height="50" viewBox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg">
             <rect width="50" height="50" rx="8" fill="#A2E9BA"/>
             <path d="M10 25L20 35L40 15" stroke="white" strokeWidth="6"/>
@@ -76,7 +76,8 @@ function ModalContent() {
             <rect width="50" height="50" rx="8" fill="#BE3A50" fillOpacity="0.85"/>
             <path d="M10 10L40 40M40 10L10 40" stroke="white" strokeWidth="6"/>
           </svg>
-        </div>
+        </div>}
+       
       </div>
     </div>
   );
