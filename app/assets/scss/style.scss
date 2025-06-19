@@ -78,15 +78,27 @@ transform:  scale(0);
   color: #D00000;
    font-size: 12px;
    text-align: end;
+     display: -webkit-box;
+  -webkit-line-clamp: 2; /* количество строк */
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 #white {
    font-size: 12px;text-align: end;
   // color: white;
+    display: -webkit-box;
+  -webkit-line-clamp: 2; /* количество строк */
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
  #yellow {
    font-size: 12px;
    text-align: end;
   color: rgb(210, 191, 46);
+    display: -webkit-box;
+  -webkit-line-clamp: 2; /* количество строк */
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 
 
