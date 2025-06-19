@@ -148,7 +148,8 @@ if(data.data) {
       }
     })
     if(data) {
-      await query.invalidateQueries({ queryKey: ['userProfile'] });
+      await query.invalidateQueries({ queryKey: ['offlineTasks'] });
+       await query.invalidateQueries({ queryKey: ['onlineTasks'] });
       showNotification('Вы успешно выполнили задание!!')
       router('/')
       
@@ -162,7 +163,8 @@ if(data.data) {
       }
     })
     if(data) {
-     await query.invalidateQueries({ queryKey: ['userProfile'] });
+     await query.invalidateQueries({ queryKey: ['offlineTasks'] });
+      await query.invalidateQueries({ queryKey: ['onlineTasks'] });
       showNotification('К сожалению вы отказались от задания...');
       router('/')
       
