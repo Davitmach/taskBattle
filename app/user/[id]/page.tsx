@@ -315,6 +315,7 @@ if(isLoading) {
           </ul>
         </InfoBlock>
         <InfoBlock title="Награды">
+          <ul className="flex items-center gap-[8px]">
           {data.rewards.length > 0 &&
             data.rewards.map((e) => (
               <Reward
@@ -330,6 +331,7 @@ if(isLoading) {
                 description={e.description}
               />
             ))}
+            </ul>
         </InfoBlock>
         <TaskHomePageInfoBlock data={task.COMPLETED} type="COMPLETED" />
         <TaskHomePageInfoBlock data={task.IN_PROGRESS} type="IN_PROGRESS" />

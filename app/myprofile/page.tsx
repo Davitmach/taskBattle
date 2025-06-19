@@ -370,6 +370,7 @@ friends.map((e)=> (
         </InfoBlock>
 
         <InfoBlock title="Награды">
+          <ul className="flex gap-[8px] items-center">
           {
             rewards && rewards.length>0 &&
             rewards.map((e)=> (
@@ -385,9 +386,10 @@ friends.map((e)=> (
             title={e.description}
             description="Награда за выполнение задния за 1 минуту"
           />
+         
             ))
           }
-        
+        </ul>
         </InfoBlock>
         <TaskHomePageInfoBlock data={task.COMPLETED} type="COMPLETED" />
         <TaskHomePageInfoBlock data={task.IN_PROGRESS} type="IN_PROGRESS" />
