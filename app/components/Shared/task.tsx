@@ -3,11 +3,15 @@
 import { useSearchParams, useRouter } from 'next/navigation';
 import { useEffect, useState, Suspense } from 'react';
 import { UserInfo } from '../UI/userInfo';
+import { taskService } from '@/app/service/taskService';
+import { useNotification } from '@/app/provider/notification';
+import { useCustomRouter } from '@/app/hooks/Router';
 
 function ModalContent() {
   const searchParams = useSearchParams();
-  const router = useRouter();
-
+  const rout = useRouter();
+  const router = useCustomRouter();
+const { showNotification} = useNotification();
   const modal = searchParams.get('modal');
   const title = searchParams.get('title');
   const type = searchParams.get('type');
@@ -42,7 +46,7 @@ const taskId = searchParams.get('taskId');
     newParams.delete('date');
     newParams.delete('status');
     newParams.delete('taskId');
-    router.back()
+    rout.back()
   };
 
   if (!isOpen) return null;
@@ -70,17 +74,11 @@ const taskId = searchParams.get('taskId');
           <span className='text-white text-[1em] font-[400] w-full flex justify-center'>Дата окончания: {date?.split('T')[0]}</span>
         </div>
 {status =='process' && <div className='flex w-full justify-center gap-[13px] mt-[20px]'>
-          <svg onClick={()=> {
-            console.log(taskId);
-            
-          }} width="50" height="50" viewBox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <svg onClick={()=> taskService.acceptTask(taskId as string,router,showNotification)} width="50" height="50" viewBox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg">
             <rect width="50" height="50" rx="8" fill="#A2E9BA"/>
             <path d="M10 25L20 35L40 15" stroke="white" strokeWidth="6"/>
           </svg>
-          <svg onClick={()=> {
-            console.log(taskId);
-            
-          }} width="50" height="50" viewBox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <svg onClick={()=> taskService.cancelTask(taskId as string,router,showNotification)} width="50" height="50" viewBox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg">
             <rect width="50" height="50" rx="8" fill="#BE3A50" fillOpacity="0.85"/>
             <path d="M10 10L40 40M40 10L10 40" stroke="white" strokeWidth="6"/>
           </svg>

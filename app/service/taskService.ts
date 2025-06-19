@@ -140,23 +140,27 @@ if(data.data) {
     localStorage.setItem('TASKS',JSON.stringify(res?.data));
     return res?.data;
   }
-  async acceptTask(id:string) {
+  async acceptTask(id:string,router: ReturnType<typeof useCustomRouter>,showNotification:(message: string) => void) {
     const data = await axios.get(DOMEN+TaskApiConfig.COMPLETETASK+id,{
       headers:{
         'tg-init-data':window.Telegram.WebApp.initData
       }
     })
     if(data) {
+      showNotification('Вы успешно выполнили задание!!')
+      router('/')
       return data.data;
     }
   }
-  async cancelTask(id:string) {
+  async cancelTask(id:string,router: ReturnType<typeof useCustomRouter>,showNotification:(message: string) => void) {
     const data = await axios.get(DOMEN+TaskApiConfig.CANCELTASK+id,{
       headers:{
         'tg-init-data':window.Telegram.WebApp.initData
       }
     })
     if(data) {
+      showNotification('К сожалению вы отказались от задания...');
+      router('/')
       return data.data;
     }
   }
