@@ -12,7 +12,7 @@ export const Welcome = () => {
   const path = usePathname();
   const push = useCustomRouter();
   const { LoadedState } = useLoadingState();
-  const { setImg, setName, setCreatedAt, setTasks, setFriends, setRewards } = useUserProfile();
+  const { setImg, setName, setCreatedAt, setTasks, setFriends, setRewards,setChart } = useUserProfile();
   const queryClient = useQueryClient();
 
   // 1. Запрос профиля пользователя
@@ -75,7 +75,17 @@ if(friendError?.message=='Request failed with status code 404') {
     refetchInterval: 30000,
     enabled: LoadedState,
   });
-
+  const {data:chart} =useQuery({
+    queryKey:['chart'],
+    queryFn:()=> userService.Chart(),
+    refetchInterval:3000,
+    
+  })
+useEffect(()=> {
+if(chart) {
+  setChart(chart?.data?.day,chart?.data?.week,chart?.data?.month);
+}
+},[chart])
   // Восстановление из localStorage
   useEffect(() => {
     const savedProfile = localStorage.getItem('PROFILE_INFO');

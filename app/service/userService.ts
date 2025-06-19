@@ -1,6 +1,6 @@
 
 'use client';
-import { FriendApiConfig, UserApiConfig } from "../config/apiConfig";
+import { FriendApiConfig, TaskApiConfig, UserApiConfig } from "../config/apiConfig";
 import axios from 'axios';
 import { useUserProfile } from "../store";
 import { error } from "console";
@@ -180,6 +180,16 @@ console.error(error,'cers tapec');
     })
     localStorage.setItem('TOP',JSON.stringify(top.data))
     return top.data;
+  }
+  async Chart() {
+    const data = await axios.get(DOMEN+UserApiConfig.CHART,{
+      headers:{
+        'tg-init-data':window.Telegram.WebApp.initData
+      }
+    })
+    if(data) {
+      return data.data;
+    }
   }
   
 }

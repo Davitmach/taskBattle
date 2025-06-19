@@ -15,6 +15,21 @@ interface UserProfile {
   name:string,
   img:string,
   createdAt:string,
+  chart:{day:{
+    date:string,
+    count: number
+  }[],
+week:{
+    date:string,
+    count: number
+  }[],
+  month:{
+    date:string,
+    count: number
+  }[],
+},
+setChart: (day: { date: string; count: number }[], week: { date: string; count: number }[], month: { date: string; count: number }[]) => void;
+
   setCreatedAt:(newDate:string)=> void,
   setName:(newName:string)=> void;
   setImg:(newImg:string)=> void;
@@ -33,11 +48,18 @@ name: string
 status:string
 userFriendId: string
 _count: {tasks: number}
+
 }[],
 setFriends:(friends:any[])=> void
 }
 export const useUserProfile = create<UserProfile>((set)=> ({
   name:'',
+  chart:{
+    day:[],
+    week:[],
+    month:[]
+  },
+  setChart: (day, week, month) => set({ chart: { day, week, month } }),
   rewards:[],
   setRewards:(newRew:any[]) => set({rewards:newRew}),
   friends:[],
@@ -46,6 +68,7 @@ export const useUserProfile = create<UserProfile>((set)=> ({
   setImg:(newState:string)=> set({img:newState}),
   setName:(newState:string)=> set({name:newState}),
   createdAt:'',
+
   setCreatedAt:(newState:string)=> set({createdAt:newState}),
   tasks:{
     cancel:0,

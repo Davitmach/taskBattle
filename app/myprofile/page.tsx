@@ -229,7 +229,7 @@ const serverData = [
 const labels = serverData.map((item) => new Date(item.date).getDate());
 const dataPoints = serverData.map((item) => item.count);
 export default function Page() {
-  const { img, name, tasks, createdAt ,friends,rewards} = useUserProfile();
+  const { img, name, tasks, createdAt ,friends,rewards,chart} = useUserProfile();
   const { LoadedState } = useLoadingState();
   const [task, setTask] = useState<{
     COMPLETED: any[];
@@ -308,6 +308,12 @@ export default function Page() {
       info: "",
     });
   };
+
+useEffect(()=> {
+console.log(chart);
+
+},[chart])
+
   return (
     <>
       <div className="container anim_fadeIn">
