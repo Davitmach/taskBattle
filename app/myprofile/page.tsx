@@ -229,6 +229,7 @@ const serverData = [
 const labels = serverData.map((item) => new Date(item.date).getDate());
 const dataPoints = serverData.map((item) => item.count);
 export default function Page() {
+  const [activeChart,setActiveChart] = useState<'день'|'неделя'|'месяц'>('день')
   const { img, name, tasks, createdAt ,friends,rewards,chart} = useUserProfile();
   const { LoadedState } = useLoadingState();
   const [task, setTask] = useState<{
@@ -308,10 +309,33 @@ export default function Page() {
       info: "",
     });
   };
-
 useEffect(()=> {
-console.log(chart);
+if(chart.day && chart.month && chart.week) {
+const currentChartData =
+  activeChart === "день"
+    ? chart.day
+    : activeChart === "неделя"
+    ? chart.week
+    : chart.month;
 
+const validData = Array.isArray(currentChartData) && currentChartData.length > 0;
+
+const labels = validData
+  ? currentChartData.map((item) => {
+      const date = new Date(item.date);
+      if (activeChart === "день") return `${date.getHours()}:00`;
+      if (activeChart === "неделя")
+        return date.toLocaleDateString("ru-RU", { weekday: "short" });
+      return `${date.getDate()}.${date.getMonth() + 1}`;
+    })
+  : [];
+
+const dataPoints = validData
+  ? currentChartData.map((item) => item.count)
+  : [];
+  console.log(dataPoints,labels,'какик');
+  
+}
 },[chart])
 
   return (
@@ -354,6 +378,9 @@ friends.map((e)=> (
               className="flex-1 h-[38px] text-[14px]"
               loading={false}
               type="Green"
+              onClick={()=> {
+                setActiveChart('день')
+              }}
             >
               День
             </Button>
@@ -361,6 +388,9 @@ friends.map((e)=> (
               className="flex-1 h-[38px] text-[14px]"
               loading={false}
               type="Green"
+                onClick={()=> {
+                setActiveChart('неделя')
+              }}
             >
               Неделя
             </Button>
@@ -368,6 +398,9 @@ friends.map((e)=> (
               className="flex-1 h-[38px] text-[14px]"
               loading={false}
               type="Green"
+                onClick={()=> {
+                setActiveChart('месяц')
+              }}
             >
               Месяц
             </Button>
