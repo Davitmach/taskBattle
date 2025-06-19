@@ -38,7 +38,7 @@ export const Task = (props:ITaskProps)=> {
       date: task.date,
       friends:encodeURIComponent(JSON.stringify(task.friends)),
       status:task.status,
-      taskId:task.id
+      taskId:task.taskId
     }).toString();
   
   push(`?${queryParams}`);
@@ -103,7 +103,7 @@ export const TaskWithFunc = (props:ITaskWithFuncProps) => {
       date: task.date,
       friends:encodeURIComponent(JSON.stringify(task.friends)),
       status:task.status ,
-           taskId:task.id
+           taskId:task.taskId
     }).toString();
   
   push(`?${queryParams}`);
