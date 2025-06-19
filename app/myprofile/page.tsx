@@ -379,7 +379,7 @@ friends.map((e)=> (
               openM(
                 e.title,
                e.description,
-                "Награда есть у 10% пользователей"
+                `Награда есть у ${e.percentage}% пользователей`
               )
             }
             info={e.title}
