@@ -323,11 +323,10 @@ if(isLoading) {
                   openM(
                     e.title,
                     e.description,
-                    e.percentage
-
+                    `Награда есть у ${e.percentage}% пользователей`
                   )
                 }
-                info={e.percentage}
+                info={`Награда есть у ${e.percentage}% пользователей`}
                 title={e.title}
                 description={e.description}
               />
