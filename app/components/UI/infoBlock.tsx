@@ -77,10 +77,10 @@ return(
     style={click == false ? {height:'auto'} : open ? {height:`${height}px`}:{height:'0px'}}
     ref={refDiv} className={` tasks_box  duration-[.2s] scrollbar-hide overflow-x-hidden flex flex-col gap-[10px] max-h-[230px]`}>{tasks?tasks.map((e:any)=> {
         if(props.type == 'IN_PROGRESS') {
-  return <TaskWithFunc phrase={e.comment} date={e.endTime} friends={e.participants ? e.participants :[]}  timeout={e.timeout} title={e.title} type={e.type=='SINGLE'?'Одиночное':'Совместное'} key={e.title}/>
+  return <TaskWithFunc id={e.id} phrase={e.comment} date={e.endTime} friends={e.participants ? e.participants :[]}  timeout={e.timeout} title={e.title} type={e.type=='SINGLE'?'Одиночное':'Совместное'} key={e.title}/>
         }
         else {
-          return  <Task phrase={e.comment} date={e.endTime} friends={e.participants ? e.participants :[]} color={props.type == 'CANCELLED' ? '#BE3A50D9' : props.type=='COMPLETED' ?'#A2E9BA':''} timeout={e.timeout} title={e.title} type={e.type=='SINGLE'?'Одиночное':'Совместное'} key={e.title}/>
+          return  <Task id={e.id} phrase={e.comment} date={e.endTime} friends={e.participants ? e.participants :[]} color={props.type == 'CANCELLED' ? '#BE3A50D9' : props.type=='COMPLETED' ?'#A2E9BA':''} timeout={e.timeout} title={e.title} type={e.type=='SINGLE'?'Одиночное':'Совместное'} key={e.title}/>
         }
       }):'3424432324324' }</div>
 </div>

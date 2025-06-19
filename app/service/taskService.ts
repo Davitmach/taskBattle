@@ -140,8 +140,26 @@ if(data.data) {
     localStorage.setItem('TASKS',JSON.stringify(res?.data));
     return res?.data;
   }
-  acceptTask(id:string) {}
-  cancelTask(id:string) {}
+  async acceptTask(id:string) {
+    const data = await axios.get(DOMEN+TaskApiConfig.COMPLETETASK+id,{
+      headers:{
+        'tg-init-data':window.Telegram.WebApp.initData
+      }
+    })
+    if(data) {
+      return data.data;
+    }
+  }
+  async cancelTask(id:string) {
+    const data = await axios.get(DOMEN+TaskApiConfig.CANCELTASK+id,{
+      headers:{
+        'tg-init-data':window.Telegram.WebApp.initData
+      }
+    })
+    if(data) {
+      return data.data;
+    }
+  }
 
   setTask(tasks:TTask[]) {
   const SET = localStorage.setItem('TASKS',JSON.stringify(tasks));

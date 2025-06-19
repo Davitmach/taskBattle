@@ -37,7 +37,8 @@ export const Task = (props:ITaskProps)=> {
       type: task.type,
       date: task.date,
       friends:encodeURIComponent(JSON.stringify(task.friends)),
-      status:task.status
+      status:task.status,
+      taskId:task.id
     }).toString();
   
   push(`?${queryParams}`);
@@ -72,7 +73,7 @@ function decline(number: number, words: [string, string, string]) {
 }
 
   return(
-    <div  onClick={()=> openModal({date:props.date,title:props.title,type:props.type,friends:props.friends,status:'wit'})}  className={`bg-[${props.color}] p-[10px] rounded-[8px] cursor-grab h-[69px] flex items-start justify-between`}>
+    <div  onClick={()=> openModal({date:props.date,title:props.title,type:props.type,friends:props.friends,status:'wit',taskId:props.id})}  className={`bg-[${props.color}] p-[10px] rounded-[8px] cursor-grab h-[69px] flex items-start justify-between`}>
     <div className='flex flex-col h-full justify-between'>
       <div className='text-[#1E1E1E] text-[1.14em] font-[400] text-nowrap'>{props.title.length >substring ?props.title.substring(0,substring)+`...` : props.title}</div>
       <div className='text-[#000000] text-[1em] font-[400]'>{props.type}</div>
@@ -102,6 +103,7 @@ export const TaskWithFunc = (props:ITaskWithFuncProps) => {
       date: task.date,
       friends:encodeURIComponent(JSON.stringify(task.friends)),
       status:task.status ,
+           taskId:task.id
     }).toString();
   
   push(`?${queryParams}`);
@@ -280,7 +282,7 @@ function decline(number: number, words: [string, string, string]) {
   return (
     <div  className='flex items-center justify-between gap-[10px]'>
       <div
-      onClick={()=> openModal({date:props.date,title:props.title,type:props.type,friends:props.friends,status:'process'})}
+      onClick={()=> openModal({date:props.date,title:props.title,type:props.type,friends:props.friends,status:'process',taskId:props.id})}
         ref={ref}
         style={{
           width: `${widthPercent}%`,
