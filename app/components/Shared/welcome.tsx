@@ -25,7 +25,7 @@ export const Welcome = () => {
 
   // Обработка успешного запроса профиля
   useEffect(() => {
-    if(profile.status == 'blocked') {
+    if(profile?.status == 'blocked') {
       window.Telegram.WebApp.close();
     }
     if (profile) {
