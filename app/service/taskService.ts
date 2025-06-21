@@ -33,7 +33,88 @@ class TaskService {
     this.tasks = this.tasks;
   }
 
- async createTask(showNotification:(message: string) => void, minutes:string,hour:string,day:string,month:number,year:number,  router: ReturnType<typeof useCustomRouter>,title: string,type: "MULTI" | "SINGLE",friendId?: string[]) {
+//  async createTask(showNotification:(message: string) => void, minutes:string,hour:string,day:string,month:number,year:number,  router: ReturnType<typeof useCustomRouter>,title: string,type: "MULTI" | "SINGLE",friendId?: string[]) {
+//   if (!hour) {
+//     showNotification("У вас не установлены часы");
+//     return;
+//   }
+
+//   if (!minutes) {
+//     showNotification("У вас не установлены минуты");
+//     return;
+//   }
+
+//   if (!title.trim()) {
+//     showNotification("Вы не ввели заголовок");
+//     return;
+//   }
+
+//   if (!day) {
+//     showNotification("Вы не выбрали дату");
+//     return;
+//   }
+//   if(type=='MULTI' && friendId?.length==0) {
+//     showNotification('Вы не выбрали друзей') 
+//     return
+//   }
+  
+//   const localDate = new Date(
+//   Number(year),
+//   Number(month) , 
+//   Number(day),
+//   Number(hour),
+//   Number(minutes),
+//   0, 
+//   0  
+// );
+// const now = new Date();
+// if (localDate < now) {
+//   showNotification("Нельзя выбрать прошедшую дату");
+//   return;
+// }
+// const timezoneOffset = localDate.getTimezoneOffset() * 60 * 1000;
+
+
+// const utcDate = new Date(localDate.getTime() - timezoneOffset);
+
+// const endTime = utcDate.toISOString();
+
+  
+//   const data = await axios.post(DOMEN+TaskApiConfig.CREATETASK,{
+//     title:title,
+//     type:type,
+//     status:'IN_PROGRESS',
+//     endTime:endTime,
+//     friendId:friendId
+//   },{
+//     headers:{
+//       'tg-init-data':window.Telegram.WebApp.initData
+//     }
+//   })
+ 
+
+// if(data.data) {
+//   router("/");  
+//   return data.data
+  
+// }
+
+
+    
+//   }
+
+async createTask(
+  showNotification: (message: string) => void,
+  minutes: string,
+  hour: string,
+  day: string,
+  month: number,
+  year: number,
+  router: ReturnType<typeof useCustomRouter>,
+  title: string,
+  type: "MULTI" | "SINGLE",
+  friendId?: string[]
+) {
   if (!hour) {
     showNotification("У вас не установлены часы");
     return;
@@ -53,55 +134,52 @@ class TaskService {
     showNotification("Вы не выбрали дату");
     return;
   }
-  if(type=='MULTI' && friendId?.length==0) {
-    showNotification('Вы не выбрали друзей') 
-    return
+
+  if (type === "MULTI" && friendId?.length === 0) {
+    showNotification("Вы не выбрали друзей");
+    return;
   }
-  
+
   const localDate = new Date(
-  Number(year),
-  Number(month) , 
-  Number(day),
-  Number(hour),
-  Number(minutes),
-  0, 
-  0  
-);
-const now = new Date();
-if (localDate < now) {
-  showNotification("Нельзя выбрать прошедшую дату");
-  return;
-}
-const timezoneOffset = localDate.getTimezoneOffset() * 60 * 1000;
+    Number(year),
+    Number(month),
+    Number(day),
+    Number(hour),
+    Number(minutes),
+    0,
+    0
+  );
 
-
-const utcDate = new Date(localDate.getTime() - timezoneOffset);
-
-const endTime = utcDate.toISOString();
-
-  
-  const data = await axios.post(DOMEN+TaskApiConfig.CREATETASK,{
-    title:title,
-    type:type,
-    status:'IN_PROGRESS',
-    endTime:endTime,
-    friendId:friendId
-  },{
-    headers:{
-      'tg-init-data':window.Telegram.WebApp.initData
-    }
-  })
- 
-
-if(data.data) {
-  router("/");  
-  return data.data
-  
-}
-
-
-    
+  const now = new Date();
+  if (localDate < now) {
+    showNotification("Нельзя выбрать прошедшую дату");
+    return;
   }
+
+  const endTime = localDate.toISOString();
+
+  const data = await axios.post(
+    DOMEN + TaskApiConfig.CREATETASK,
+    {
+      title,
+      type,
+      status: "IN_PROGRESS",
+      endTime,
+      friendId,
+    },
+    {
+      headers: {
+        "tg-init-data": window.Telegram.WebApp.initData,
+      },
+    }
+  );
+
+  if (data.data) {
+    router("/");
+    return data.data;
+  }
+}
+
   async getTasks() {
    
      const Get = await axios.get(DOMEN+TaskApiConfig.TASKS,{
