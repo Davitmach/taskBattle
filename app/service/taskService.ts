@@ -67,24 +67,17 @@ class TaskService {
   0, 
   0  
 );
-const now = new Date();
-if (localDate < now) {
-  showNotification("Нельзя выбрать прошедшую дату");
-  return;
-}
-const timezoneOffset = localDate.getTimezoneOffset() * 60 * 1000;
+const timeZone = Intl.DateTimeFormat().resolvedOptions().timeZone;
 
 
-const utcDate = new Date(localDate.getTime() - timezoneOffset);
-
-const endTime = utcDate.toISOString();
-
+const endTime = localDate.toISOString();
   
   const data = await axios.post(DOMEN+TaskApiConfig.CREATETASK,{
     title:title,
     type:type,
     status:'IN_PROGRESS',
     endTime:endTime,
+    timeZone:timeZone,
     friendId:friendId
   },{
     headers:{
