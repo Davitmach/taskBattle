@@ -357,7 +357,7 @@ friends.map((e)=> (
               color="#2D2D4F"
               img={e.icon}
               name={e.name}
-              total={e._count.tasks}
+              total={e._count.tasks+e._count.taskParticipations}
               index={3}
             />
 ))

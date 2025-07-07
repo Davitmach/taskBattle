@@ -47,7 +47,7 @@ id: string
 name: string
 status:string
 userFriendId: string
-_count: {tasks: number}
+_count: {tasks: number,taskParticipations:number}
 
 }[],
 setFriends:(friends:any[])=> void
