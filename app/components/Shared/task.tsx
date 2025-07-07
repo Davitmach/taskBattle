@@ -22,7 +22,10 @@ const { showNotification} = useNotification();
 const status = searchParams.get('status');
 const taskId = searchParams.get('taskId');
   const [isOpen, setIsOpen] = useState(false);
-  const [friends, setFriends] = useState<{id:string, name: string; icon: string; total: number }[]>([]);
+  const [friends, setFriends] = useState<{id:string, name: string; icon: string; _count:{
+    task:number,
+     taskParticipations:number
+  } }[]>([]);
 
   useEffect(() => {
     setIsOpen(!!modal);
@@ -67,7 +70,7 @@ const taskId = searchParams.get('taskId');
             <div className="mt-4 mb-[10px]">
               <ul className="mt-1 space-y-[8px] max-h-[140px] overflow-y-auto scrollbar-hide">
                 {friends.map((friend, index) => (
-                  <UserInfo color='#1E1E2F' id={friend.id}  key={index} index={index} img={friend.icon} name={friend.name} total={friend.total}/>
+                  <UserInfo color='#1E1E2F' id={friend.id}  key={index} index={index} img={friend.icon} name={friend.name} total={friend._count.task+friend._count.taskParticipations}/>
                 
                 ))}
               </ul>
