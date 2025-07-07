@@ -72,6 +72,7 @@ const taskId = searchParams.get('taskId');
                 {friends.map((friend, index) => {
                   const total = (Number(friend._count.task) + Number(friend._count.taskParticipations))
                   console.log(total);
+                  console.log(friend._count);
                   
                   return(
                   <UserInfo color='#1E1E2F' id={friend.id}  key={index} index={index} img={friend.icon} name={friend.name} total={total}/>
