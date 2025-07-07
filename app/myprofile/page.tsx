@@ -362,8 +362,7 @@ friends.map((e)=> (
             />
 ))
             }
-            
-      
+          
           </ul>
         </InfoBlock>
         <InfoBlock title="Статистика">
