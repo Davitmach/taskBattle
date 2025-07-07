@@ -56,6 +56,7 @@ type UserData = {
   name: string;
   taskCounter: any;
   rewards: any[];
+  online:boolean,
   tasks:{
      endTime: string,
                 participants: any[],
@@ -100,6 +101,7 @@ export default function Page() {
     rewards: [],
     friends: [],
     friend: false,
+     online:false,
     tasks:[{
         endTime:"",
         participants:[],
@@ -107,7 +109,8 @@ export default function Page() {
         timeout:'',
         title:'',
         type:''
-    }]
+    }],
+   
   });
   const [date, setDate] = useState<string>();
   const [info, setInfo] = useState({
@@ -287,6 +290,7 @@ if(isLoading) {
           </svg>
         </Button>
         <AnyUserInfo
+        online={data.online}
           userId={data.id}
           img={data.icon}
           date={date as string}

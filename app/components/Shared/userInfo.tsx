@@ -41,13 +41,14 @@ export const AnyUserInfo = (props: IAnyUserInfo) => {
         }`}
       >
         <div className="flex gap-[8px]">
-          <div>
+          <div className="relative">
             <img
               src={props.img}
               width={44}
               height={44}
               className="rounded-[6px]"
             />
+            {props.online==true ? <div className="absolute bottom-[-3px] right-[-3px] w-[10px] h-[10px] rounded-[50px] bg-[00C896]"></div>:<div className="absolute bottom-[-3px] right-[-3px] w-[10px] h-[10px] rounded-[50px] bg-[666666]"></div>}
           </div>
           <div>
             <h1 className="text-[1em] text-[#D9D9D9] font-[400]">

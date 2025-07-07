@@ -18,7 +18,7 @@ isSelectFriend?:boolean
 }
 export interface IAnyUserInfo {
     img:string;
-    
+    online:boolean
   userId:string
     name:string;
   date:string;
