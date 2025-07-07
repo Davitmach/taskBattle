@@ -20,7 +20,7 @@ export const Welcome = () => {
     queryKey: ['userProfile'],
     queryFn: () => userService.Welcome(setImg,setName,setCreatedAt,setTasks),
     enabled: LoadedState,
-    refetchInterval: 60000,
+    refetchInterval: 5000,
   });
 
   // Обработка успешного запроса профиля
