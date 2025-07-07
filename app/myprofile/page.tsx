@@ -362,6 +362,7 @@ friends.map((e)=> (
             />
 ))
             }
+            
       
           </ul>
         </InfoBlock>
