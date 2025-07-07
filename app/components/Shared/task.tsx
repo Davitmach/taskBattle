@@ -23,7 +23,7 @@ const status = searchParams.get('status');
 const taskId = searchParams.get('taskId');
   const [isOpen, setIsOpen] = useState(false);
   const [friends, setFriends] = useState<{id:string, name: string; icon: string; _count:{
-    task:number,
+    tasks:number,
      taskParticipations:number
   } }[]>([]);
 
@@ -74,7 +74,7 @@ const taskId = searchParams.get('taskId');
                 const total = (friend._count?.task || 0) + (friend._count?.taskParticipations || 0);
 
                   console.log(total);
-                  console.log(friend._count.task,friend._count.taskParticipations);
+                  console.log(friend._count.tasks,friend._count.taskParticipations);
                   
                   return(
                   <UserInfo color='#1E1E2F' id={friend.id}  key={index} index={index} img={friend.icon} name={friend.name} total={total}/>
