@@ -69,10 +69,14 @@ const taskId = searchParams.get('taskId');
           {friends.length > 0 && (
             <div className="mt-4 mb-[10px]">
               <ul className="mt-1 space-y-[8px] max-h-[140px] overflow-y-auto scrollbar-hide">
-                {friends.map((friend, index) => (
-                  <UserInfo color='#1E1E2F' id={friend.id}  key={index} index={index} img={friend.icon} name={friend.name} total={friend._count.task+friend._count.taskParticipations}/>
-                
-                ))}
+                {friends.map((friend, index) => {
+                  const total = (Number(friend._count.task) + Number(friend._count.taskParticipations))
+                  console.log(total);
+                  
+                  return(
+                  <UserInfo color='#1E1E2F' id={friend.id}  key={index} index={index} img={friend.icon} name={friend.name} total={total}/>
+                  )
+                })}
               </ul>
             </div>
           )}
