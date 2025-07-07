@@ -70,7 +70,8 @@ const taskId = searchParams.get('taskId');
             <div className="mt-4 mb-[10px]">
               <ul className="mt-1 space-y-[8px] max-h-[140px] overflow-y-auto scrollbar-hide">
                 {friends.map((friend, index) => {
-                  const total = (Number(friend._count.task) + Number(friend._count.taskParticipations))
+                const total = (friend._count?.task || 0) + (friend._count?.taskParticipations || 0);
+
                   console.log(total);
                   console.log(friend._count);
                   
