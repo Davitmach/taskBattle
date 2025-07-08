@@ -242,7 +242,7 @@ async createTask(
       const responseData = error.response.data;
 
       if (status === 400 && responseData.status === 'Not all participants are ready') {
-        showNotification(responseData.status);
+        showNotification('Пока не все участники готовы!');
         return null;
       }
 
