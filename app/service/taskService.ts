@@ -216,21 +216,45 @@ async createTask(
     localStorage.setItem('TASKS',JSON.stringify(res?.data));
     return res?.data;
   }
-  async acceptTask(id:string,router: ReturnType<typeof useCustomRouter>,showNotification:(message: string) => void,query:QueryClient) {
-    const data = await axios.get(DOMEN+TaskApiConfig.COMPLETETASK+id,{
-      headers:{
-        'tg-init-data':window.Telegram.WebApp.initData
+ async acceptTask(
+  id: string,
+  router: ReturnType<typeof useCustomRouter>,
+  showNotification: (message: string) => void,
+  query: QueryClient
+) {
+  try {
+    const { data } = await axios.get(DOMEN + TaskApiConfig.COMPLETETASK + id, {
+      headers: {
+        'tg-init-data': window.Telegram.WebApp.initData,
+      },
+    });
+
+    await query.invalidateQueries({ queryKey: ['offlineTasks'] });
+    await query.invalidateQueries({ queryKey: ['onlineTasks'] });
+    showNotification('Вы успешно выполнили задание!!');
+    router('/');
+
+    return data;
+  } catch (error: any) {
+    // Проверяем есть ли ответ с ошибкой и статус 400
+    if (axios.isAxiosError(error) && error.response) {
+      const status = error.response.status;
+      const responseData = error.response.data;
+
+      if (status === 400 && responseData.status === 'Not all participants are ready') {
+        showNotification(responseData.status);
+        return null;
       }
-    })
-    if(data) {
-      await query.invalidateQueries({ queryKey: ['offlineTasks'] });
-       await query.invalidateQueries({ queryKey: ['onlineTasks'] });
-      showNotification('Вы успешно выполнили задание!!')
-      router('/')
-      
-      return data.data;
+
+      // Можно обработать и другие ошибки, например:
+      showNotification(responseData.status || 'Произошла ошибка');
+    } else {
+      showNotification('Ошибка соединения с сервером');
     }
+    return null;
   }
+}
+
   async cancelTask(id:string,router: ReturnType<typeof useCustomRouter>,showNotification:(message: string) => void,query:QueryClient) {
     const data = await axios.get(DOMEN+TaskApiConfig.CANCELTASK+id,{
       headers:{
