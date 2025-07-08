@@ -57,7 +57,13 @@ const taskId = searchParams.get('taskId');
   // if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-[#1E1E2FBF]">
+    <div 
+      style={{
+        pointerEvents: isOpen ? 'auto' : 'none',
+        opacity: isOpen ? 1 : 0,
+        visibility: isOpen ? 'visible' : 'hidden',
+      }}
+    className="fixed inset-0 z-50 flex items-center justify-center bg-[#1E1E2FBF]">
       <div className="modal_page bg-[#2D2D4F] py-[19px] px-[15px] rounded-[16px] w-full mx-[10px] max-w-[400px] relative flex flex-col justify-between">
         <svg className='absolute right-[15px] top-[15px] cursor-pointer' onClick={closeModal} width="19" height="19" viewBox="0 0 19 19" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path d="M2 2L17 17M17 2L2 17" stroke="white" strokeWidth="3"/>
