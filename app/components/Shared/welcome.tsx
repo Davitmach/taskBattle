@@ -23,6 +23,7 @@ export const Welcome = () => {
     refetchInterval: 5000,
   });
 
+  
   // Обработка успешного запроса профиля
   useEffect(() => {
     if(profile?.status == 'blocked') {
