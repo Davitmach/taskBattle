@@ -123,9 +123,9 @@ useEffect(() => {
             <path d="M10 10L40 40M40 10L10 40" stroke="white" strokeWidth="6"/>
           </svg>
         </div>}
-        {/* {mytask==false &&
-        // <Button>Ready</Button>
-        }  */}
+        {mytask==false &&
+       <button className='w-[139px] h-[50px] rounded-[20px] bg-[#FF4D6D] text-[white] text-[20px]' >Ready</button>
+        } 
        
       </div>
     </div>
