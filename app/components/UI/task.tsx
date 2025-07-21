@@ -93,7 +93,7 @@ export const TaskWithFunc = (props:ITaskWithFuncProps) => {
   const [active,setActive] = useState<boolean>(true);
 
 const openModal = (task:any) => {
-  if(active) {
+  if (active) {
     console.log('openModal task:', task);
     const queryParams = new URLSearchParams({
       modal: 'dynamic',
@@ -104,13 +104,14 @@ const openModal = (task:any) => {
       status: task.status,
       taskId: task.taskId,
       myTask: String(task.myTask),
-      reqReady: String(task.requiredReadyCount ?? ''),
-      totalReady: String(task.readyCount ?? ''),
+      reqReady: String(task.reqReady ?? ''),
+      totalReady: String(task.totalReady ?? ''),
     }).toString();
 
     push(`?${queryParams}`);
   }
 };
+
 
   
   const ref = useRef<HTMLDivElement>(null);
