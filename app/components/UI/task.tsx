@@ -40,8 +40,8 @@ export const Task = (props:ITaskProps)=> {
       status:task.status,
       taskId:task.taskId,
        myTask: task.taskParticipantId ? 'false' : 'true',
-       reqReady:task?.requiredReadyCount,
-       totalReady:task?.readyCount
+       reqReady:String(task?.requiredReadyCount),
+       totalReady:String(task?.readyCount)
     }).toString();
   
   push(`?${queryParams}`);

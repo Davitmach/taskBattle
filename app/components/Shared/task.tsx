@@ -27,6 +27,8 @@ const reqReady = searchParams.get('reqReady');
 const totalReady = searchParams.get('totalReady');
   const [isOpen, setIsOpen] = useState(false);
   const [mytask,setMyTask] = useState(false);
+  const [req,setReq]=useState(0);
+  const [tot,setTot] = useState(0);
   const [friends, setFriends] = useState<{id:string, name: string; icon: string; _count:{
     tasks:number,
      taskParticipations:number
@@ -54,8 +56,14 @@ else {
 setMyTask(false)
 }
 } 
+const req = Number(reqReady);
+const tot = Number(totalReady);
 
-  }, [modal, friendsRaw,myTask]);
+if (!isNaN(req) && !isNaN(tot)) {
+  setReq(req);
+  setTot(tot);
+}
+  }, [modal, friendsRaw,myTask,reqReady,totalReady]);
 
   const closeModal = () => {
     const newParams = new URLSearchParams(searchParams.toString());
@@ -110,7 +118,7 @@ setMyTask(false)
           <span className='text-white text-[1em] font-[400] w-full flex justify-center'>Дата окончания: {date?.split('T')[0]}</span>
         </div>
 
-{<div className='w-full flex items-center justify-center text-[FFFFFF] font-[400] text-[20px]'>{totalReady}/{reqReady}</div> }
+{totalReady&& reqReady&& <div className='w-full flex items-center justify-center text-[#FFFFFF] font-[400] text-[20px]'>{totalReady}/{reqReady}</div> }
 {mytask==true && status =='process' && <div className='flex w-full justify-center gap-[13px] mt-[20px]'>
           <svg className='cursor-pointer' onClick={()=> taskService.acceptTask(taskId as string,router,showNotification,Query)} width="50" height="50" viewBox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg">
             <rect width="50" height="50" rx="8" fill="#A2E9BA"/>
