@@ -92,26 +92,26 @@ export const TaskWithFunc = (props:ITaskWithFuncProps) => {
   const {push} = useRouter();
   const [active,setActive] = useState<boolean>(true);
 
-  const openModal = (task:any) => {
-    if(active) {
-    console.log(task,'cers tapec');
-    
+const openModal = (task:any) => {
+  if(active) {
+    console.log('openModal task:', task);
     const queryParams = new URLSearchParams({
       modal: 'dynamic',
       title: task.title,
       type: task.type,
       date: task.date,
-      friends:encodeURIComponent(JSON.stringify(task.friends)),
-      status:task.status ,
-           taskId:task.taskId,
-           myTask: String(task?.myTask),
-       reqReady:String(task?.requiredReadyCount),
-       totalReady:String(task?.readyCount)
+      friends: encodeURIComponent(JSON.stringify(task.friends)),
+      status: task.status,
+      taskId: task.taskId,
+      myTask: String(task.myTask),
+      reqReady: String(task.requiredReadyCount ?? ''),
+      totalReady: String(task.readyCount ?? ''),
     }).toString();
-  
-  push(`?${queryParams}`);
-    }
-  };
+
+    push(`?${queryParams}`);
+  }
+};
+
   
   const ref = useRef<HTMLDivElement>(null);
   const [widthPercent, setWidthPercent] = useState<number>(100);

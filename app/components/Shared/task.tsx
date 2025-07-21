@@ -34,41 +34,31 @@ const totalReady = searchParams.get('totalReady');
      taskParticipations:number
   } }[]>([]);
 
-  useEffect(() => {
-    setTimeout(() => {
-    console.log(totalReady,reqReady,myTask,'qaqaqsqswsw');  
-    }, 1000);
-    
-    
-    setIsOpen(!!modal);
+useEffect(() => {
+  setIsOpen(!!modal);
+  console.log('Modal params:', { myTask, reqReady, totalReady, friendsRaw });
 
-    if (friendsRaw) {
-      try {
-        const parsed = JSON.parse(decodeURIComponent(friendsRaw));
-        if (Array.isArray(parsed)) {
-          setFriends(parsed);
-        }
-      } catch (err) {
-        console.error('Ошибка парсинга friends:', err);
+  if (friendsRaw) {
+    try {
+      const parsed = JSON.parse(decodeURIComponent(friendsRaw));
+      if (Array.isArray(parsed)) {
+        setFriends(parsed);
       }
+    } catch (err) {
+      console.error('Ошибка парсинга friends:', err);
     }
-   
-   if (myTask !== null) {
-if(myTask==='true') {
-  setMyTask(true);
-}
-else {
-setMyTask(false)
-}
-} 
-const req = Number(reqReady);
-const tot = Number(totalReady);
+  }
 
-if (!isNaN(req) && !isNaN(tot)) {
-  setReq(req);
-  setTot(tot);
-}
-  }, [modal, friendsRaw,myTask,reqReady,totalReady]);
+  if (myTask !== null) {
+    setMyTask(myTask === 'true');
+  }
+
+  const req = Number(reqReady);
+  const tot = Number(totalReady);
+
+  if (!isNaN(req)) setReq(req);
+  if (!isNaN(tot)) setTot(tot);
+}, [modal, friendsRaw, myTask, reqReady, totalReady]);
 
   const closeModal = () => {
     const newParams = new URLSearchParams(searchParams.toString());
