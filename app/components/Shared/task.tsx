@@ -109,6 +109,7 @@ setMyTask(false)
           )}
           <span className='text-white text-[1em] font-[400] w-full flex justify-center'>Дата окончания: {date?.split('T')[0]}</span>
         </div>
+        
 {totalReady && reqReady && <div className='w-full flex items-center justify-center text-[FFFFFF] font-[400] text-[20px]'>{totalReady}/{reqReady}</div> }
 {mytask==true && status =='process' && <div className='flex w-full justify-center gap-[13px] mt-[20px]'>
           <svg className='cursor-pointer' onClick={()=> taskService.acceptTask(taskId as string,router,showNotification,Query)} width="50" height="50" viewBox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg">
