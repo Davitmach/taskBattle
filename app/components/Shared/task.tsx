@@ -124,7 +124,7 @@ useEffect(() => {
           </svg>
         </div>}
         {mytask==false &&
-       <button className='w-[139px] h-[50px] rounded-[20px] bg-[#FF4D6D] text-[white] text-[20px]' >Ready</button>
+       <div className='w-full flex items-center justify-center'><button className='w-[139px] h-[50px] rounded-[20px] bg-[#FF4D6D] text-[white] text-[20px]' >Ready</button></div>
         } 
        
       </div>

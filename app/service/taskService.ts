@@ -245,6 +245,7 @@ async createTask(
         showNotification('Пока не все участники готовы!');
         return null;
       }
+      
 
       // Можно обработать и другие ошибки, например:
       showNotification(responseData.status || 'Произошла ошибка');
