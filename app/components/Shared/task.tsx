@@ -35,6 +35,8 @@ const totalReady = searchParams.get('totalReady');
   } }[]>([]);
 
   useEffect(() => {
+    console.log(totalReady,reqReady,myTask,'qaqaqsqswsw');
+    
     setIsOpen(!!modal);
 
     if (friendsRaw) {
