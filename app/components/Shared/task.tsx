@@ -35,7 +35,10 @@ const totalReady = searchParams.get('totalReady');
   } }[]>([]);
 
   useEffect(() => {
-    console.log(totalReady,reqReady,myTask,'qaqaqsqswsw');
+    setTimeout(() => {
+    console.log(totalReady,reqReady,myTask,'qaqaqsqswsw');  
+    }, 1000);
+    
     
     setIsOpen(!!modal);
 
