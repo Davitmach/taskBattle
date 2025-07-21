@@ -12,6 +12,9 @@ interface IFriends {
         friends?: IFriends[]
         phrase?:string,
         id:string
+        taskParticipantId?:string
+        requiredReadyCount?:number
+        readyCount?:number
     }
     export interface ITaskProps {
         title: string

@@ -104,7 +104,7 @@ export const TaskWithFunc = (props:ITaskWithFuncProps) => {
       friends:encodeURIComponent(JSON.stringify(task.friends)),
       status:task.status ,
            taskId:task.taskId,
-           myTask: task.taskParticipantId ? 'false' : 'true',
+           myTask: task.myTask,
        reqReady:task.requiredReadyCount,
        totalReady:task.readyCount
     }).toString();
@@ -285,7 +285,7 @@ function decline(number: number, words: [string, string, string]) {
   return (
     <div  className='flex items-center justify-between gap-[10px]'>
       <div
-      onClick={()=> openModal({date:props.date,title:props.title,type:props.type,friends:props.friends,status:'process',taskId:props.id})}
+      onClick={()=> openModal({date:props.date,title:props.title,type:props.type,friends:props.friends,status:'process',taskId:props.id,myTask:props.taskParticipantId?false:true,reqReady:props.requiredReadyCount,totalReady:props.readyCount})}
         ref={ref}
         style={{
           width: `${widthPercent}%`,
