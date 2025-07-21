@@ -7,6 +7,7 @@ import { taskService } from '@/app/service/taskService';
 import { useNotification } from '@/app/provider/notification';
 import { useCustomRouter } from '@/app/hooks/Router';
 import { useQueryClient } from '@tanstack/react-query';
+import { Button } from '../UI/button';
 
 function ModalContent() {
   const searchParams = useSearchParams();
@@ -22,6 +23,8 @@ const { showNotification} = useNotification();
 const status = searchParams.get('status');
 const taskId = searchParams.get('taskId');
 const myTask = searchParams.get('myTask');
+const reqReady = searchParams.get('reqReady');
+const totalReady = searchParams.get('totalReady');
   const [isOpen, setIsOpen] = useState(false);
   const [mytask,setMyTask] = useState(false);
   const [friends, setFriends] = useState<{id:string, name: string; icon: string; _count:{
@@ -64,6 +67,8 @@ setMyTask(false)
     newParams.delete('status');
     newParams.delete('taskId');
     newParams.delete('myTask');
+    newParams.delete('reqReady');
+    newParams.delete('totalReady')
     rout.back()
   };
 
@@ -104,7 +109,7 @@ setMyTask(false)
           )}
           <span className='text-white text-[1em] font-[400] w-full flex justify-center'>Дата окончания: {date?.split('T')[0]}</span>
         </div>
-
+{totalReady && reqReady && <div className='w-full flex items-center justify-center text-[FFFFFF] font-[400] text-[20px]'>{totalReady}/{reqReady}</div> }
 {mytask==true && status =='process' && <div className='flex w-full justify-center gap-[13px] mt-[20px]'>
           <svg className='cursor-pointer' onClick={()=> taskService.acceptTask(taskId as string,router,showNotification,Query)} width="50" height="50" viewBox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg">
             <rect width="50" height="50" rx="8" fill="#A2E9BA"/>
@@ -115,6 +120,9 @@ setMyTask(false)
             <path d="M10 10L40 40M40 10L10 40" stroke="white" strokeWidth="6"/>
           </svg>
         </div>}
+        {/* {mytask==false &&
+        // <Button>Ready</Button>
+        }  */}
        
       </div>
     </div>
