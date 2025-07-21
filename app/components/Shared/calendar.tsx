@@ -51,6 +51,7 @@ export const Calendar = (props:ICalendar)=> {
 const calendarCells = Array.from({ length: daysInMonth }, (_, i) => i + 1);
 
 
+
     return(
         <div className="flex flex-col items-center fadeIn bg-[#1E1E2F] rounded-[16px] py-[12px] px-[18px] w-full">
        <div className="Date flex w-full justify-between items-start">
