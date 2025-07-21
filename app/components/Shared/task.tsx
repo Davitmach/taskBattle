@@ -21,7 +21,9 @@ const { showNotification} = useNotification();
   const friendsRaw = searchParams.get('friends');
 const status = searchParams.get('status');
 const taskId = searchParams.get('taskId');
+const myTask = searchParams.get('myTask');
   const [isOpen, setIsOpen] = useState(false);
+  const [mytask,setMyTask] = useState(false);
   const [friends, setFriends] = useState<{id:string, name: string; icon: string; _count:{
     tasks:number,
      taskParticipations:number
@@ -40,7 +42,17 @@ const taskId = searchParams.get('taskId');
         console.error('Ошибка парсинга friends:', err);
       }
     }
-  }, [modal, friendsRaw]);
+   
+   if (myTask !== null) {
+if(myTask==='true') {
+  setMyTask(true);
+}
+else {
+setMyTask(false)
+}
+} 
+
+  }, [modal, friendsRaw,myTask]);
 
   const closeModal = () => {
     const newParams = new URLSearchParams(searchParams.toString());
@@ -51,6 +63,7 @@ const taskId = searchParams.get('taskId');
     newParams.delete('date');
     newParams.delete('status');
     newParams.delete('taskId');
+    newParams.delete('myTask');
     rout.back()
   };
 
@@ -91,7 +104,8 @@ const taskId = searchParams.get('taskId');
           )}
           <span className='text-white text-[1em] font-[400] w-full flex justify-center'>Дата окончания: {date?.split('T')[0]}</span>
         </div>
-{status =='process' && <div className='flex w-full justify-center gap-[13px] mt-[20px]'>
+
+{mytask==true && status =='process' && <div className='flex w-full justify-center gap-[13px] mt-[20px]'>
           <svg className='cursor-pointer' onClick={()=> taskService.acceptTask(taskId as string,router,showNotification,Query)} width="50" height="50" viewBox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg">
             <rect width="50" height="50" rx="8" fill="#A2E9BA"/>
             <path d="M10 25L20 35L40 15" stroke="white" strokeWidth="6"/>

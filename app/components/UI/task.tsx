@@ -38,7 +38,8 @@ export const Task = (props:ITaskProps)=> {
       date: task.date,
       friends:encodeURIComponent(JSON.stringify(task.friends)),
       status:task.status,
-      taskId:task.taskId
+      taskId:task.taskId,
+       myTask: task.taskParticipantId ? 'false' : 'true'
     }).toString();
   
   push(`?${queryParams}`);
