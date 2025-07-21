@@ -42,6 +42,7 @@ export const Calendar = (props:ICalendar)=> {
       props.setDay('')
     }
   };
+  
   const daysInMonth = new Date(props.year, props.month + 1, 0).getDate();
   const firstDay = new Date(props.year, props.month, 1).getDay();
   const offset = (firstDay === 0) ? 6 : firstDay - 1;
