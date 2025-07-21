@@ -107,8 +107,7 @@ if (!isNaN(req) && !isNaN(tot)) {
                   
                 const total = (friend._count?.tasks || 0) + (friend._count?.taskParticipations || 0);
 
-                  console.log(total);
-                  console.log(friend._count.tasks,friend._count.taskParticipations);
+                 
                   
                   return(
                   <UserInfo color='#1E1E2F' id={friend.id}  key={index} index={index} img={friend.icon} name={friend.name} total={total}/>
