@@ -39,9 +39,7 @@ export const Task = (props:ITaskProps)=> {
       friends:encodeURIComponent(JSON.stringify(task.friends)),
       status:task.status,
       taskId:task.taskId,
-       myTask: task.taskParticipantId ? 'false' : 'true',
-       reqReady:String(task.requiredReadyCount),
-       totalReady:String(task.readyCount)
+      
     }).toString();
   
   push(`?${queryParams}`);
@@ -96,6 +94,7 @@ export const TaskWithFunc = (props:ITaskWithFuncProps) => {
 
   const openModal = (task:any) => {
     if(active) {
+    console.log(task,'cers tapec');
     
     const queryParams = new URLSearchParams({
       modal: 'dynamic',
@@ -106,8 +105,8 @@ export const TaskWithFunc = (props:ITaskWithFuncProps) => {
       status:task.status ,
            taskId:task.taskId,
            myTask: task.taskParticipantId ? 'false' : 'true',
-       reqReady:String(task?.requiredReadyCount),
-       totalReady:String(task?.readyCount)
+       reqReady:task.requiredReadyCount,
+       totalReady:task.readyCount
     }).toString();
   
   push(`?${queryParams}`);
