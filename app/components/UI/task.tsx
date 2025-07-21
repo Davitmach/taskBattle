@@ -104,9 +104,9 @@ export const TaskWithFunc = (props:ITaskWithFuncProps) => {
       friends:encodeURIComponent(JSON.stringify(task.friends)),
       status:task.status ,
            taskId:task.taskId,
-           myTask: task?.myTask,
-       reqReady:task?.requiredReadyCount,
-       totalReady:task?.readyCount
+           myTask: String(task?.myTask),
+       reqReady:String(task?.requiredReadyCount),
+       totalReady:String(task?.readyCount)
     }).toString();
   
   push(`?${queryParams}`);
