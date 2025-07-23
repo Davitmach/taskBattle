@@ -31,6 +31,10 @@ export default function Home() {
     queryKey: ["onlineTasks"],
     queryFn: () => taskService.getTasks(),
     enabled: LoadedState,
+        refetchInterval: 5000,
+    refetchIntervalInBackground: true,
+    staleTime: 3000,
+    
   });
 
   const tasksByStatus = useMemo(() => {
