@@ -106,7 +106,8 @@ const openModal = (task:any) => {
       myTask: String(task.myTask),
       reqReady: String(task.reqReady ?? ''),
       totalReady: String(task.totalReady ?? ''),
-      ready:String(task.ready)
+      ready:String(task.ready),
+      taskParticipantId:task.taskParticipantId
     }).toString();
 
     push(`?${queryParams}`);
@@ -287,7 +288,7 @@ function decline(number: number, words: [string, string, string]) {
   return (
     <div  className='flex items-center justify-between gap-[10px]'>
       <div
-      onClick={()=> openModal({date:props.date,title:props.title,type:props.type,friends:props.friends,status:'process',taskId:props.id,myTask:props.taskParticipantId?false:true,reqReady:props.requiredReadyCount,totalReady:props.readyCount,ready:props?.ready})}
+      onClick={()=> openModal({date:props.date,title:props.title,type:props.type,friends:props.friends,status:'process',taskId:props.id,myTask:props.taskParticipantId?false:true,reqReady:props.requiredReadyCount,totalReady:props.readyCount,ready:props?.ready,taskParticipantId:props?.taskParticipantId})}
         ref={ref}
         style={{
           width: `${widthPercent}%`,
