@@ -25,6 +25,7 @@ const taskId = searchParams.get('taskId');
 const myTask = searchParams.get('myTask');
 const reqReady = searchParams.get('reqReady');
 const totalReady = searchParams.get('totalReady');
+const ready = searchParams.get('ready');
   const [isOpen, setIsOpen] = useState(false);
   const [mytask,setMyTask] = useState(true);
   const [req,setReq]=useState(0);
@@ -72,6 +73,7 @@ useEffect(() => {
     newParams.delete('myTask');
     newParams.delete('reqReady');
     newParams.delete('totalReady')
+    newParams.delete('reday');
     rout.back()
   };
 
@@ -124,7 +126,7 @@ useEffect(() => {
           </svg>
         </div>}
         {mytask==false &&
-       <div className='w-full flex items-center justify-center'><button className='w-[139px] h-[50px] rounded-[20px] bg-[#FF4D6D] text-[white] text-[20px]' >Ready</button></div>
+       <div className='w-full flex items-center justify-center'><button  disabled={ready=='false'?false:true} className='w-[139px] h-[50px] rounded-[20px] bg-[#FF4D6D] text-[white] text-[20px]' >Ready</button></div>
         } 
        
       </div>

@@ -3,6 +3,7 @@ export const TaskApiConfig = {
    TASKS:"/api/user/tasks",
    COMPLETETASK:"/api/user/task/complete/",
    CANCELTASK:"/api/user/task/cancel/",
+   READY:"/api/task/ready/"
 }
 
 export const UserApiConfig = {

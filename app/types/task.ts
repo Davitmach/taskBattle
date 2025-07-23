@@ -15,6 +15,7 @@ interface IFriends {
         taskParticipantId?:string
         requiredReadyCount?:number
         readyCount?:number
+        ready?:boolean
     }
     export interface ITaskProps {
         title: string

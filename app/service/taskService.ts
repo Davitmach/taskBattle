@@ -285,6 +285,23 @@ async createTask(
     
   }
   }
+  async readyTask(router: ReturnType<typeof useCustomRouter>,showNotification: (message: string) => void,id:string) {
+      try {
+    const { data } = await axios.get(DOMEN + TaskApiConfig.READY + id, {
+      headers: {
+        'tg-init-data': window.Telegram.WebApp.initData,
+      },
+    });
+
+    showNotification('Вы готовы!!');
+    router('/');
+
+    return data;
+  } catch (error: any) {
+  console.error(error);
+  
+  }
+  }
 
 }
 
