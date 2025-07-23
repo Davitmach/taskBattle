@@ -285,7 +285,7 @@ async createTask(
     
   }
   }
-  async readyTask(router: ReturnType<typeof useCustomRouter>,showNotification: (message: string) => void,id:string) {
+  async readyTask(router: ReturnType<typeof useCustomRouter>,showNotification: (message: string) => void,id:string,query: QueryClient) {
       try {
     const { data } = await axios.get(DOMEN + TaskApiConfig.READY + id, {
       headers: {
@@ -293,6 +293,9 @@ async createTask(
       },
     });
 
+await query.invalidateQueries({ queryKey: ['userProfile'] });
+    await query.invalidateQueries({ queryKey: ['offlineTasks'] });
+    await query.invalidateQueries({ queryKey: ['onlineTasks'] });
     showNotification('Вы готовы!!');
     router('/');
 

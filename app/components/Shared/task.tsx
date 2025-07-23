@@ -205,7 +205,7 @@ function ModalContent() {
         {mytask == false && taskParticipantId && (
           <div className="w-full flex items-center justify-center">
             <button
-              onClick={() => taskService.readyTask(router, showNotification,taskParticipantId)}
+              onClick={() => taskService.readyTask(router, showNotification,taskParticipantId,Query)}
               disabled={ready == "false" ? false : true}
               className={`w-[139px] h-[50px] rounded-[20px] ${
                 ready == "false" ? "bg-[#FF4D6D]" : "bg-[#ff4d6d87]"

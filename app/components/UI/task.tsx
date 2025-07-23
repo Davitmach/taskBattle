@@ -220,9 +220,7 @@ const openModal = (task:any) => {
   }, [widthPercent])
 
 useEffect(()=> {
-  console.log('====================================');
-  console.log(props);
-  console.log('====================================');
+
 if(props.timeout) {
   setTime(props.timeout);
 }
