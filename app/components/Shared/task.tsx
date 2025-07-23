@@ -45,7 +45,7 @@ function ModalContent() {
 
   useEffect(() => {
     setIsOpen(!!modal);
-    console.log("Modal params:", { myTask, reqReady, totalReady, friendsRaw });
+    console.log("Modal params:", {ready, myTask, reqReady, totalReady, friendsRaw });
 
     if (friendsRaw) {
       try {
