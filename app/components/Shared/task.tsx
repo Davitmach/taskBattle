@@ -126,7 +126,7 @@ useEffect(() => {
           </svg>
         </div>}
         {mytask==false &&
-       <div className='w-full flex items-center justify-center'><button  disabled={ready=='false'?false:true} className='w-[139px] h-[50px] rounded-[20px] bg-[#FF4D6D] text-[white] text-[20px]' >Ready</button></div>
+       <div className='w-full flex items-center justify-center'><button  disabled={ready=='false'?false:true} className={`w-[139px] h-[50px] rounded-[20px] bg-[#FF4D6D] text-[white] text-[20px] ${ready=='false'?'cursor-pointer':"cursor-not-allowed"}`} >Ready</button></div>
         } 
        
       </div>
