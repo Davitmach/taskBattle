@@ -106,7 +106,7 @@ const openModal = (task:any) => {
       myTask: String(task.myTask),
       reqReady: String(task.reqReady ?? ''),
       totalReady: String(task.totalReady ?? ''),
-      ready:String(task.ready),
+      ready:String(task.ready?? ''),
       taskParticipantId:task.taskParticipantId
     }).toString();
 
@@ -220,6 +220,9 @@ const openModal = (task:any) => {
   }, [widthPercent])
 
 useEffect(()=> {
+  console.log('====================================');
+  console.log(props);
+  console.log('====================================');
 if(props.timeout) {
   setTime(props.timeout);
 }
