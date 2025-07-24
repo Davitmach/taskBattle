@@ -402,7 +402,7 @@ friends.map((e)=> (
         </InfoBlock>
 
         <InfoBlock title="Награды">
-          <ul className="flex gap-[8px] items-center">
+          <ul className="overflow-x-auto flex gap-[8px] items-center">
           {
             rewards && rewards.length>0 &&
             rewards.map((e)=> (
