@@ -146,14 +146,14 @@ function ModalContent() {
         </div>
 
         {totalReady && reqReady && (
-          <div className="w-full flex items-center justify-center text-[#FFFFFF] font-[400] text-[20px]">
+          <div className=" w-full flex items-center justify-center text-[#FFFFFF] font-[400] text-[20px]">
             {tot}/{req}
           </div>
         )}
         {mytask == true && status == "process" && (
           <div className="flex w-full justify-center gap-[13px] mt-[20px]">
             <svg
-              className="cursor-pointer"
+              className="cursor-pointer duration-[400ms] active:scale-[0.9]"
               onClick={() =>
                 taskService.acceptTask(
                   taskId as string,
@@ -172,7 +172,7 @@ function ModalContent() {
               <path d="M10 25L20 35L40 15" stroke="white" strokeWidth="6" />
             </svg>
             <svg
-              className="cursor-pointer"
+              className="cursor-pointer duration-[400ms] active:scale-[0.9]"
               onClick={() =>
                 taskService.cancelTask(
                   taskId as string,
@@ -207,7 +207,7 @@ function ModalContent() {
             <button
               onClick={() => taskService.readyTask(router, showNotification,taskParticipantId,Query)}
               disabled={ready == "false" ? false : true}
-              className={`w-[139px] h-[50px] rounded-[20px] ${
+              className={`duration-[400ms] active:scale-[0.9] w-[139px] h-[50px] rounded-[20px] ${
                 ready == "false" ? "bg-[#FF4D6D]" : "bg-[#ff4d6d87]"
               } text-[white] text-[20px] ${
                 ready == "false" ? "cursor-pointer" : "cursor-not-allowed"
