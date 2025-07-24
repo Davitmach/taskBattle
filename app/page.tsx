@@ -59,7 +59,7 @@ export default function Home() {
       <Button
         type="Purple"
         onClick={handleClick}
-        className={`duration-[400ms] active:scale-[0.8] w-full py-[6px] text-[1.93em] ${LoadedState && 'anim_fadeIn'}`}
+        className={`duration-[400ms] active:scale-[0.9] w-full py-[6px] text-[1.93em] ${LoadedState && 'anim_fadeIn'}`}
         disabled={false}
         loading={false}
       >
