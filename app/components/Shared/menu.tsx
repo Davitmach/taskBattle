@@ -8,7 +8,7 @@ import { useLoadingState } from "@/app/store";
 export const Menu = () => {
   const Router = useCustomRouter();
   const Path = usePathname();
-const {LoadedState} = useLoadingState();
+const {LoadedState,setLoad} = useLoadingState();
 
   const entries = Object.entries(PageConfig) as [keyof typeof PageConfig, (typeof PageConfig)[keyof typeof PageConfig]][];
 
@@ -30,7 +30,9 @@ if(Path.includes('newtask')) return null
             active === key ? 'Active' : 'Disable'
           } font-[400] text-[1.43em] cursor-pointer duration-[400ms] active:scale-[0.9]`}
           key={key}
-          onClick={() => Router(PageConfig[key])} 
+          onClick={() => {Router(PageConfig[key])
+            setLoad(true)
+          }} 
         >
           {key}
         </div>
