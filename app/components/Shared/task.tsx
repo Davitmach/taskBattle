@@ -7,7 +7,6 @@ import { taskService } from "@/app/service/taskService";
 import { useNotification } from "@/app/provider/notification";
 import { useCustomRouter } from "@/app/hooks/Router";
 import { useQueryClient } from "@tanstack/react-query";
-import { Button } from "../UI/button";
 
 function ModalContent() {
   const searchParams = useSearchParams();
@@ -15,6 +14,7 @@ function ModalContent() {
   const router = useCustomRouter();
   const Query = useQueryClient();
   const { showNotification } = useNotification();
+
   const modal = searchParams.get("modal");
   const title = searchParams.get("title");
   const type = searchParams.get("type");
@@ -27,7 +27,9 @@ function ModalContent() {
   const totalReady = searchParams.get("totalReady");
   const taskParticipantId = searchParams.get("taskParticipantId");
   const ready = searchParams.get("ready");
+
   const [isOpen, setIsOpen] = useState(false);
+  const [visible, setVisible] = useState(false);
   const [mytask, setMyTask] = useState(true);
   const [req, setReq] = useState(0);
   const [tot, setTot] = useState(0);
@@ -44,9 +46,20 @@ function ModalContent() {
   >([]);
 
   useEffect(() => {
-    setIsOpen(!!modal);
-    console.log("Modal params:", {ready, myTask, reqReady, totalReady, friendsRaw });
+    let timeout: NodeJS.Timeout;
 
+    if (modal) {
+      setIsOpen(true);
+      timeout = setTimeout(() => setVisible(true), 10); // запускаем анимацию
+    } else {
+      setVisible(false);
+      timeout = setTimeout(() => setIsOpen(false), 400); // скрываем через 400мс
+    }
+
+    return () => clearTimeout(timeout);
+  }, [modal]);
+
+  useEffect(() => {
     if (friendsRaw) {
       try {
         const parsed = JSON.parse(decodeURIComponent(friendsRaw));
@@ -67,7 +80,7 @@ function ModalContent() {
 
     if (!isNaN(req)) setReq(req);
     if (!isNaN(tot)) setTot(tot);
-  }, [modal, friendsRaw, myTask, reqReady, totalReady]);
+  }, [friendsRaw, myTask, reqReady, totalReady]);
 
   const closeModal = () => {
     const newParams = new URLSearchParams(searchParams.toString());
@@ -81,23 +94,24 @@ function ModalContent() {
     newParams.delete("myTask");
     newParams.delete("reqReady");
     newParams.delete("totalReady");
-    newParams.delete("reday");
+    newParams.delete("ready");
     newParams.delete("taskParticipantId");
     rout.back();
   };
 
-  // if (!isOpen) return null;
+  if (!isOpen) return null;
 
   return (
     <div
-      style={{
-        pointerEvents: isOpen ? "auto" : "none",
-        opacity: isOpen ? 1 : 0,
-        visibility: isOpen ? "visible" : "hidden",
-      }}
-      className="opacity-0 invisible duration-[400ms] fixed inset-0 z-50 flex items-center justify-center bg-[#1E1E2FBF]"
+      className={`fixed inset-0 z-50 flex items-center justify-center bg-[#1E1E2FBF] transition-opacity duration-400 ${
+        visible ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
+      }`}
     >
-      <div className="modal_page bg-[#2D2D4F] py-[19px] px-[15px] rounded-[16px] w-full mx-[10px] max-w-[400px] relative flex flex-col justify-between">
+      <div
+        className={`modal_page bg-[#2D2D4F] py-[19px] px-[15px] rounded-[16px] w-full mx-[10px] max-w-[400px] relative flex flex-col justify-between transform transition-all duration-400 ${
+          visible ? "opacity-100 scale-100" : "opacity-0 scale-95"
+        }`}
+      >
         <svg
           className="absolute right-[15px] top-[15px] cursor-pointer"
           onClick={closeModal}
@@ -109,6 +123,7 @@ function ModalContent() {
         >
           <path d="M2 2L17 17M17 2L2 17" stroke="white" strokeWidth="3" />
         </svg>
+
         <div>
           <h2 className="text-[#F1F1F1] text-[2em] font-[400] text-center">
             {title}
@@ -120,7 +135,7 @@ function ModalContent() {
           {friends.length > 0 && (
             <div className="mt-4 mb-[10px]">
               <ul className="mt-1 space-y-[8px] max-h-[140px] overflow-y-auto scrollbar-hide">
-                {friends.map(async (friend, index) => {
+                {friends.map((friend, index) => {
                   const total =
                     (friend._count?.tasks || 0) +
                     (friend._count?.taskParticipations || 0);
@@ -146,10 +161,11 @@ function ModalContent() {
         </div>
 
         {totalReady && reqReady && (
-          <div className=" w-full flex items-center justify-center text-[#FFFFFF] font-[400] text-[20px]">
+          <div className="w-full flex items-center justify-center text-[#FFFFFF] font-[400] text-[20px]">
             {tot}/{req}
           </div>
         )}
+
         {mytask == true && status == "process" && (
           <div className="flex w-full justify-center gap-[13px] mt-[20px]">
             <svg
@@ -172,6 +188,7 @@ function ModalContent() {
               <rect width="50" height="50" rx="8" fill="#A2E9BA" />
               <path d="M10 25L20 35L40 15" stroke="white" strokeWidth="6" />
             </svg>
+
             <svg
               className="cursor-pointer duration-[400ms] active:scale-[0.9]"
               onClick={() =>
@@ -203,15 +220,23 @@ function ModalContent() {
             </svg>
           </div>
         )}
+
         {mytask == false && taskParticipantId && (
           <div className="w-full flex items-center justify-center">
             <button
-              onClick={() => taskService.readyTask(router, showNotification,taskParticipantId,Query)}
-              disabled={ready == "false" ? false : true}
+              onClick={() =>
+                taskService.readyTask(
+                  router,
+                  showNotification,
+                  taskParticipantId,
+                  Query
+                )
+              }
+              disabled={ready !== "false"}
               className={`duration-[400ms] active:scale-[0.9] w-[139px] h-[50px] rounded-[20px] ${
-                ready == "false" ? "bg-[#FF4D6D]" : "bg-[#ff4d6d87]"
+                ready === "false" ? "bg-[#FF4D6D]" : "bg-[#ff4d6d87]"
               } text-[white] text-[20px] ${
-                ready == "false" ? "cursor-pointer" : "cursor-not-allowed"
+                ready === "false" ? "cursor-pointer" : "cursor-not-allowed"
               }`}
             >
               Ready
