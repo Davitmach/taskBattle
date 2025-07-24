@@ -14,7 +14,7 @@ import { useCustomRouter } from "@/app/hooks/Router";
 import { useNotification } from "@/app/provider/notification";
 import { userService } from "@/app/service/userService";
 import { useLoadingState } from "@/app/store";
-import { useParams, usePathname } from "next/navigation";
+import { useParams, usePathname, useRouter } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 type Task = {
   title: string;
@@ -118,9 +118,9 @@ export default function Page() {
     description: "",
     info: "",
   });
-
+const Router = useRouter();
   const back = () => {
-    router("/");
+    Router.back()
   };
   const openM = (title: string, description: string, info: string) => {
     setOpen(true);
