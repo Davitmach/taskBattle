@@ -28,7 +28,7 @@ if(Path.includes('newtask')) return null
           datatype={path}
           className={`${
             active === key ? 'Active' : 'Disable'
-          } font-[400] text-[1.43em] cursor-pointer`}
+          } font-[400] text-[1.43em] cursor-pointer duration-[400ms] active:scale-[0.9]`}
           key={key}
           onClick={() => Router(PageConfig[key])} 
         >
