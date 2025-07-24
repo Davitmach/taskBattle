@@ -56,7 +56,7 @@ export default function Page() {
               
 </ul></InfoBlock>} 
         <Calendar setDay={setActiveDay} setMonth={setMonth} setYear={setYear} year={year}  currentMonth={currentMonth} currentYear={currentYear} day={activeDay} month={month} refHour={refHour} refMin={refMin}/>
-        <Button onClick={CreateTask} loading={false} type='Purple' className="w-full py-[8px] text-[27px]">Создать задачу</Button>
+        <Button onClick={CreateTask} loading={false} type='Purple' className="duration-[400ms] active:scale-[0.9] w-full py-[8px] text-[27px]">Создать задачу</Button>
         </div>
     )
 }
