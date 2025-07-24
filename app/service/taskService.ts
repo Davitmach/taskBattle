@@ -220,7 +220,8 @@ async createTask(
   id: string,
   router: ReturnType<typeof useCustomRouter>,
   showNotification: (message: string) => void,
-  query: QueryClient
+  query: QueryClient,
+  close:()=>void
 ) {
   try {
     const { data } = await axios.get(DOMEN + TaskApiConfig.COMPLETETASK + id, {
@@ -243,6 +244,7 @@ async createTask(
 
       if (status === 400 && responseData.status === 'Not all participants are ready') {
         showNotification('Пока не все участники готовы!');
+        close()
         return null;
       }
       

@@ -159,7 +159,8 @@ function ModalContent() {
                   taskId as string,
                   router,
                   showNotification,
-                  Query
+                  Query,
+                  closeModal
                 )
               }
               width="50"
