@@ -11,7 +11,7 @@ to {
       transform: translateY(20px);
     }
   }
-.anim_fadeIn { animation: fadeIn 0.5s ease-in-out forwards; opacity: 0;transform: translateY(20px);}
+.anim_fadeIn { animation: fadeIn 0.5s ease-in-out forwards; opacity: 0;transform: translateY(20px) !important;}
 .anim_fadeOut { animation: fadeIn 0.5s ease-in-out forwards; opacity: 1;transform: translateY(0);}
 @keyframes pulseScale {
   0% {
