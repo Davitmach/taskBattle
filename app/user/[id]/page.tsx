@@ -255,7 +255,7 @@ if(isLoading) {
           type="Purple"
           className={`${
             LoadedState && "anim_fadeIn"
-          } !bg-[#1E1E2F] py-[16px] w-full mt-[70px] flex gap-[7px] text-[1.43em]`}
+          } !bg-[#1E1E2F] py-[16px] w-full mt-[70px] flex gap-[7px] text-[1.43em] duration-[400ms] active:scale-[0.9]`}
           disabled={false}
           loading={false}
         >
@@ -412,7 +412,7 @@ if(isLoading) {
               ></textarea>
               <svg
                 onClick={SendReport}
-                className="absolute bottom-[15px] right-[15px] cursor-pointer"
+                className="absolute bottom-[15px] right-[15px] cursor-pointer duration-[400ms] active:scale-[0.9]"
                 width="22"
                 height="22"
                 viewBox="0 0 22 22"
