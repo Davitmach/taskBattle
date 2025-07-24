@@ -36,7 +36,7 @@ const Delete = async (e: React.MouseEvent<HTMLOrSVGElement>) => {
   }
 };
     return(
-<li onClick={handleClick} style={{background:props.color}} key={props.index} className={`flex items-center gap-2  rounded-[13px] p-[9px] justify-between cursor-pointer ${props.className && props.className}`}>
+<li onClick={handleClick} style={{background:props.color}} key={props.index} className={`duration-[400ms] active:scale-[0.9] flex items-center gap-2  rounded-[13px] p-[9px] justify-between cursor-pointer ${props.className && props.className}`}>
   <div style={{background:props.color}} className={`flex items-center gap-2  rounded-[13px]`}>
 <div><img src={props.img} className='rounded-[50px]' width={43} height={43} /></div>
 <div className='flex flex-col'>
