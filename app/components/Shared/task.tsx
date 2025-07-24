@@ -28,8 +28,8 @@ function ModalContent() {
   const taskParticipantId = searchParams.get("taskParticipantId");
   const ready = searchParams.get("ready");
 
-  const [isOpen, setIsOpen] = useState(false);     // Для монтирования
-  const [visible, setVisible] = useState(false);   // Для анимации
+  const [isOpen, setIsOpen] = useState(false);
+  const [visible, setVisible] = useState(false);
   const [mytask, setMyTask] = useState(true);
   const [req, setReq] = useState(0);
   const [tot, setTot] = useState(0);
@@ -45,15 +45,20 @@ function ModalContent() {
     }[]
   >([]);
 
-  // Показываем модалку с анимацией
   useEffect(() => {
+    let timeout: NodeJS.Timeout;
+
     if (modal) {
       setIsOpen(true);
-      setTimeout(() => setVisible(true), 20); // запускаем анимацию появления
+      timeout = setTimeout(() => setVisible(true), 10); // запускаем анимацию
+    } else {
+      setVisible(false);
+      timeout = setTimeout(() => setIsOpen(false), 400); // скрываем через 400мс
     }
+
+    return () => clearTimeout(timeout);
   }, [modal]);
 
-  // Сохраняем friends и другие параметры
   useEffect(() => {
     if (friendsRaw) {
       try {
@@ -77,27 +82,21 @@ function ModalContent() {
     if (!isNaN(tot)) setTot(tot);
   }, [friendsRaw, myTask, reqReady, totalReady]);
 
-  const handleClose = () => {
-    setVisible(false); // запускаем анимацию скрытия
-
-    // Ждём завершения анимации (400мс) и удаляем параметры
-    setTimeout(() => {
-      const newParams = new URLSearchParams(searchParams.toString());
-      newParams.delete("modal");
-      newParams.delete("title");
-      newParams.delete("friends");
-      newParams.delete("type");
-      newParams.delete("date");
-      newParams.delete("status");
-      newParams.delete("taskId");
-      newParams.delete("myTask");
-      newParams.delete("reqReady");
-      newParams.delete("totalReady");
-      newParams.delete("ready");
-      newParams.delete("taskParticipantId");
-      rout.back();
-      setIsOpen(false);
-    }, 400);
+  const closeModal = () => {
+    const newParams = new URLSearchParams(searchParams.toString());
+    newParams.delete("modal");
+    newParams.delete("title");
+    newParams.delete("friends");
+    newParams.delete("type");
+    newParams.delete("date");
+    newParams.delete("status");
+    newParams.delete("taskId");
+    newParams.delete("myTask");
+    newParams.delete("reqReady");
+    newParams.delete("totalReady");
+    newParams.delete("ready");
+    newParams.delete("taskParticipantId");
+    rout.back();
   };
 
   if (!isOpen) return null;
@@ -115,7 +114,7 @@ function ModalContent() {
       >
         <svg
           className="absolute right-[15px] top-[15px] cursor-pointer"
-          onClick={handleClose}
+          onClick={closeModal}
           width="19"
           height="19"
           viewBox="0 0 19 19"
@@ -167,7 +166,7 @@ function ModalContent() {
           </div>
         )}
 
-        {mytask === true && status === "process" && (
+        {mytask == true && status == "process" && (
           <div className="flex w-full justify-center gap-[13px] mt-[20px]">
             <svg
               className="cursor-pointer duration-[400ms] active:scale-[0.9]"
@@ -177,7 +176,7 @@ function ModalContent() {
                   router,
                   showNotification,
                   Query,
-                  handleClose
+                  closeModal
                 )
               }
               width="50"
@@ -222,7 +221,7 @@ function ModalContent() {
           </div>
         )}
 
-        {mytask === false && taskParticipantId && (
+        {mytask == false && taskParticipantId && (
           <div className="w-full flex items-center justify-center">
             <button
               onClick={() =>
