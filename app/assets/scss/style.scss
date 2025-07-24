@@ -152,3 +152,14 @@ transform:  scale(0);
    }
 
 
+.scroll-container {
+  overflow-x: auto;
+  display: flex;
+  gap: 8px;
+  -ms-overflow-style: none;  /* IE и Edge */
+  scrollbar-width: none;     /* Firefox */
+}
+
+.scroll-container::-webkit-scrollbar {
+  display: none;             /* Chrome, Safari, Opera */
+}
