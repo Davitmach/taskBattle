@@ -320,7 +320,7 @@ if(isLoading) {
           </ul>
         </InfoBlock>
         <InfoBlock title="Награды">
-          <ul className="scroll-container">
+          <ul className="scroll-container overflow-x-auto flex items-center gap-[8px]">
           {data.rewards.length > 0 &&
             data.rewards.map((e) => (
               <Reward

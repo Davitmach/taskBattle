@@ -156,10 +156,22 @@ transform:  scale(0);
   overflow-x: auto;
   display: flex;
   gap: 8px;
-  -ms-overflow-style: none;  /* IE и Edge */
-  scrollbar-width: none;     /* Firefox */
+
+  /* Для Firefox */
+  scrollbar-width: thin;
+  scrollbar-color: #999 transparent;
 }
 
+/* Для Chrome, Safari и Edge */
 .scroll-container::-webkit-scrollbar {
-  display: none;             /* Chrome, Safari, Opera */
+  height: 6px;
+}
+
+.scroll-container::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.scroll-container::-webkit-scrollbar-thumb {
+  background-color: #999;
+  border-radius: 4px;
 }
