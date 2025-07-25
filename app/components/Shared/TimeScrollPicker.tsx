@@ -1,9 +1,8 @@
-'use client'
 import React, { useEffect, useRef, useState } from "react";
 
 interface TimeScrollPickerProps {
   type: "hours" | "minutes";
- refInput: React.RefObject<HTMLInputElement | null>;
+  refInput: React.RefObject<HTMLInputElement | null>;
 }
 
 export const TimeScrollPicker = ({ type, refInput }: TimeScrollPickerProps) => {
@@ -35,17 +34,17 @@ export const TimeScrollPicker = ({ type, refInput }: TimeScrollPickerProps) => {
   };
 
   return (
-    <div className="time-picker-wrapper">
+    <div className="time-picker">
       <div
         ref={containerRef}
         onScroll={handleScroll}
-        className="scroll-container"
+        className="time-picker-scroll"
       >
         <div style={{ height: "80px" }} />
         {values.map((val, i) => (
           <div
             key={val}
-            className={`scroll-item ${selected === i ? "active" : ""}`}
+            className={`time-picker-item ${selected === i ? "active" : ""}`}
           >
             {val}
           </div>
