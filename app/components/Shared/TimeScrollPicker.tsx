@@ -13,6 +13,7 @@ export const TimeScrollPicker = ({ type, refInput }: TimeScrollPickerProps) => {
 
   const [selected, setSelected] = useState(0);
   const containerRef = useRef<HTMLDivElement>(null);
+  const timeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   useEffect(() => {
     if (refInput.current) {
@@ -22,15 +23,18 @@ export const TimeScrollPicker = ({ type, refInput }: TimeScrollPickerProps) => {
 
   useEffect(() => {
     const el = containerRef.current;
-    if (!el) return;
-    el.scrollTop = selected * 40;
+    if (el) el.scrollTop = selected * 40;
   }, []);
 
   const handleScroll = () => {
-    const el = containerRef.current;
-    if (!el) return;
-    const index = Math.round(el.scrollTop / 40);
-    setSelected(Math.min(Math.max(index, 0), max));
+    if (timeoutRef.current) clearTimeout(timeoutRef.current);
+    timeoutRef.current = setTimeout(() => {
+      const el = containerRef.current;
+      if (!el) return;
+      const index = Math.round(el.scrollTop / 40);
+      el.scrollTo({ top: index * 40, behavior: "smooth" });
+      setSelected(Math.max(0, Math.min(index, max)));
+    }, 100);
   };
 
   return (
@@ -38,9 +42,8 @@ export const TimeScrollPicker = ({ type, refInput }: TimeScrollPickerProps) => {
       <div
         ref={containerRef}
         onScroll={handleScroll}
-        className="time-picker-scroll"
+        className="time-picker-scroll single"
       >
-        <div style={{ height: "80px" }} />
         {values.map((val, i) => (
           <div
             key={val}
@@ -49,7 +52,6 @@ export const TimeScrollPicker = ({ type, refInput }: TimeScrollPickerProps) => {
             {val}
           </div>
         ))}
-        <div style={{ height: "80px" }} />
       </div>
     </div>
   );

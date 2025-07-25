@@ -1,6 +1,6 @@
 .time-input-container {
   display: flex;
-  flex-direction: column;
+
   align-items: center;
   background-color: #2d2d4f;
   padding: 16px;
@@ -16,11 +16,11 @@
 
 .time-picker {
   position: relative;
-  height: 120px;
+  height: 40px; /* Высота одного элемента */
   overflow: hidden;
 }
 
-.time-picker-scroll {
+.time-picker-scroll.single {
   width: 100%;
   height: 100%;
   overflow-y: scroll;
@@ -29,7 +29,7 @@
   -ms-overflow-style: none;
 }
 
-.time-picker-scroll::-webkit-scrollbar {
+.time-picker-scroll.single::-webkit-scrollbar {
   display: none;
 }
 
@@ -38,7 +38,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  scroll-snap-align: start;
+  scroll-snap-align: center;
   color: gray;
   font-size: 20px;
   transition: transform 0.2s, color 0.2s;
