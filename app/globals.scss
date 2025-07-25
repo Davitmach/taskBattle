@@ -45,3 +45,9 @@ body::-webkit-scrollbar {
 .scrollbar-hide::-webkit-scrollbar {
   display: none;             /* Chrome и Safari */
 }
+.no-select {
+  user-select: none;
+  -webkit-user-select: none; /* для Safari */
+  -moz-user-select: none;    /* для Firefox */
+  -ms-user-select: none;     /* для IE/Edge */
+}

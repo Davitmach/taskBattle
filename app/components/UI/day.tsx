@@ -17,6 +17,6 @@ else {
 }
     },[props.active])
     return(
-        <div onClick={HandleClick} className={`duration-[400ms] active:scale-[0.9] text-[#FFFFFF] text-[20px] cursor-pointer font-[400] ${active && 'bg-[#2D2D4F]'} w-[37px] h-[28px] flex items-center justify-center rounded-[4px]`}>{props.day}</div>
+        <div onClick={HandleClick} className={`no-select duration-[400ms] active:scale-[0.9] text-[#FFFFFF] text-[20px] cursor-pointer font-[400] ${active && 'bg-[#2D2D4F]'} w-[37px] h-[28px] flex items-center justify-center rounded-[4px]`}>{props.day}</div>
     )
 }
