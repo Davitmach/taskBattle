@@ -39,7 +39,7 @@ export default function Page() {
           
         }
     return(
-        <div className="container pt-[7px] scrollbar-hide relative opacity-0  ">
+        <div className="container pt-[7px] scrollbar-hide relative  ">
              <Back onclick={GoBack} className="absolute cursor-pointer left-[0] top-[40px]"/>
              <Title className="font-[400] text-[4.57em]"color={'#F1F1F1'}>New Task</Title>
              <div className="search_input  w-full relative mt-[-10px] "><input ref={refTitle}  placeholder="Название таска..." /></div>
