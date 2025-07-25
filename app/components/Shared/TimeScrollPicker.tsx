@@ -13,8 +13,6 @@ export const TimeScrollPicker = ({ type, refInput }: TimeScrollPickerProps) => {
 
   const [selected, setSelected] = useState(0);
   const containerRef = useRef<HTMLDivElement>(null);
-  const timeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
-const animationRef = useRef<number | null>(null);
 
   useEffect(() => {
     if (refInput.current) {
@@ -22,40 +20,37 @@ const animationRef = useRef<number | null>(null);
     }
   }, [selected]);
 
+  // Прокрутка к начальному элементу
   useEffect(() => {
     const el = containerRef.current;
-    if (el) el.scrollTop = selected * 40;
+    if (el) {
+      el.scrollTop = selected * 40;
+    }
   }, []);
 
-const handleScroll = () => {
-  const el = containerRef.current;
-  if (!el) return;
+  const handleWheel = (e: React.WheelEvent) => {
+    e.preventDefault(); // ❌ блокируем дефолтную прокрутку
+    const delta = Math.sign(e.deltaY);
 
-  if (animationRef.current) cancelAnimationFrame(animationRef.current);
+    setSelected((prev) => {
+      let next = prev + delta;
+      if (next < 0) next = 0;
+      if (next > max) next = max;
 
-  let lastScrollTop = el.scrollTop;
-  const checkIfDone = () => {
-    const currentScrollTop = el.scrollTop;
-    if (currentScrollTop !== lastScrollTop) {
-      lastScrollTop = currentScrollTop;
-      animationRef.current = requestAnimationFrame(checkIfDone);
-    } else {
-      const index = Math.round(currentScrollTop / 40);
-      el.scrollTo({ top: index * 40, behavior: "smooth" });
-      setSelected(Math.max(0, Math.min(index, max)));
-    }
+      // Прокручиваем к новому значению
+      const el = containerRef.current;
+      if (el) el.scrollTo({ top: next * 40, behavior: "smooth" });
+
+      return next;
+    });
   };
-
-  animationRef.current = requestAnimationFrame(checkIfDone);
-};
-
 
   return (
     <div className="time-picker">
       <div
         ref={containerRef}
-        onScroll={handleScroll}
-        className="time-picker-scroll single"
+        className="time-picker-scroll controlled"
+        onWheel={handleWheel}
       >
         {values.map((val, i) => (
           <div
