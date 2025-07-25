@@ -90,7 +90,7 @@ export const TimeScrollPicker = ({ type, refInput }: TimeScrollPickerProps) => {
   }, [max, values, refInput]);
 
   return (
-    <div className="time-picker">
+    <div className="time-picker cursor-pointer">
       <div ref={containerRef} className="time-picker-scroll controlled">
         {values.map((val, i) => (
           <div
