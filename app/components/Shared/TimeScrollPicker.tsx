@@ -28,9 +28,30 @@ export const TimeScrollPicker = ({ type, refInput }: TimeScrollPickerProps) => {
     const el = containerRef.current;
     if (!el) return;
 
+    // Инициализация прокрутки
     el.scrollTop = selected * 40;
 
-    // --- Обработчики тача ---
+    // Обработчик колеса мыши (ПК)
+    const handleWheel = (e: WheelEvent) => {
+      e.preventDefault();
+      const delta = Math.sign(e.deltaY);
+
+      setSelected((prev) => {
+        let next = prev + delta;
+        if (next < 0) next = 0;
+        if (next > max) next = max;
+
+        el.scrollTo({ top: next * 40, behavior: "smooth" });
+
+        if (refInput.current) {
+          refInput.current.value = values[next];
+        }
+
+        return next;
+      });
+    };
+
+    // Обработчики тача (мобильные)
     const handleTouchStart = (e: TouchEvent) => {
       startY.current = e.touches[0].clientY;
       scrollTopStart.current = el.scrollTop;
@@ -41,15 +62,12 @@ export const TimeScrollPicker = ({ type, refInput }: TimeScrollPickerProps) => {
 
       const currentY = e.touches[0].clientY;
       const diff = startY.current - currentY;
-      // Прокрутка вручную
       el.scrollTop = scrollTopStart.current + diff;
 
-      // Если хотим заблокировать скролл страницы при прокрутке внутри
-      e.preventDefault();
+      e.preventDefault(); // предотвращаем прокрутку страницы
     };
 
     const handleTouchEnd = () => {
-      // При завершении тача — "привязываемся" к ближайшему элементу
       if (!el) return;
       const index = Math.round(el.scrollTop / 40);
       const clampedIndex = Math.min(Math.max(index, 0), max);
@@ -58,24 +76,22 @@ export const TimeScrollPicker = ({ type, refInput }: TimeScrollPickerProps) => {
       startY.current = null;
     };
 
+    el.addEventListener("wheel", handleWheel, { passive: false });
     el.addEventListener("touchstart", handleTouchStart, { passive: false });
     el.addEventListener("touchmove", handleTouchMove, { passive: false });
     el.addEventListener("touchend", handleTouchEnd);
 
     return () => {
+      el.removeEventListener("wheel", handleWheel);
       el.removeEventListener("touchstart", handleTouchStart);
       el.removeEventListener("touchmove", handleTouchMove);
       el.removeEventListener("touchend", handleTouchEnd);
     };
-  }, [selected, max]);
+  }, [max, values, refInput]);
 
   return (
     <div className="time-picker">
-      <div
-        ref={containerRef}
-        className="time-picker-scroll controlled"
-        // onWheel обработчик, если нужен — оставь или добавь как в прошлом примере
-      >
+      <div ref={containerRef} className="time-picker-scroll controlled">
         {values.map((val, i) => (
           <div
             key={val}
