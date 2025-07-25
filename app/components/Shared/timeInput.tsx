@@ -51,16 +51,17 @@
 //   );
 // };
 'use client'
-import React from "react";
+import React, { useRef,RefObject } from "react";
 import { TTimeInput } from "@/app/types/calendar";
 import { TimeScrollPicker } from "./TimeScrollPicker";
 import '../../assets/scss/time.scss'
-export const TimeInput = (props: TTimeInput) => {
+
+export const TimeInput: React.FC<TTimeInput> = ({ refHours, refMinutes }) => {
   return (
-    <div className="time-input-container">
-      <TimeScrollPicker type="hours" refInput={props.refHours} />
-      <div className="separator">:</div>
-      <TimeScrollPicker type="minutes" refInput={props.refMinutes} />
+    <div style={{ display: "flex", gap: "8px" }}>
+      <TimeScrollPicker type="hours" refInput={refHours} />
+      <div style={{ color: "white", fontSize: "24px" }}>:</div>
+      <TimeScrollPicker type="minutes" refInput={refMinutes} />
     </div>
   );
 };

@@ -1,12 +1,17 @@
 .time-picker {
-  height: 40px;
+  height: 40px; /* Высота одного элемента */
   overflow: hidden;
+  border: 1px solid #444;
+  border-radius: 6px;
+  background-color: #2d2d4f;
+  width: 60px;
 }
 
 .time-picker-scroll.controlled {
   height: 100%;
   overflow: hidden; /* отключаем нативную прокрутку */
   scroll-snap-type: y mandatory;
+  position: relative;
 }
 
 .time-picker-item {
@@ -15,8 +20,8 @@
   justify-content: center;
   align-items: center;
   scroll-snap-align: center;
-  color: gray;
   font-size: 20px;
+  color: gray;
   transition: transform 0.2s, color 0.2s;
 }
 

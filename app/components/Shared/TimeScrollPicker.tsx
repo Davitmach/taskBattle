@@ -20,37 +20,41 @@ export const TimeScrollPicker = ({ type, refInput }: TimeScrollPickerProps) => {
     }
   }, [selected]);
 
-  // Прокрутка к начальному элементу
   useEffect(() => {
     const el = containerRef.current;
-    if (el) {
-      el.scrollTop = selected * 40;
-    }
+    if (!el) return;
+
+    const handleWheel = (e: WheelEvent) => {
+      e.preventDefault();
+      const delta = Math.sign(e.deltaY);
+
+      setSelected((prev) => {
+        let next = prev + delta;
+        if (next < 0) next = 0;
+        if (next > max) next = max;
+
+        el.scrollTo({ top: next * 40, behavior: "smooth" });
+
+        if (refInput.current) {
+          refInput.current.value = values[next];
+        }
+
+        return next;
+      });
+    };
+
+    el.addEventListener("wheel", handleWheel, { passive: false });
+
+    return () => {
+      el.removeEventListener("wheel", handleWheel);
+    };
   }, []);
-
-  const handleWheel = (e: React.WheelEvent) => {
-    e.preventDefault(); // ❌ блокируем дефолтную прокрутку
-    const delta = Math.sign(e.deltaY);
-
-    setSelected((prev) => {
-      let next = prev + delta;
-      if (next < 0) next = 0;
-      if (next > max) next = max;
-
-      // Прокручиваем к новому значению
-      const el = containerRef.current;
-      if (el) el.scrollTo({ top: next * 40, behavior: "smooth" });
-
-      return next;
-    });
-  };
 
   return (
     <div className="time-picker">
       <div
         ref={containerRef}
         className="time-picker-scroll controlled"
-        onWheel={handleWheel}
       >
         {values.map((val, i) => (
           <div
