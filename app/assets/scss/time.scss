@@ -1,0 +1,49 @@
+.time-input-container {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: #2d2d4f;
+  padding: 10px;
+  border-radius: 4px;
+}
+
+.separator {
+  color: white;
+  font-size: 22px;
+  margin: 0 4px;
+}
+
+.scroll-container {
+  width: 50px;
+  height: 200px;
+  overflow-y: scroll;
+  scroll-snap-type: y mandatory;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  position: relative;
+}
+
+.scroll-container::-webkit-scrollbar {
+  display: none;
+}
+
+.scroll-item {
+  height: 40px;
+  font-size: 22px;
+  color: gray;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  scroll-snap-align: start;
+  transition: transform 0.2s, color 0.2s;
+}
+
+.scroll-item.active {
+  color: white;
+  font-weight: bold;
+  transform: scale(1.2);
+}
+
+.time-picker-wrapper {
+  position: relative;
+}
