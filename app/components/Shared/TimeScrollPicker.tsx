@@ -14,6 +14,7 @@ export const TimeScrollPicker = ({ type, refInput }: TimeScrollPickerProps) => {
   const [selected, setSelected] = useState(0);
   const containerRef = useRef<HTMLDivElement>(null);
   const timeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+const animationRef = useRef<number | null>(null);
 
   useEffect(() => {
     if (refInput.current) {
@@ -26,16 +27,28 @@ export const TimeScrollPicker = ({ type, refInput }: TimeScrollPickerProps) => {
     if (el) el.scrollTop = selected * 40;
   }, []);
 
-  const handleScroll = () => {
-    if (timeoutRef.current) clearTimeout(timeoutRef.current);
-    timeoutRef.current = setTimeout(() => {
-      const el = containerRef.current;
-      if (!el) return;
-      const index = Math.round(el.scrollTop / 40);
+const handleScroll = () => {
+  const el = containerRef.current;
+  if (!el) return;
+
+  if (animationRef.current) cancelAnimationFrame(animationRef.current);
+
+  let lastScrollTop = el.scrollTop;
+  const checkIfDone = () => {
+    const currentScrollTop = el.scrollTop;
+    if (currentScrollTop !== lastScrollTop) {
+      lastScrollTop = currentScrollTop;
+      animationRef.current = requestAnimationFrame(checkIfDone);
+    } else {
+      const index = Math.round(currentScrollTop / 40);
       el.scrollTo({ top: index * 40, behavior: "smooth" });
       setSelected(Math.max(0, Math.min(index, max)));
-    }, 100);
+    }
   };
+
+  animationRef.current = requestAnimationFrame(checkIfDone);
+};
+
 
   return (
     <div className="time-picker">
