@@ -57,8 +57,8 @@ const calendarCells = Array.from({ length: daysInMonth }, (_, i) => i + 1);
        <div className="Date flex w-full justify-between items-start">
         <div><AccordingBtnWithoutAnim onClick={prevMonth} className="rotate-[-90deg]"  color="#D9D9D9" innerColor="#1E1E2F"/></div>
         <div className="flex items-center flex-col gap-[5px]">
-           <div className="text-[#FFFFFF] text-[20px]">{props.year}</div>
-           <div  className=" w-[100px] text-center text-[#FFFFFF] text-[20px]">{MONTHS[props.month]}</div>
+           <div className="text-[#FFFFFF] text-[20px] no-select">{props.year}</div>
+           <div  className=" w-[100px] text-center text-[#FFFFFF] text-[20px] no-select">{MONTHS[props.month]}</div>
         </div>
         <div><AccordingBtnWithoutAnim onClick={nextMonth} className="rotate-[90deg]"  color="#D9D9D9" innerColor="#1E1E2F"/></div>
        </div>
