@@ -41,6 +41,10 @@ export default function Page() {
             taskService.createTask(showNotification, refMin.current.value,refHour.current.value,activeDay,month,year,router,refTitle.current.value,type,selectedFriend)
           
         }
+        useEffect(()=> {
+console.log(refHour,refMin);
+
+        },[refHour,refMin])
     return(
         <div className="container pt-[7px] scrollbar-hide relative  ">
              <Back onclick={GoBack} className="absolute cursor-pointer left-[0] top-[40px]"/>
