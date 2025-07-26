@@ -73,7 +73,7 @@ if(data) {
         <div>
           <Back
             onclick={() => router("/")}
-            className="absolute left-0 top-[15px] cursor-pointer"
+            className="absolute left-0 top-[37px] cursor-pointer"
           />
           <Title className="font-[400] text-[4.57em]" color={"#F1F1F1"}>
             TOP
