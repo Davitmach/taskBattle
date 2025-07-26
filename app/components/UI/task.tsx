@@ -74,7 +74,7 @@ function decline(number: number, words: [string, string, string]) {
 }
 
   return(
-    <div  onClick={()=> openModal({date:props.date,title:props.title,type:props.type,friends:props.friends,status:'wit',taskId:props.id})}  className={`bg-[${props.color}]  duration-[400ms] active:scale-[0.9] p-[10px] rounded-[8px] cursor-grab h-[69px] flex items-start justify-between`}>
+    <div  onClick={()=> openModal({date:props.date,title:props.title,type:props.type,friends:props.friends,status:'wit',taskId:props.id})}  className={`bg-[${props.color}]  duration-[200ms] active:scale-[0.9] p-[10px] rounded-[8px] cursor-grab h-[69px] flex items-start justify-between`}>
     <div className='flex flex-col h-full justify-between'>
       <div className='text-[#1E1E1E] text-[1.14em] font-[400] text-nowrap'>{props.title.length >substring ?props.title.substring(0,substring)+`...` : props.title}</div>
       <div className='text-[#000000] text-[1em] font-[400]'>{props.type}</div>
@@ -287,7 +287,7 @@ function decline(number: number, words: [string, string, string]) {
 
 
   return (
-    <div  className='duration-[400ms] active:scale-[0.9] flex items-center justify-between gap-[10px]'>
+    <div  className='duration-[200ms] active:scale-[0.9] flex items-center justify-between gap-[10px]'>
       <div
       onClick={()=> openModal({date:props.date,title:props.title,type:props.type,friends:props.friends,status:'process',taskId:props.id,myTask:props.taskParticipantId?false:true,reqReady:props.requiredReadyCount,totalReady:props.readyCount,ready:props.ready,taskParticipantId:props?.taskParticipantId})}
         ref={ref}

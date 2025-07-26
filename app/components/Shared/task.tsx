@@ -169,7 +169,7 @@ function ModalContent() {
         {mytask == true && status == "process" && (
           <div className="flex w-full justify-center gap-[13px] mt-[20px]">
             <svg
-              className="cursor-pointer duration-[400ms] active:scale-[0.9]"
+              className="cursor-pointer duration-[200ms] active:scale-[0.9]"
               onClick={() =>
                 taskService.acceptTask(
                   taskId as string,
@@ -190,7 +190,7 @@ function ModalContent() {
             </svg>
 
             <svg
-              className="cursor-pointer duration-[400ms] active:scale-[0.9]"
+              className="cursor-pointer duration-[200ms] active:scale-[0.9]"
               onClick={() =>
                 taskService.cancelTask(
                   taskId as string,
@@ -233,7 +233,7 @@ function ModalContent() {
                 )
               }
               disabled={ready !== "false"}
-              className={`duration-[400ms] active:scale-[0.9] w-[139px] h-[50px] rounded-[20px] ${
+              className={`duration-[200ms] active:scale-[0.9] w-[139px] h-[50px] rounded-[20px] ${
                 ready === "false" ? "bg-[#FF4D6D]" : "bg-[#ff4d6d87]"
               } text-[white] text-[20px] ${
                 ready === "false" ? "cursor-pointer" : "cursor-not-allowed"

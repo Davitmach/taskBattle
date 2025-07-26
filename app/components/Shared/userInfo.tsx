@@ -75,7 +75,7 @@ export const AnyUserInfo = (props: IAnyUserInfo) => {
                 }}
                 type="Green"
                 loading={false}
-                className="flex gap-[3px] !w-[109px] text-[1em] py-[11px] px-[7px] duration-[400ms] active:scale-[0.9]"
+                className="flex gap-[3px] !w-[109px] text-[1em] py-[11px] px-[7px] duration-[200ms] active:scale-[0.9]"
               >
                 <span>Принять</span>
                 <svg
@@ -126,7 +126,7 @@ export const AnyUserInfo = (props: IAnyUserInfo) => {
                 }}
                 type="Green"
                 loading={false}
-                className="flex gap-[3px] !w-[109px] text-[1em] py-[11px] px-[7px] duration-[400ms] active:scale-[0.9]"
+                className="flex gap-[3px] !w-[109px] text-[1em] py-[11px] px-[7px] duration-[200ms] active:scale-[0.9]"
               >
                 <span>Отклонить</span>
                 <svg
@@ -188,7 +188,7 @@ export const AnyUserInfo = (props: IAnyUserInfo) => {
               }}
               type="Green"
               loading={false}
-              className="text-[1em] py-[11px] px-[7px] duration-[400ms] active:scale-[0.9]"
+              className="text-[1em] py-[11px] px-[7px] duration-[200ms] active:scale-[0.9]"
             >
               {typeof props.friendship !== "boolean" &&
               props.friendship.status == "accepted" ? (

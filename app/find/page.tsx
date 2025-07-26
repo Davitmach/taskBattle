@@ -46,7 +46,7 @@ export default function Page() {
           onClick={() => {
             HandleSearch();
           }}
-          className="duration-[400ms] active:scale-[0.9] absolute top-[50%] translate-y-[-50%] right-[15px] cursor-pointer"
+          className="duration-[200ms] active:scale-[0.9] absolute top-[50%] translate-y-[-50%] right-[15px] cursor-pointer"
           width="22"
           height="22"
           viewBox="0 0 22 22"

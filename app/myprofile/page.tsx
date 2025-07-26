@@ -368,7 +368,7 @@ friends.map((e)=> (
         <InfoBlock title="Статистика">
           <div className="flex w-full justify-between gap-[12px]">
             <Button
-              className="flex-1 h-[38px] text-[14px] duration-[400ms] active:scale-[0.9]"
+              className="flex-1 h-[38px] text-[14px] duration-[200ms] active:scale-[0.9]"
               loading={false}
               type="Green"
               onClick={()=> {
@@ -378,7 +378,7 @@ friends.map((e)=> (
               День
             </Button>
             <Button
-              className="flex-1 h-[38px] text-[14px] duration-[400ms] active:scale-[0.9]"
+              className="flex-1 h-[38px] text-[14px] duration-[200ms] active:scale-[0.9]"
               loading={false}
               type="Green"
                 onClick={()=> {
@@ -388,7 +388,7 @@ friends.map((e)=> (
               Неделя
             </Button>
             <Button
-              className="flex-1 h-[38px] text-[14px] duration-[400ms] active:scale-[0.9]"
+              className="flex-1 h-[38px] text-[14px] duration-[200ms] active:scale-[0.9]"
               loading={false}
               type="Green"
                 onClick={()=> {
@@ -434,7 +434,7 @@ friends.map((e)=> (
           <div className="min-h-[342px] anim_fadeIn bg-[#2D2D4F] flex flex-col justify-start relative items-center gap-[15px] p-[15px] rounded-[16px] fixed left-[50%] top-[50%] translate-x-[-50%] translate-y-[-50%] max-w-[400px] w-[91%] ">
             <svg
               onClick={closeM}
-              className="absolute right-[15px] top-[15px] cursor-pointer duration-[400ms] active:scale-[0.9]"
+              className="absolute right-[15px] top-[15px] cursor-pointer duration-[200ms] active:scale-[0.9]"
               width="19"
               height="19"
               viewBox="0 0 19 19"
@@ -477,7 +477,7 @@ friends.map((e)=> (
           <div className="min-h-[342px] anim_fadeIn bg-[#2D2D4F] flex flex-col justify-start relative items-center gap-[15px] p-[15px] rounded-[16px] fixed left-[50%] top-[50%] translate-x-[-50%] translate-y-[-50%] max-w-[400px] w-[91%] ">
             <svg
               onClick={closeM}
-              className="absolute right-[15px] top-[15px] cursor-pointer duration-[400ms] active:scale-[0.9]"
+              className="absolute right-[15px] top-[15px] cursor-pointer duration-[200ms] active:scale-[0.9]"
               width="19"
               height="19"
               viewBox="0 0 19 19"

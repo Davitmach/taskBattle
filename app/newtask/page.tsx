@@ -35,6 +35,9 @@ export default function Page() {
         const CreateTask = ()=> {
           if(!refMin.current || !refHour.current || !refTitle.current) return;
             const type: "MULTI" | "SINGLE" = active === "Совместное" ? "MULTI" : "SINGLE";
+            console.log('====================================');
+            console.log(refHour,refMin);
+            console.log('====================================');
             taskService.createTask(showNotification, refMin.current.value,refHour.current.value,activeDay,month,year,router,refTitle.current.value,type,selectedFriend)
           
         }
@@ -56,7 +59,7 @@ export default function Page() {
               
 </ul></InfoBlock>} 
         <Calendar setDay={setActiveDay} setMonth={setMonth} setYear={setYear} year={year}  currentMonth={currentMonth} currentYear={currentYear} day={activeDay} month={month} refHour={refHour} refMin={refMin}/>
-        <Button onClick={CreateTask} loading={false} type='Purple' className="duration-[400ms] active:scale-[0.9] w-full py-[8px] text-[27px]">Создать задачу</Button>
+        <Button onClick={CreateTask} loading={false} type='Purple' className="duration-[200ms] active:scale-[0.9] w-full py-[8px] text-[27px]">Создать задачу</Button>
         </div>
     )
 }
