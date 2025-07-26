@@ -35,16 +35,11 @@ export default function Page() {
         const CreateTask = ()=> {
           if(!refMin.current || !refHour.current || !refTitle.current) return;
             const type: "MULTI" | "SINGLE" = active === "Совместное" ? "MULTI" : "SINGLE";
-            console.log('====================================');
-            console.log(refHour,refMin);
-            console.log('====================================');
+          
             taskService.createTask(showNotification, refMin.current.value,refHour.current.value,activeDay,month,year,router,refTitle.current.value,type,selectedFriend)
           
         }
-        useEffect(()=> {
-console.log(refHour,refMin);
 
-        },[refHour,refMin])
     return(
         <div className="container pt-[7px] scrollbar-hide relative  ">
              <Back onclick={GoBack} className="absolute cursor-pointer left-[0] top-[40px]"/>

@@ -18,7 +18,7 @@ class UserService {
 
     const name = unsafeData?.user?.first_name || "";
     const icon = unsafeData?.user?.photo_url || "";
-    console.log('CREM CRET ', icon);
+
     
     const chatId = unsafeData?.user?.id || "";
 try {

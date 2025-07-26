@@ -191,8 +191,6 @@ if(isError) {
     if (userData) {
       setLoad(true);
       setData(userData);
-console.log(userData,'qadaedeadaeda');
-
     }
   }, [userData]);
 useEffect(() => {

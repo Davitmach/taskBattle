@@ -57,9 +57,7 @@ import { TimeScrollPicker } from "./TimeScrollPicker";
 import '../../assets/scss/time.scss'
 
 export const TimeInput: React.FC<TTimeInput> = ({ refHours, refMinutes }) => {
-  useEffect(() => {
-    console.log("refs on mount:", refHours, refMinutes);
-  }, []);
+
 
   return (
     <div style={{ display: "flex", flexDirection: "column", gap: "12px" }}>

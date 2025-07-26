@@ -20,7 +20,7 @@ export const TimeScrollPicker = ({ type, refInput }: TimeScrollPickerProps) => {
   const updateInputValue = (value: string) => {
     if (refInput.current) {
       refInput.current.value = value;
-      console.log("Selected:", value);
+
     }
   };
 

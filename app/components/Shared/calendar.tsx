@@ -73,7 +73,7 @@ const calendarCells = Array.from({ length: daysInMonth }, (_, i) => i + 1);
   ))}
 </div>
 
-       <div className="Time">
+       <div className="Time mt-[10px]">
         <TimeInput refHours={props.refHour} refMinutes={props.refMin}/>
        </div>
         </div>
