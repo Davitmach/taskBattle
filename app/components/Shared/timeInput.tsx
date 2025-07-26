@@ -50,22 +50,28 @@
 //     </div>
 //   );
 // };
-'use client'
-import React, { useRef,RefObject, useEffect } from "react";
+'use client';
+import React, { useRef, RefObject, useEffect } from "react";
 import { TTimeInput } from "@/app/types/calendar";
 import { TimeScrollPicker } from "./TimeScrollPicker";
 import '../../assets/scss/time.scss'
 
 export const TimeInput: React.FC<TTimeInput> = ({ refHours, refMinutes }) => {
-  useEffect(()=> {
-console.log(refHours,refMinutes);
+  useEffect(() => {
+    console.log("refs on mount:", refHours, refMinutes);
+  }, []);
 
-  },[refHours,refMinutes])
   return (
-    <div style={{ display: "flex", gap: "8px" }}>
-      <TimeScrollPicker type="hours" refInput={refHours} />
-      <div style={{ color: "white", fontSize: "24px" }}>:</div>
-      <TimeScrollPicker type="minutes" refInput={refMinutes} />
+    <div style={{ display: "flex", flexDirection: "column", gap: "12px" }}>
+      <div style={{ display: "flex", gap: "8px" }}>
+        <TimeScrollPicker type="hours" refInput={refHours} />
+        <div style={{ color: "white", fontSize: "24px" }}>:</div>
+        <TimeScrollPicker type="minutes" refInput={refMinutes} />
+      </div>
+
+      {/* Добавляем невидимые или видимые инпуты */}
+      <input ref={refHours} type="hidden"  />
+      <input ref={refMinutes} type='hidden'  />
     </div>
   );
 };
